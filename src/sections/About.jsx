@@ -1,41 +1,27 @@
 export default function About() {
-  const skills = [
-    "Social Media Strategy",
-    "Content Creation",
-    "Creative Direction",
-    "Campaign Planning",
-    "Brand Storytelling",
-    "Influencer Coordination",
-  ];
-
   return (
-    <section id="about" className="section about-grid">
-      <div className="card">
+    <section id="about" className="section about-v2 fade-up">
+      <div className="card about-v2-card">
         <p className="eyebrow">About</p>
-        <h2 className="section-title">
-          The intersection of strategy, storytelling, and culture.
+        <h2 className="section-title compact-title">
+          I mix instinct, culture, and strategy.
         </h2>
 
-        <p className="section-text">
-          I’m a social media strategist and content creator working at the
-          intersection of creativity and marketing performance. I build
-          campaigns, launch narratives, and social content systems for brands
-          that want attention and engagement.
-        </p>
-
-        <p className="section-text">
-          My experience is rooted in hospitality, lifestyle, and creator-led
-          brands where communication needs to feel visually sharp, culturally
-          relevant, and built for real traction.
+        <p className="section-text short-text">
+          I work across campaigns, content, launches, and brand storytelling.
+          My style is visual, social-first, and built to make people stop.
         </p>
       </div>
 
-      <div className="skills-list">
-        {skills.map((skill) => (
-          <div key={skill} className="card skill-card">
-            {skill}
-          </div>
-        ))}
+      <div className="about-mini-grid">
+        <div className="card mini-info-card">
+          <h3>Social-first</h3>
+          <p>Built for how people actually watch, react, and share.</p>
+        </div>
+        <div className="card mini-info-card">
+          <h3>Culture-aware</h3>
+          <p>Concepts shaped by mood, timing, trend, and context.</p>
+        </div>
       </div>
     </section>
   );

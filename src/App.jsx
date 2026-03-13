@@ -1,27 +1,30 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
+import Overview from "./sections/Overview";
+import Services from "./sections/Services";
 import Projects from "./sections/Projects";
 import About from "./sections/About";
 import Tools from "./sections/Tools";
 import Contact from "./sections/Contact";
-import "./styles.css";
 
 export default function App() {
   return (
-    <div className="page">
+    <div className="site-shell">
+      <div className="bg-orb orb-1" />
+      <div className="bg-orb orb-2" />
+      <div className="bg-orb orb-3" />
 
       <Navbar />
 
-      <Hero />
-
-      <Projects />
-
-      <About />
-
-      <Tools />
-
-      <Contact />
-
+      <main className="container">
+        <Hero />
+        <Overview />
+        <Services />
+        <Projects />
+        <About />
+        <Tools />
+        <Contact />
+      </main>
     </div>
   );
 }

@@ -7,9 +7,10 @@ export default function Navbar() {
       </div>
 
       <nav className="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#services">What I Do</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#tools">Tools</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
