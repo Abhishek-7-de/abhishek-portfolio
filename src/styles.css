@@ -174,7 +174,7 @@ a {
   position: relative;
   width: 100%;
   max-width: 460px;
-  animation: floaty 5s ease-in-out infinite;
+  animation: floatHero 6s ease-in-out infinite;
 }
 
 .hero-image {
@@ -186,6 +186,7 @@ a {
   display: block;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  filter: contrast(1.05) brightness(0.95);
 }
 
 .image-badge {
@@ -206,6 +207,34 @@ a {
 .badge-bottom {
   bottom: 18px;
   right: 18px;
+}
+
+.proof-strip {
+  overflow: hidden;
+  padding: 10px 0 34px;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 56px;
+  animation: marqueeMove 22s linear infinite;
+}
+
+.marquee-item {
+  white-space: nowrap;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .section {
@@ -232,6 +261,13 @@ a {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(18px);
   border-radius: 28px;
+  transition: transform 0.25s ease, border 0.25s ease, background 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .overview-grid,
@@ -249,16 +285,6 @@ a {
 .about-v2-card,
 .mini-info-card {
   padding: 22px;
-  transition: transform 0.25s ease, border 0.25s ease, background 0.25s ease;
-}
-
-.overview-card:hover,
-.service-card:hover,
-.project-v2-card:hover,
-.mini-info-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.07);
 }
 
 .overview-card h3,
@@ -306,12 +332,20 @@ a {
 
 .fade-up {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(40px);
   animation: fadeUp 0.8s ease forwards;
 }
 
+.delay-1 {
+  animation-delay: 0.15s;
+}
+
 .delay-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
+}
+
+.delay-3 {
+  animation-delay: 0.45s;
 }
 
 @keyframes fadeUp {
@@ -321,12 +355,24 @@ a {
   }
 }
 
-@keyframes floaty {
-  0%, 100% {
+@keyframes floatHero {
+  0% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes marqueeMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
@@ -347,8 +393,7 @@ a {
 
   .overview-grid,
   .services-grid,
-  .projects-v2-grid,
-  .about-mini-grid {
+  .projects-v2-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 

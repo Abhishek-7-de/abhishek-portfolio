@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
+import ProofStrip from "./sections/ProofStrip";
 import Overview from "./sections/Overview";
 import Services from "./sections/Services";
 import Projects from "./sections/Projects";
@@ -18,6 +19,7 @@ export default function App() {
 
       <main className="container">
         <Hero />
+        <ProofStrip />
         <Overview />
         <Services />
         <Projects />
