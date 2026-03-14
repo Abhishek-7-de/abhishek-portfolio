@@ -1,17 +1,17 @@
 export default function Contact() {
   return (
     <section id="contact" className="section fade-up">
-      <div className="contact-v6-card">
+      <div className="contact-v10-card">
         <p className="eyebrow contact-kicker">Contact</p>
-        <h2 className="contact-v6-title">
+        <h2 className="contact-v10-title">
           Let’s build something
           <br />
           people remember.
         </h2>
 
-        <p className="contact-v6-text">
-          Open to campaigns, creative strategy, content systems,
-          and brand collaborations.
+        <p className="contact-v10-text">
+          Open to campaign thinking, creative strategy, content systems,
+          storytelling, and brand collaborations.
         </p>
 
         <div className="contact-actions centered-actions">

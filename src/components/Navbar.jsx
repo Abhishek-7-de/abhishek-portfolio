@@ -9,7 +9,7 @@ export default function Navbar() {
       <nav className="nav-links">
         <a href="#manifesto">Why Me</a>
         <a href="#work">Work</a>
-        <a href="#services">Capabilities</a>
+        <a href="#capabilities">Capabilities</a>
         <a href="#tools">Tools</a>
         <a href="#contact">Contact</a>
       </nav>

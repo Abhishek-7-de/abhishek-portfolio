@@ -1,18 +1,18 @@
 export default function ProofStrip() {
   const items = [
     "Launch Rollouts",
-    "Campaign Thinking",
     "Brand Storytelling",
+    "Content Systems",
     "Social-first Strategy",
     "Creative Direction",
-    "Content Systems",
+    "Campaign Thinking",
     "Culture-led Execution",
     "Scroll-stopping Ideas",
   ];
 
   return (
     <section className="proof-strip fade-up">
-      <div className="proof-label">Trusted across</div>
+      <div className="proof-label">Built across</div>
 
       <div className="marquee">
         <div className="marquee-track">
