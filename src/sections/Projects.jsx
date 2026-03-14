@@ -18,11 +18,12 @@ export default function Projects() {
     <section id="work" className="section fade-up">
       <p className="eyebrow">Selected Work</p>
       <h2 className="section-title compact-title">
-        Work section, ready to grow.
+        Work that’s built to move.
       </h2>
 
       <p className="section-text short-text">
-        Later, you can plug in videos, reels, links, decks, and case studies here.
+        This section is ready for reels, campaigns, decks, launch videos, and
+        stronger case-study links later.
       </p>
 
       <div className="projects-v2-grid">

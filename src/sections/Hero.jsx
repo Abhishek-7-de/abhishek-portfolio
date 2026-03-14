@@ -2,19 +2,20 @@ import profile from "../assets/profile.png";
 
 export default function Hero() {
   return (
-    <section className="hero-v2">
-      <div className="hero-left fade-up">
-        <p className="eyebrow">
-          Social Media Strategist • Brand Builder • Campaign Thinker
+    <section className="hero-v6">
+      <div className="hero-copy fade-up">
+        <p className="eyebrow hero-kicker">
+          Social-first strategist • campaign builder • brand thinker
         </p>
 
-        <h2 className="hero-title-v2">
-          I build brands that feel current, sharp, and impossible to ignore.
+        <h2 className="hero-title-v6">
+          I build <span className="text-highlight">cultural momentum</span> for
+          brands that want to be felt, not just seen.
         </h2>
 
-        <p className="hero-text-v2">
-          Strategy, storytelling, campaigns, content.
-          Built for attention. Designed for recall.
+        <p className="hero-sub-v6">
+          Strategy. Storytelling. Launches. Content systems.
+          Built to stop the scroll and stay in memory.
         </p>
 
         <div className="hero-actions">
@@ -27,11 +28,13 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-right fade-up delay-2">
-        <div className="hero-image-wrap">
-          <img src={profile} alt="Abhishek De" className="hero-image" />
-          <div className="image-badge badge-top">Creative + Strategy</div>
-          <div className="image-badge badge-bottom">Marketing that moves</div>
+      <div className="hero-visual fade-up delay-2">
+        <div className="hero-image-shell">
+          <img src={profile} alt="Abhishek De" className="hero-image-v6" />
+
+          <div className="floating-tag tag-1">Creative + Strategy</div>
+          <div className="floating-tag tag-2">Social-first thinking</div>
+          <div className="floating-tag tag-3">Brand momentum</div>
         </div>
       </div>
     </section>

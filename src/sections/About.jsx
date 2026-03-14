@@ -3,8 +3,10 @@ export default function About() {
     <section id="about" className="section about-v2 fade-up">
       <div className="card about-v2-card">
         <p className="eyebrow">About</p>
-        <h2 className="section-title compact-title">
-          I mix instinct, culture, and strategy.
+        <h2 className="section-title compact-title serif-title">
+          I mix instinct, culture,
+          <br />
+          and strategy.
         </h2>
 
         <p className="section-text short-text">

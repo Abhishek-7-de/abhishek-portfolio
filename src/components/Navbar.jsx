@@ -1,16 +1,15 @@
 export default function Navbar() {
   return (
     <header className="navbar container">
-      <div>
-        <p className="eyebrow">Portfolio</p>
+      <div className="nav-brand-wrap">
+        <p className="eyebrow nav-kicker">Portfolio</p>
         <h1 className="brand">Abhishek De</h1>
       </div>
 
       <nav className="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#services">What I Do</a>
+        <a href="#manifesto">Why Me</a>
         <a href="#work">Work</a>
-        <a href="#about">About</a>
+        <a href="#services">Capabilities</a>
         <a href="#tools">Tools</a>
         <a href="#contact">Contact</a>
       </nav>

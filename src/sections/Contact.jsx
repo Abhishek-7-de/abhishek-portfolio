@@ -1,17 +1,20 @@
 export default function Contact() {
   return (
     <section id="contact" className="section fade-up">
-      <div className="card contact-card">
-        <p className="eyebrow">Contact</p>
-        <h2 className="section-title compact-title">
-          Let’s build something people remember.
+      <div className="contact-v6-card">
+        <p className="eyebrow contact-kicker">Contact</p>
+        <h2 className="contact-v6-title">
+          Let’s build something
+          <br />
+          people remember.
         </h2>
 
-        <p className="section-text short-text">
-          Open to campaigns, creative strategy, content systems, and brand collaborations.
+        <p className="contact-v6-text">
+          Open to campaigns, creative strategy, content systems,
+          and brand collaborations.
         </p>
 
-        <div className="contact-actions">
+        <div className="contact-actions centered-actions">
           <a className="btn btn-primary" href="mailto:baban07dey@gmail.com">
             Email Me
           </a>

@@ -1,16 +1,19 @@
 export default function ProofStrip() {
   const items = [
-    "3+ Years Marketing",
-    "5+ Campaign Launches",
-    "3000+ Leads Generated",
-    "Campaign Strategy",
-    "Brand Positioning",
-    "Content Direction",
-    "Social-first Thinking",
+    "Launch Rollouts",
+    "Campaign Thinking",
+    "Brand Storytelling",
+    "Social-first Strategy",
+    "Creative Direction",
+    "Content Systems",
+    "Culture-led Execution",
+    "Scroll-stopping Ideas",
   ];
 
   return (
-    <section className="proof-strip">
+    <section className="proof-strip fade-up">
+      <div className="proof-label">Trusted across</div>
+
       <div className="marquee">
         <div className="marquee-track">
           {items.concat(items).map((item, index) => (
