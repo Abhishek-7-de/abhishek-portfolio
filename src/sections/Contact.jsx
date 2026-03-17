@@ -10,8 +10,8 @@ export default function Contact() {
         </h2>
 
         <p className="contact-v10-text">
-          Open to campaign thinking, creative strategy, content systems,
-          storytelling, and brand collaborations.
+          Open to brand strategy, content creation, campaign work, hosting,
+          decks, briefs, and creative collaborations.
         </p>
 
         <div className="contact-actions centered-actions">

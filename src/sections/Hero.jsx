@@ -1,39 +1,38 @@
 import profile from "../assets/profile.png";
 
-const brandTags = [
-  { name: "Chai Break", href: "/brands/chai-break", cls: "pill-1" },
-  { name: "CB Caters", href: "/brands/cb-caters", cls: "pill-2" },
-  { name: "Clever Mind Media", href: "/brands/clever-mind-media", cls: "pill-3" },
-  { name: "StoryBizz Media", href: "/brands/storybizz-media", cls: "pill-4" },
-  { name: "Bengal Premier League", href: "/brands/bengal-premier-league", cls: "pill-5" },
-  { name: "CCU Festival", href: "/brands/ccu-festival", cls: "pill-6" },
-  { name: "Wasooli Bhaiyya", href: "/brands/wasooli-bhaiyya", cls: "pill-7" },
-  { name: "MCRA Podcast", href: "/brands/mcra-podcast", cls: "pill-8" },
+const overallBrands = [
+  "Chai Break",
+  "CB Caters",
+  "StoryBizz",
+  "Turtle",
+  "Make Calcutta Relevant Again",
+];
+
+const eventBrands = [
+  "Comiccon India",
+  "CCU Festival",
+  "Bengal Premier League",
 ];
 
 export default function Hero() {
   return (
-    <section className="hero-v10">
+    <section className="hero-vNext">
       <div className="hero-copy fade-up">
-        <p className="eyebrow hero-kicker">
-          Social-first strategist • campaign builder • brand thinker
+        <p className="eyebrow hero-kicker">Social-first creative operator</p>
+
+        <h2 className="hero-name">Abhishek De</h2>
+
+        <p className="hero-role-line">
+          Content Creation • Hosting • Brand Strategy • Campaign Direction
         </p>
 
-        <h2 className="hero-title-v10">
-          I build <span className="text-highlight">cultural momentum</span>
-          <br />
-          for brands that want to be
-          <br />
-          <span className="text-outline">felt</span>, not just seen.
-        </h2>
-
-        <p className="hero-sub-v10">
-          Strategy, storytelling, campaign worlds, and content systems built to
-          stop the scroll, sharpen identity, and stay in memory.
+        <p className="hero-sub-vNext">
+          Building campaigns, content worlds, and brand moments that feel sharp,
+          current, and made to move.
         </p>
 
         <div className="hero-actions">
-          <a href="#work" className="btn btn-primary">
+          <a href="#selected-works" className="btn btn-primary">
             Enter Work
           </a>
           <a href="#contact" className="btn btn-secondary">
@@ -44,21 +43,29 @@ export default function Hero() {
 
       <div className="hero-visual fade-up delay-2">
         <div className="hero-image-shell">
-          <img src={profile} alt="Abhishek De" className="hero-image-v10" />
+          <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
 
-          <div className="floating-tag tag-1">Creative + Strategy</div>
-          <div className="floating-tag tag-2">Campaign Brain</div>
-          <div className="floating-tag tag-3">Social-first</div>
+          <div className="floating-box overall-box">
+            <span className="floating-box-title">Overall</span>
+            <div className="floating-box-list">
+              {overallBrands.map((item) => (
+                <a key={item} href="#" className="mini-pill">
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
 
-          {brandTags.map((brand) => (
-            <a
-              key={brand.name}
-              href={brand.href}
-              className={`brand-pill-link ${brand.cls}`}
-            >
-              {brand.name}
-            </a>
-          ))}
+          <div className="floating-box events-box">
+            <span className="floating-box-title">Events</span>
+            <div className="floating-box-list">
+              {eventBrands.map((item) => (
+                <a key={item} href="#" className="mini-pill">
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

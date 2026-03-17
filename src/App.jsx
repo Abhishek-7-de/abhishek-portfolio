@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import ProofStrip from "./sections/ProofStrip";
-import Manifesto from "./sections/Manifesto";
-import WorkRail from "./sections/WorkRail";
+import WhyMe from "./sections/WhyMe";
+import SelectedWorks from "./sections/SelectedWorks";
 import Capabilities from "./sections/Capabilities";
 import Tools from "./sections/Tools";
 import Contact from "./sections/Contact";
@@ -20,8 +20,8 @@ export default function App() {
       <main className="container">
         <Hero />
         <ProofStrip />
-        <Manifesto />
-        <WorkRail />
+        <WhyMe />
+        <SelectedWorks />
         <Capabilities />
         <Tools />
         <Contact />
