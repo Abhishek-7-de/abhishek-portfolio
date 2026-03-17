@@ -1,4 +1,5 @@
 import profile from "../assets/profile.png";
+import { heroVideos } from "../data/heroVideos";
 
 const overallBrands = [
   "Chai Break",
@@ -65,6 +66,49 @@ export default function Hero() {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hero-video-strip-wrap fade-up">
+        <div className="hero-video-strip top-strip">
+          <div className="hero-video-track track-left">
+            {[...heroVideos, ...heroVideos].map((video, index) => (
+              <div className="hero-video-panel" key={`${video.id}-top-${index}`}>
+                <video
+                  className="hero-strip-video"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hero-video-strip bottom-strip">
+          <div className="hero-video-track track-right">
+            {[...heroVideos, ...heroVideos].map((video, index) => (
+              <div
+                className="hero-video-panel small-panel"
+                key={`${video.id}-bottom-${index}`}
+              >
+                <video
+                  className="hero-strip-video"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
+              </div>
+            ))}
           </div>
         </div>
       </div>
