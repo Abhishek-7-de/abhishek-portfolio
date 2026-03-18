@@ -1,20 +1,32 @@
 export const selectedWorks = [
   {
-    number: "07+",
     title: "Campaign Launches",
-    note: "Placeholder link for launch videos and rollouts",
-    href: "#",
+    display: "7+",
+    countTo: 7,
+    description: "Launch rollouts, campaign pages, and seasonal work.",
+    links: [
+      {
+        label: "Mid Year Campaigns",
+        href: "https://abhishek-portfolio07.my.canva.site/abhishek-de-portfolio",
+      },
+      {
+        label: "End Year Campaigns",
+        href: "https://abhishek-portfolio07.my.canva.site/oct-dec-2025",
+      },
+    ],
   },
   {
-    number: "12+",
     title: "UGC / Short-form Content",
-    note: "Placeholder link for reels, edits, and UGC-style work",
-    href: "#",
+    display: "12+",
+    countTo: 12,
+    description: "Reels, edits, content experiments, and sharp social cuts.",
+    links: [],
   },
   {
-    number: "06+",
     title: "Hosting / On-ground Presence",
-    note: "Placeholder link for hosting clips and event presence",
-    href: "#",
+    display: "6+",
+    countTo: 6,
+    description: "Hosting clips, event floor presence, and audience interaction.",
+    links: [],
   },
 ];

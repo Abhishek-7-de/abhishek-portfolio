@@ -1,11 +1,6 @@
 import { useMemo, useState } from "react";
 import profile from "../assets/profile.png";
-import {
-  topStripVideos,
-  bottomStripVideos,
-  brandCloud,
-  eventCloud,
-} from "../data/heroMedia";
+import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 
 export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
@@ -42,15 +37,20 @@ export default function Hero() {
           <div className="hero-image-shell">
             <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
 
-            <div className="floating-box overall-box">
-              <span className="floating-box-title">Brands & Agencies</span>
+            <div className="floating-box overall-box cloud-float">
+              <div className="cloud-head">
+                <span className="floating-box-title">Brands & Agencies</span>
+                <span className="cloud-helper">Tap any logo to check it out</span>
+              </div>
 
               <div className="floating-logo-cloud">
-                {brandCloud.map((item) => (
+                {brandCloud.map((item, index) => (
                   <button
                     key={item.id}
                     type="button"
-                    className={`logo-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""}`}
+                    className={`logo-chip ${
+                      selectedItem.id === item.id ? "logo-chip-active" : ""
+                    } float-${(index % 4) + 1}`}
                     onClick={() => setSelectedItem(item)}
                   >
                     {item.logo ? (
@@ -63,15 +63,20 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="floating-box events-box">
-              <span className="floating-box-title">Events</span>
+            <div className="floating-box events-box cloud-float slow-float">
+              <div className="cloud-head">
+                <span className="floating-box-title">Events</span>
+                <span className="cloud-helper">Tap any logo to check it out</span>
+              </div>
 
               <div className="floating-logo-cloud">
-                {eventCloud.map((item) => (
+                {eventCloud.map((item, index) => (
                   <button
                     key={item.id}
                     type="button"
-                    className={`logo-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""}`}
+                    className={`logo-chip ${
+                      selectedItem.id === item.id ? "logo-chip-active" : ""
+                    } float-${((index + 1) % 4) + 1}`}
                     onClick={() => setSelectedItem(item)}
                   >
                     {item.logo ? (
@@ -114,32 +119,10 @@ export default function Hero() {
       </div>
 
       <div className="hero-video-strip-wrap fade-up">
-        <div className="hero-video-strip top-strip">
+        <div className="hero-video-strip single-strip">
           <div className="hero-video-track track-left">
             {[...topStripVideos, ...topStripVideos].map((video, index) => (
-              <div className="hero-video-panel" key={`${video.id}-top-${index}`}>
-                <video
-                  className="hero-strip-video"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src={video.src} type="video/mp4" />
-                </video>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-video-strip bottom-strip">
-          <div className="hero-video-track track-right">
-            {[...bottomStripVideos, ...bottomStripVideos].map((video, index) => (
-              <div
-                className="hero-video-panel small-panel"
-                key={`${video.id}-bottom-${index}`}
-              >
+              <div className="hero-video-panel video-square" key={`${video.id}-${index}`}>
                 <video
                   className="hero-strip-video"
                   autoPlay

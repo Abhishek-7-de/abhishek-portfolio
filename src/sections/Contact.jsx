@@ -23,6 +23,14 @@ export default function Contact() {
           </a>
           <a
             className="btn btn-secondary"
+            href="https://www.instagram.com/abhishek7.exe?igsh=NGZqYm5wZmozMGVk&utm_source=qr"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram
+          </a>
+          <a
+            className="btn btn-secondary"
             href="https://www.linkedin.com/in/abhishek-de-157819221"
             target="_blank"
             rel="noreferrer"

@@ -5,13 +5,6 @@ export const topStripVideos = [
   { id: "hero4", src: "/videos/hero4.mp4" },
 ];
 
-export const bottomStripVideos = [
-  { id: "hero5", src: "/videos/hero5.mp4" },
-  { id: "hero6", src: "/videos/hero6.mp4" },
-  { id: "hero7", src: "/videos/hero7.mp4" },
-  { id: "hero2b", src: "/videos/hero2.mp4" },
-];
-
 export const brandCloud = [
   {
     id: "chai-break",
@@ -22,6 +15,14 @@ export const brandCloud = [
       {
         label: "Instagram Page Managed",
         href: "https://www.instagram.com/chai_break?igsh=d25obnNkNnY3c3cw",
+      },
+      {
+        label: "Mid Year Campaigns",
+        href: "https://abhishek-portfolio07.my.canva.site/abhishek-de-portfolio",
+      },
+      {
+        label: "End Year Campaigns",
+        href: "https://abhishek-portfolio07.my.canva.site/oct-dec-2025",
       },
     ],
   },

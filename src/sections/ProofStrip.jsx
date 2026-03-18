@@ -1,19 +1,21 @@
 export default function ProofStrip() {
   const items = [
-    "Built Across",
-    "Launch Rollouts",
-    "Brand Storytelling",
-    "Content Systems",
-    "Social-first Strategy",
-    "Creative Direction",
-    "Campaign Thinking",
-    "Culture-led Execution",
+    "Content Creation",
+    "Brand Strategy",
+    "Campaign Direction",
+    "Hosting",
+    "Creative Briefs",
+    "Decks & PPTs",
+    "Shoot References",
+    "Content Calendars",
+    "Rollout Planning",
+    "Social-first Thinking",
   ];
 
   return (
     <section className="proof-strip fade-up">
-      <div className="marquee">
-        <div className="marquee-track">
+      <div className="marquee skills-marquee">
+        <div className="marquee-track proof-track skills-track">
           {items.concat(items).map((item, index) => (
             <span key={index} className="marquee-item">
               {item}
