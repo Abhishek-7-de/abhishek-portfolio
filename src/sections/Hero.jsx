@@ -1,23 +1,18 @@
+import { useMemo, useState } from "react";
 import profile from "../assets/profile.png";
-import { heroVideos } from "../data/heroVideos";
-
-const overallBrands = [
-  "Chai Break",
-  "CB Caters",
-  "StoryBizz",
-  "Turtle",
-  "Make Calcutta Relevant Again",
-];
-
-const eventBrands = [
-  "Comiccon India",
-  "CCU Festival",
-  "Bengal Premier League",
-];
+import {
+  topStripVideos,
+  bottomStripVideos,
+  brandCloud,
+  eventCloud,
+} from "../data/heroMedia";
 
 export default function Hero() {
+  const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
+  const [selectedItem, setSelectedItem] = useState(allItems[0]);
+
   return (
-    <section className="hero-vNext">
+    <section className="hero-v12">
       <div className="hero-copy fade-up">
         <p className="eyebrow hero-kicker">Social-first creative operator</p>
 
@@ -42,38 +37,86 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-visual fade-up delay-2">
-        <div className="hero-image-shell">
-          <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
+      <div className="hero-stage fade-up delay-2">
+        <div className="hero-visual">
+          <div className="hero-image-shell">
+            <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
 
-          <div className="floating-box overall-box">
-            <span className="floating-box-title">Overall</span>
-            <div className="floating-box-list">
-              {overallBrands.map((item) => (
-                <a key={item} href="#" className="mini-pill">
-                  {item}
+            <div className="floating-box overall-box">
+              <span className="floating-box-title">Brands & Agencies</span>
+
+              <div className="floating-logo-cloud">
+                {brandCloud.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`logo-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""}`}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    {item.logo ? (
+                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
+                    ) : (
+                      <span className="logo-chip-text">{item.name}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="floating-box events-box">
+              <span className="floating-box-title">Events</span>
+
+              <div className="floating-logo-cloud">
+                {eventCloud.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`logo-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""}`}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    {item.logo ? (
+                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
+                    ) : (
+                      <span className="logo-chip-text">{item.name}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-action-panel">
+          <p className="eyebrow">Click a brand or event</p>
+          <h3 className="hero-action-title">{selectedItem.name}</h3>
+          <p className="hero-action-kind">{selectedItem.kind}</p>
+
+          {selectedItem.links.length > 0 ? (
+            <div className="hero-link-list">
+              {selectedItem.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hero-link-btn"
+                >
+                  {link.label}
                 </a>
               ))}
             </div>
-          </div>
-
-          <div className="floating-box events-box">
-            <span className="floating-box-title">Events</span>
-            <div className="floating-box-list">
-              {eventBrands.map((item) => (
-                <a key={item} href="#" className="mini-pill">
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
+          ) : (
+            <p className="hero-empty-note">
+              Links for this will be added here later.
+            </p>
+          )}
         </div>
       </div>
 
       <div className="hero-video-strip-wrap fade-up">
         <div className="hero-video-strip top-strip">
           <div className="hero-video-track track-left">
-            {[...heroVideos, ...heroVideos].map((video, index) => (
+            {[...topStripVideos, ...topStripVideos].map((video, index) => (
               <div className="hero-video-panel" key={`${video.id}-top-${index}`}>
                 <video
                   className="hero-strip-video"
@@ -92,7 +135,7 @@ export default function Hero() {
 
         <div className="hero-video-strip bottom-strip">
           <div className="hero-video-track track-right">
-            {[...heroVideos, ...heroVideos].map((video, index) => (
+            {[...bottomStripVideos, ...bottomStripVideos].map((video, index) => (
               <div
                 className="hero-video-panel small-panel"
                 key={`${video.id}-bottom-${index}`}
