@@ -5,6 +5,18 @@ import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
   const [selectedItem, setSelectedItem] = useState(allItems[0]);
+  const [hiddenVideos, setHiddenVideos] = useState([]);
+
+  const visibleVideos = topStripVideos.filter(
+    (video) => !hiddenVideos.includes(video.id)
+  );
+
+  const repeatedVideos =
+    visibleVideos.length > 0 ? [...visibleVideos, ...visibleVideos] : [];
+
+  const handleVideoError = (id) => {
+    setHiddenVideos((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
 
   return (
     <section className="hero-v12">
@@ -118,26 +130,32 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-video-strip-wrap fade-up">
-        <div className="hero-video-strip single-strip">
-          <div className="hero-video-track track-left">
-            {[...topStripVideos, ...topStripVideos].map((video, index) => (
-              <div className="hero-video-panel video-square" key={`${video.id}-${index}`}>
-                <video
-                  className="hero-strip-video"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
+      {visibleVideos.length > 0 && (
+        <div className="hero-video-strip-wrap fade-up">
+          <div className="hero-video-strip single-strip">
+            <div className="hero-video-track track-left">
+              {repeatedVideos.map((video, index) => (
+                <div
+                  className="hero-video-panel video-square"
+                  key={`${video.id}-${index}`}
                 >
-                  <source src={video.src} type="video/mp4" />
-                </video>
-              </div>
-            ))}
+                  <video
+                    className="hero-strip-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    onError={() => handleVideoError(video.id)}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                  </video>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

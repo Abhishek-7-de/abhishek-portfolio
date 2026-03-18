@@ -15,7 +15,7 @@ export default function ProofStrip() {
   return (
     <section className="proof-strip fade-up">
       <div className="marquee skills-marquee">
-        <div className="marquee-track proof-track skills-track">
+        <div className="marquee-track skills-track">
           {items.concat(items).map((item, index) => (
             <span key={index} className="marquee-item">
               {item}
