@@ -55,17 +55,39 @@ export const brandCloud = [
   },
   {
     id: "storybizz",
-    name: "StoryBizz",
+    name: "StoryBizz Media",
     kind: "Agency",
     logo: "",
-    links: [],
+    links: [
+      {
+        label: "Instagram Page",
+        href: "https://www.instagram.com/storybizzmedia?igsh=andzazhjb3l2am5n",
+      },
+      {
+        label: "Featured Reel",
+        href: "https://www.instagram.com/reel/C9fLsrTvh1G/?igsh=ZXl0ajl4NHNsdG04",
+      },
+    ],
   },
   {
     id: "mcra",
     name: "Make Calcutta Relevant Again",
     kind: "Media / Podcast",
-    logo: "",
-    links: [],
+    logo: "/logos/mcra.png",
+    links: [
+      {
+        label: "Instagram Page",
+        href: "https://www.instagram.com/makecalcuttarelevantagain?igsh=a2Z6bHR6Y3gycmp6",
+      },
+      {
+        label: "Featured Reel 01",
+        href: "https://www.instagram.com/reel/DPyuwasE0EP/?igsh=MTRkZXQyM3c5cThyNw==",
+      },
+      {
+        label: "Featured Reel 02",
+        href: "https://www.instagram.com/reel/DTC2stVEnf9/?igsh=c3RkcHBreDAzcXpt",
+      },
+    ],
   },
 ];
 
@@ -106,7 +128,24 @@ export const eventCloud = [
     id: "ccu-festival",
     name: "CCU Festival",
     kind: "Event",
-    logo: "",
-    links: [],
+    logo: "/logos/ccu-festival.png",
+    links: [
+      {
+        label: "Instagram Page",
+        href: "https://www.instagram.com/theccufestival?igsh=MXF1aGU0ODZvbGp5dA==",
+      },
+      {
+        label: "Featured Reel 01",
+        href: "https://www.instagram.com/reel/DO-Tx76ka0h/?igsh=MWdxMTJ2cGl2eXpuaw==",
+      },
+      {
+        label: "Featured Reel 02",
+        href: "https://www.instagram.com/reel/DOtNCaGkdRt/?igsh=eW5yaWFyNnRycDQy",
+      },
+      {
+        label: "Featured Reel 03",
+        href: "https://www.instagram.com/reel/DPyuwasE0EP/?igsh=MTRkZXQyM3c5cThyNw==",
+      },
+    ],
   },
 ];

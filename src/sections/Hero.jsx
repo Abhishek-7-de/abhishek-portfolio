@@ -32,13 +32,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero-v15">
+    <section className="hero-v16">
       <div className="hero-copy hero-reveal hero-reveal-1">
         <p className="eyebrow hero-kicker">
           Brand strategist • content creator • host
         </p>
 
-        <h2 className="hero-name">Abhishek De</h2>
+        <h2 className="hero-name hero-name-main">Abhishek De</h2>
 
         <p className="hero-role-line">
           Social-first ideas, campaign direction, and content built to stop the
@@ -56,7 +56,7 @@ export default function Hero() {
       </div>
 
       <div className="hero-main hero-reveal hero-reveal-2">
-        <div className="hero-visual-clean">
+        <div className="hero-visual-clean hero-visual-desktop">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
             <div className="hero-cutout-glow glow-2" />
@@ -216,6 +216,12 @@ export default function Hero() {
               <span className="reaction-chip rc-2">↗ Share</span>
               <span className="reaction-chip rc-3">💬 148</span>
               <span className="reaction-chip rc-4">🔥 Trending</span>
+              <span className="reaction-chip rc-5">♥ 8.7K</span>
+              <span className="reaction-chip rc-6">💬 92</span>
+              <span className="reaction-chip rc-7">↗ Viral</span>
+              <span className="reaction-chip rc-8">♥ 1.3K</span>
+              <span className="reaction-chip rc-9">💬 301</span>
+              <span className="reaction-chip rc-10">★ Saved</span>
             </div>
           </div>
         </div>
