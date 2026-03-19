@@ -3,6 +3,9 @@ export const topStripVideos = [
   { id: "hero2", src: "/videos/hero2.mp4" },
   { id: "hero3", src: "/videos/hero3.mp4" },
   { id: "hero4", src: "/videos/hero4.mp4" },
+  { id: "hero5", src: "/videos/hero5.mp4" },
+  { id: "hero6", src: "/videos/hero6.mp4" },
+  { id: "hero7", src: "/videos/hero7.mp4" },
 ];
 
 export const brandCloud = [

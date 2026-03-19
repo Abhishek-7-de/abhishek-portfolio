@@ -5,25 +5,40 @@ import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
   const [selectedItem, setSelectedItem] = useState(allItems[0]);
-  const [hiddenVideos, setHiddenVideos] = useState([]);
+  const [brokenVideos, setBrokenVideos] = useState([]);
 
   const visibleVideos = topStripVideos.filter(
-    (video) => !hiddenVideos.includes(video.id)
+    (video) => !brokenVideos.includes(video.id)
   );
 
   const repeatedVideos =
     visibleVideos.length > 0 ? [...visibleVideos, ...visibleVideos] : [];
 
   const handleVideoError = (id) => {
-    setHiddenVideos((prev) => (prev.includes(id) ? prev : [...prev, id]));
+    setBrokenVideos((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
+
+  const openItem = (item) => {
+    setSelectedItem(item);
+
+    if (window.innerWidth < 768) {
+      requestAnimationFrame(() => {
+        const panel = document.getElementById("hero-mobile-sheet");
+        if (panel) {
+          panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    }
   };
 
   return (
-    <section className="hero-v12">
+    <section className="hero-v13">
       <div className="hero-copy fade-up">
         <p className="eyebrow hero-kicker">Social-first creative operator</p>
 
-        <h2 className="hero-name">Abhishek De</h2>
+        <div className="hero-title-row">
+          <h2 className="hero-name">Abhishek De</h2>
+        </div>
 
         <p className="hero-role-line">
           Content Creation • Hosting • Brand Strategy • Campaign Direction
@@ -44,26 +59,26 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-stage fade-up delay-2">
-        <div className="hero-visual">
-          <div className="hero-image-shell">
+      <div className="hero-main fade-up delay-2">
+        <div className="hero-visual-clean">
+          <div className="hero-image-shell clean-shell">
             <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
 
-            <div className="floating-box overall-box cloud-float">
-              <div className="cloud-head">
-                <span className="floating-box-title">Brands & Agencies</span>
-                <span className="cloud-helper">Tap any logo to check it out</span>
+            <div className="cloud cloud-brands">
+              <div className="cloud-label-wrap">
+                <span className="cloud-label">Brands & Agencies</span>
+                <span className="cloud-sub">Tap to explore</span>
               </div>
 
-              <div className="floating-logo-cloud">
+              <div className="cloud-grid">
                 {brandCloud.map((item, index) => (
                   <button
                     key={item.id}
                     type="button"
-                    className={`logo-chip ${
+                    className={`logo-chip clean-chip ${
                       selectedItem.id === item.id ? "logo-chip-active" : ""
                     } float-${(index % 4) + 1}`}
-                    onClick={() => setSelectedItem(item)}
+                    onClick={() => openItem(item)}
                   >
                     {item.logo ? (
                       <img src={item.logo} alt={item.name} className="logo-chip-img" />
@@ -75,21 +90,21 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="floating-box events-box cloud-float slow-float">
-              <div className="cloud-head">
-                <span className="floating-box-title">Events</span>
-                <span className="cloud-helper">Tap any logo to check it out</span>
+            <div className="cloud cloud-events">
+              <div className="cloud-label-wrap">
+                <span className="cloud-label">Events</span>
+                <span className="cloud-sub">Tap to explore</span>
               </div>
 
-              <div className="floating-logo-cloud">
+              <div className="cloud-grid">
                 {eventCloud.map((item, index) => (
                   <button
                     key={item.id}
                     type="button"
-                    className={`logo-chip ${
+                    className={`logo-chip clean-chip ${
                       selectedItem.id === item.id ? "logo-chip-active" : ""
                     } float-${((index + 1) % 4) + 1}`}
-                    onClick={() => setSelectedItem(item)}
+                    onClick={() => openItem(item)}
                   >
                     {item.logo ? (
                       <img src={item.logo} alt={item.name} className="logo-chip-img" />
@@ -103,8 +118,38 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-action-panel">
-          <p className="eyebrow">Click a brand or event</p>
+        <div className="hero-side-panel">
+          <div className="hero-action-panel desktop-panel">
+            <p className="eyebrow">Selected</p>
+            <h3 className="hero-action-title">{selectedItem.name}</h3>
+            <p className="hero-action-kind">{selectedItem.kind}</p>
+
+            {selectedItem.links.length > 0 ? (
+              <div className="hero-link-list">
+                {selectedItem.links.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hero-link-btn"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="hero-empty-note">
+                Links for this will be added here later.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div id="hero-mobile-sheet" className="hero-mobile-sheet">
+        <div className="hero-action-panel mobile-panel">
+          <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
 
@@ -135,10 +180,7 @@ export default function Hero() {
           <div className="hero-video-strip single-strip">
             <div className="hero-video-track track-left">
               {repeatedVideos.map((video, index) => (
-                <div
-                  className="hero-video-panel video-square"
-                  key={`${video.id}-${index}`}
-                >
+                <div className="hero-video-panel video-square" key={`${video.id}-${index}`}>
                   <video
                     className="hero-strip-video"
                     autoPlay
