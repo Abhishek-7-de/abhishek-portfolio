@@ -32,15 +32,15 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero-v16">
+    <section className="hero-v17">
       <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker">
+        <p className="eyebrow hero-kicker hero-mobile-kicker">
           Brand strategist • content creator • host
         </p>
 
         <h2 className="hero-name hero-name-main">Abhishek De</h2>
 
-        <p className="hero-role-line">
+        <p className="hero-role-line hero-mobile-copy">
           Social-first ideas, campaign direction, and content built to stop the
           scroll and stay in memory.
         </p>
@@ -159,7 +159,10 @@ export default function Hero() {
         </div>
       </div>
 
-      <div id="hero-mobile-sheet" className="hero-mobile-sheet hero-reveal hero-reveal-3">
+      <div
+        id="hero-mobile-sheet"
+        className="hero-mobile-sheet hero-reveal hero-reveal-3"
+      >
         <div className="hero-action-panel mobile-panel">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>

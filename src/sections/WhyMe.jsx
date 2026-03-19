@@ -1,31 +1,61 @@
 export default function WhyMe() {
-  const points = [
-    "Content calendars and planning systems",
-    "Creative briefs, decks, and PPT thinking",
-    "Shoot references and execution support",
-    "Campaign rollout logic and social direction",
+  const cards = [
+    {
+      title: "Calendars",
+      icon: "🗓️",
+      text: "Content calendar systems",
+      href: "#why-me",
+      muted: true,
+    },
+    {
+      title: "PPT Thinking",
+      icon: "📊",
+      text: "Decks, references, and brand docs",
+      href: "#selected-works",
+    },
+    {
+      title: "Shoot Logic",
+      icon: "🎥",
+      text: "References and execution support",
+      href: "#selected-works",
+    },
+    {
+      title: "Campaign Flow",
+      icon: "🚀",
+      text: "Rollout logic and social direction",
+      href: "#selected-works",
+    },
   ];
 
   return (
     <section id="why-me" className="section fade-up">
       <p className="eyebrow">Why Me</p>
-      <h2 className="section-title compact-title">
-        Short, sharp,
+      <h2 className="section-title compact-title why-title-mobile">
+        Sharp thinking,
         <br />
-        and built for real work.
+        real execution.
       </h2>
 
-      <p className="section-text short-text">
-        I don’t just make posts. I shape the idea, structure the communication,
-        build the rollout, and make sure the work lands properly.
-      </p>
-
-      <div className="why-grid">
-        {points.map((item) => (
-          <div key={item} className="why-card">
-            {item}
-          </div>
-        ))}
+      <div className="why-mini-grid">
+        {cards.map((card) =>
+          card.muted ? (
+            <div key={card.title} className="why-mini-card is-muted">
+              <span className="why-mini-icon">{card.icon}</span>
+              <div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </div>
+            </div>
+          ) : (
+            <a key={card.title} href={card.href} className="why-mini-card is-link">
+              <span className="why-mini-icon">{card.icon}</span>
+              <div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </div>
+            </a>
+          )
+        )}
       </div>
     </section>
   );
