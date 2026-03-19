@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import profile from "../assets/profile.png";
+import heroCutout from "../assets/hero-cutout.png";
 import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 
 export default function Hero() {
@@ -32,21 +32,16 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero-v13">
+    <section className="hero-v14">
       <div className="hero-copy fade-up">
-        <p className="eyebrow hero-kicker">Social-first creative operator</p>
+        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
 
-        <div className="hero-title-row">
-          <h2 className="hero-name">Abhishek De</h2>
-        </div>
+        <h2 className="hero-name">
+          Abhishek De
+        </h2>
 
         <p className="hero-role-line">
-          Content Creation • Hosting • Brand Strategy • Campaign Direction
-        </p>
-
-        <p className="hero-sub-vNext">
-          Building campaigns, content worlds, and brand moments that feel sharp,
-          current, and made to move.
+          Social-first ideas, campaign direction, and content that people actually remember.
         </p>
 
         <div className="hero-actions">
@@ -61,13 +56,21 @@ export default function Hero() {
 
       <div className="hero-main fade-up delay-2">
         <div className="hero-visual-clean">
-          <div className="hero-image-shell clean-shell">
-            <img src={profile} alt="Abhishek De" className="hero-image-vNext" />
+          <div className="hero-cutout-stage">
+            <div className="hero-cutout-glow glow-1" />
+            <div className="hero-cutout-glow glow-2" />
+            <div className="hero-cutout-ring" />
+
+            <img
+              src={heroCutout}
+              alt="Abhishek De"
+              className="hero-cutout-image"
+            />
 
             <div className="cloud cloud-brands">
               <div className="cloud-label-wrap">
                 <span className="cloud-label">Brands & Agencies</span>
-                <span className="cloud-sub">Tap to explore</span>
+                <span className="cloud-sub">Tap a logo</span>
               </div>
 
               <div className="cloud-grid">
@@ -93,7 +96,7 @@ export default function Hero() {
             <div className="cloud cloud-events">
               <div className="cloud-label-wrap">
                 <span className="cloud-label">Events</span>
-                <span className="cloud-sub">Tap to explore</span>
+                <span className="cloud-sub">Tap a logo</span>
               </div>
 
               <div className="cloud-grid">
@@ -194,6 +197,13 @@ export default function Hero() {
                   </video>
                 </div>
               ))}
+            </div>
+
+            <div className="reactions-layer" aria-hidden="true">
+              <span className="reaction-chip rc-1">♥ 2.4K</span>
+              <span className="reaction-chip rc-2">↗ Share</span>
+              <span className="reaction-chip rc-3">💬 148</span>
+              <span className="reaction-chip rc-4">🔥 Trending</span>
             </div>
           </div>
         </div>
