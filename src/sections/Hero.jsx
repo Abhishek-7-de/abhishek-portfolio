@@ -32,29 +32,30 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero-v14">
-      <div className="hero-copy fade-up">
-        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
+    <section className="hero-v15">
+      <div className="hero-copy hero-reveal hero-reveal-1">
+        <p className="eyebrow hero-kicker">
+          Brand strategist • content creator • host
+        </p>
 
-        <h2 className="hero-name">
-          Abhishek De
-        </h2>
+        <h2 className="hero-name">Abhishek De</h2>
 
         <p className="hero-role-line">
-          Social-first ideas, campaign direction, and content that people actually remember.
+          Social-first ideas, campaign direction, and content built to stop the
+          scroll and stay in memory.
         </p>
 
         <div className="hero-actions">
-          <a href="#selected-works" className="btn btn-primary">
+          <a href="#selected-works" className="btn btn-primary hero-btn">
             Enter Work
           </a>
-          <a href="#contact" className="btn btn-secondary">
+          <a href="#contact" className="btn btn-secondary hero-btn">
             Let’s Build
           </a>
         </div>
       </div>
 
-      <div className="hero-main fade-up delay-2">
+      <div className="hero-main hero-reveal hero-reveal-2">
         <div className="hero-visual-clean">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
@@ -73,7 +74,7 @@ export default function Hero() {
                 <span className="cloud-sub">Tap a logo</span>
               </div>
 
-              <div className="cloud-grid">
+              <div className="cloud-grid cloud-grid-horizontal">
                 {brandCloud.map((item, index) => (
                   <button
                     key={item.id}
@@ -84,7 +85,11 @@ export default function Hero() {
                     onClick={() => openItem(item)}
                   >
                     {item.logo ? (
-                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="logo-chip-img"
+                      />
                     ) : (
                       <span className="logo-chip-text">{item.name}</span>
                     )}
@@ -110,7 +115,11 @@ export default function Hero() {
                     onClick={() => openItem(item)}
                   >
                     {item.logo ? (
-                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="logo-chip-img"
+                      />
                     ) : (
                       <span className="logo-chip-text">{item.name}</span>
                     )}
@@ -150,7 +159,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div id="hero-mobile-sheet" className="hero-mobile-sheet">
+      <div id="hero-mobile-sheet" className="hero-mobile-sheet hero-reveal hero-reveal-3">
         <div className="hero-action-panel mobile-panel">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
@@ -179,11 +188,14 @@ export default function Hero() {
       </div>
 
       {visibleVideos.length > 0 && (
-        <div className="hero-video-strip-wrap fade-up">
+        <div className="hero-video-strip-wrap hero-reveal hero-reveal-4">
           <div className="hero-video-strip single-strip">
             <div className="hero-video-track track-left">
               {repeatedVideos.map((video, index) => (
-                <div className="hero-video-panel video-square" key={`${video.id}-${index}`}>
+                <div
+                  className="hero-video-panel video-square"
+                  key={`${video.id}-${index}`}
+                >
                   <video
                     className="hero-strip-video"
                     autoPlay

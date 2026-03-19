@@ -32,6 +32,11 @@ button {
   font: inherit;
 }
 
+img,
+video {
+  max-width: 100%;
+}
+
 .site-shell {
   position: relative;
   overflow-x: hidden;
@@ -165,10 +170,10 @@ button {
 
 /* HERO */
 
-.hero-v14 {
+.hero-v15 {
   display: grid;
-  gap: 24px;
-  padding: 24px 0 30px;
+  gap: 20px;
+  padding: 22px 0 28px;
   align-items: start;
 }
 
@@ -189,10 +194,10 @@ button {
 
 .hero-role-line {
   margin: 14px 0 0;
-  max-width: 620px;
+  max-width: 560px;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.52;
 }
 
 .hero-sub-vNext,
@@ -214,8 +219,8 @@ button {
 .contact-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .btn {
@@ -223,7 +228,10 @@ button {
   border-radius: 18px;
   font-weight: 700;
   text-align: center;
-  transition: transform 0.2s ease, background 0.2s ease, border 0.2s ease,
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -244,9 +252,15 @@ button {
   color: rgba(255, 255, 255, 0.96);
 }
 
+.hero-btn {
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-size: 0.98rem;
+}
+
 .hero-main {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .hero-visual-clean {
@@ -331,12 +345,12 @@ button {
 }
 
 .cloud-brands {
-  top: 6%;
+  top: 14%;
   left: -2%;
 }
 
 .cloud-events {
-  bottom: 8%;
+  bottom: 10%;
   right: -2%;
 }
 
@@ -366,6 +380,11 @@ button {
   gap: 8px;
 }
 
+.cloud-grid-horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
 .logo-chip {
   display: inline-flex;
   align-items: center;
@@ -377,7 +396,10 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.08);
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, border 0.2s ease,
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -423,7 +445,7 @@ button {
 }
 
 .mobile-panel {
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .hero-action-title {
@@ -559,6 +581,29 @@ button {
   right: 8%;
   bottom: 12%;
   animation: reactFloat4 6.2s ease-in-out infinite;
+}
+
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: heroReveal 0.75s ease forwards;
+  will-change: transform, opacity;
+}
+
+.hero-reveal-1 {
+  animation-delay: 0.05s;
+}
+
+.hero-reveal-2 {
+  animation-delay: 0.18s;
+}
+
+.hero-reveal-3 {
+  animation-delay: 0.3s;
+}
+
+.hero-reveal-4 {
+  animation-delay: 0.42s;
 }
 
 /* SKILLS STRIP */
@@ -879,39 +924,84 @@ button {
 }
 
 @keyframes heroFloat {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes videoStripMoveLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marqueeMoveRight {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes reactFloat1 {
-  0%,100% { transform: translateY(0px); opacity: 0.9; }
-  50% { transform: translateY(-6px); opacity: 1; }
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
 }
 
 @keyframes reactFloat2 {
-  0%,100% { transform: translateY(0px); opacity: 0.85; }
-  50% { transform: translateY(-8px); opacity: 1; }
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 
 @keyframes reactFloat3 {
-  0%,100% { transform: translateY(0px); opacity: 0.88; }
-  50% { transform: translateY(-7px); opacity: 1; }
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.88;
+  }
+  50% {
+    transform: translateY(-7px);
+    opacity: 1;
+  }
 }
 
 @keyframes reactFloat4 {
-  0%,100% { transform: translateY(0px); opacity: 0.84; }
-  50% { transform: translateY(-9px); opacity: 1; }
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.84;
+  }
+  50% {
+    transform: translateY(-9px);
+    opacity: 1;
+  }
+}
+
+@keyframes heroReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* RESPONSIVE */
@@ -921,7 +1011,7 @@ button {
     display: flex;
   }
 
-  .hero-v14 {
+  .hero-v15 {
     grid-template-columns: 1.02fr 0.98fr;
   }
 
@@ -946,13 +1036,17 @@ button {
   }
 
   .cloud-brands {
-    top: 10%;
-    left: -16%;
+    top: 16%;
+    left: -12%;
   }
 
   .cloud-events {
     bottom: 10%;
-    right: -16%;
+    right: -14%;
+  }
+
+  .cloud-grid-horizontal {
+    flex-wrap: wrap;
   }
 
   .hero-side-panel {
