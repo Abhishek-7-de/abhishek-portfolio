@@ -2928,18 +2928,58 @@ video {
     border-radius: 16px !important;
   }
 }
+/* ===== FINAL MOBILE CUTOUT POSITION FIX ===== */
 @media (max-width: 767px) {
+  .hero-mobile-stage {
+    position: relative !important;
+    min-height: 250px !important;
+    height: 250px !important;
+    overflow: hidden !important;
+  }
+
   .hero-mobile-cutout {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    width: 120px !important;
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 110px !important;
     height: auto !important;
-    z-index: 99999 !important;
-    background: rgba(255, 0, 0, 0.25) !important;
-    transform: none !important;
+    z-index: 3 !important;
+    background: transparent !important;
+    pointer-events: none !important;
+  }
+
+  .hero-mobile-chip-brands {
+    left: 12px !important;
+    top: 16px !important;
+    z-index: 4 !important;
+  }
+
+  .hero-mobile-chip-events {
+    right: 12px !important;
+    bottom: 16px !important;
+    z-index: 4 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .hero-mobile-ring {
+    z-index: 1 !important;
+    display: block !important;
+  }
+
+  .hero-mobile-orb {
+    z-index: 0 !important;
+    display: block !important;
+  }
+
+  .hero-mobile-selected-card {
+    margin-top: 14px !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
 }
