@@ -6,6 +6,7 @@ export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
   const [selectedItem, setSelectedItem] = useState(allItems[0]);
   const [brokenVideos, setBrokenVideos] = useState([]);
+  const [openTray, setOpenTray] = useState(null);
 
   const visibleVideos = topStripVideos.filter(
     (video) => !brokenVideos.includes(video.id)
@@ -20,6 +21,7 @@ export default function Hero() {
 
   const openItem = (item) => {
     setSelectedItem(item);
+    setOpenTray(null);
 
     if (window.innerWidth < 768) {
       requestAnimationFrame(() => {
@@ -29,6 +31,10 @@ export default function Hero() {
         }
       });
     }
+  };
+
+  const toggleTray = (trayName) => {
+    setOpenTray((prev) => (prev === trayName ? null : trayName));
   };
 
   return (
@@ -53,7 +59,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* DESKTOP HERO ONLY */}
+      {/* DESKTOP */}
       <div className="hero-main hero-reveal hero-reveal-2 hero-desktop-only">
         <div className="hero-visual-clean">
           <div className="hero-cutout-stage">
@@ -158,7 +164,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* MOBILE HERO ONLY */}
+      {/* MOBILE */}
       <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
         <div className="hero-mobile-cutout-wrap">
           <div className="hero-mobile-glow hero-mobile-glow-1" />
@@ -174,7 +180,7 @@ export default function Hero() {
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-brands"
-            onClick={() => openItem(brandCloud[0])}
+            onClick={() => toggleTray("brands")}
           >
             <span className="mini-cloud-title">Brands & Agencies</span>
             <span className="mini-cloud-sub">Tap to open ↗</span>
@@ -183,11 +189,45 @@ export default function Hero() {
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-events"
-            onClick={() => openItem(eventCloud[0])}
+            onClick={() => toggleTray("events")}
           >
             <span className="mini-cloud-title">Events</span>
             <span className="mini-cloud-sub">Tap to open ↗</span>
           </button>
+
+          {openTray === "brands" && (
+            <div className="hero-mini-picker picker-brands">
+              {brandCloud.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-picker-item ${
+                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
+                  }`}
+                  onClick={() => openItem(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {openTray === "events" && (
+            <div className="hero-mini-picker picker-events">
+              {eventCloud.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-picker-item ${
+                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
+                  }`}
+                  onClick={() => openItem(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -238,6 +278,7 @@ export default function Hero() {
                     loop
                     playsInline
                     preload="metadata"
+                    poster=""
                     onError={() => handleVideoError(video.id)}
                   >
                     <source src={video.src} type="video/mp4" />
