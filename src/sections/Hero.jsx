@@ -4,7 +4,7 @@ import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 
 export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
-  const [selectedItem, setSelectedItem] = useState(allItems[0]);
+  const [selectedItem, setSelectedItem] = useState(brandCloud[0]);
   const [brokenVideos, setBrokenVideos] = useState([]);
   const [openTray, setOpenTray] = useState(null);
 
@@ -25,7 +25,7 @@ export default function Hero() {
 
     if (window.innerWidth < 768) {
       requestAnimationFrame(() => {
-        const panel = document.getElementById("hero-mobile-sheet");
+        const panel = document.getElementById("hero-mobile-selected");
         if (panel) {
           panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
@@ -34,11 +34,10 @@ export default function Hero() {
   };
 
   const trayItems = openTray === "brands" ? brandCloud : eventCloud;
-  const trayTitle =
-    openTray === "brands" ? "Brands & Agencies" : "Events";
+  const trayTitle = openTray === "brands" ? "Brands & Agencies" : "Events";
 
   return (
-    <section className="hero-v17">
+    <section className="hero-v18">
       <div className="hero-copy hero-reveal hero-reveal-1">
         <p className="eyebrow hero-kicker">
           Brand strategist • content creator • host
@@ -166,40 +165,48 @@ export default function Hero() {
         </div>
       </div>
 
- {/* MOBILE */}
-<div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
-  <div className="hero-mobile-quick-actions">
-    <button
-      type="button"
-      className="hero-mini-cloud mobile-simple-chip"
-      onClick={() => setOpenTray("brands")}
-    >
-      <span className="mini-cloud-title">Brands & Agencies</span>
-      <span className="mini-cloud-sub">Tap to open ↗</span>
-    </button>
+      {/* MOBILE */}
+      <div className="hero-mobile-shell hero-mobile-only hero-reveal hero-reveal-3">
+        <div className="hero-mobile-stage">
+          <div className="hero-mobile-orb hero-mobile-orb-1" />
+          <div className="hero-mobile-orb hero-mobile-orb-2" />
+          <div className="hero-mobile-ring" />
 
-    <button
-      type="button"
-      className="hero-mini-cloud mobile-simple-chip"
-      onClick={() => setOpenTray("events")}
-    >
-      <span className="mini-cloud-title">Events</span>
-      <span className="mini-cloud-sub">Tap to open ↗</span>
-    </button>
-  </div>
-</div>
+          <button
+            type="button"
+            className="hero-mobile-chip hero-mobile-chip-brands"
+            onClick={() => setOpenTray("brands")}
+          >
+            <span className="hero-mobile-chip-title">Brands & Agencies</span>
+            <span className="hero-mobile-chip-sub">Tap to open ↗</span>
+          </button>
 
-      <div
-        id="hero-mobile-sheet"
-        className="hero-mobile-sheet hero-mobile-only hero-reveal hero-reveal-4"
-      >
-        <div className="hero-action-panel mobile-panel">
+          <img
+            src={heroCutout}
+            alt="Abhishek De"
+            className="hero-mobile-cutout"
+          />
+
+          <button
+            type="button"
+            className="hero-mobile-chip hero-mobile-chip-events"
+            onClick={() => setOpenTray("events")}
+          >
+            <span className="hero-mobile-chip-title">Events</span>
+            <span className="hero-mobile-chip-sub">Tap to open ↗</span>
+          </button>
+        </div>
+
+        <div
+          id="hero-mobile-selected"
+          className="hero-action-panel mobile-panel hero-mobile-selected-card"
+        >
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
 
           {selectedItem.links.length > 0 ? (
-            <div className="hero-link-list">
+            <div className="hero-link-list hero-link-list-mobile">
               {selectedItem.links.map((link) => (
                 <a
                   key={link.label}
@@ -261,8 +268,14 @@ export default function Hero() {
       )}
 
       {openTray && (
-        <div className="hero-tray-overlay hero-mobile-only" onClick={() => setOpenTray(null)}>
-          <div className="hero-bottom-tray" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="hero-tray-overlay hero-mobile-only"
+          onClick={() => setOpenTray(null)}
+        >
+          <div
+            className="hero-bottom-tray"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="hero-bottom-tray-head">
               <span className="eyebrow">{trayTitle}</span>
               <button
@@ -280,7 +293,9 @@ export default function Hero() {
                   key={item.id}
                   type="button"
                   className={`hero-bottom-tray-item ${
-                    selectedItem.id === item.id ? "hero-bottom-tray-item-active" : ""
+                    selectedItem.id === item.id
+                      ? "hero-bottom-tray-item-active"
+                      : ""
                   }`}
                   onClick={() => openItem(item)}
                 >
