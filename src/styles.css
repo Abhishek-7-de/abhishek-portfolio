@@ -1089,8 +1089,258 @@ video {
     align-items: stretch;
   }
 }
-/* ===== FINAL HERO V18 ONLY ===== */
+/* ===== RESTORED SITE + HERO V18 ===== */
 
+/* ---------- WHY ME ---------- */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.why-card {
+  position: relative;
+  padding: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(0, 212, 255, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+.why-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.why-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.42rem;
+  line-height: 1.08;
+}
+
+.why-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.55;
+}
+
+/* ---------- SELECTED WORKS / METRIC CARDS ---------- */
+.selected-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.selected-card {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(0, 212, 255, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+}
+
+.selected-number-wrap {
+  padding: 28px 28px 18px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.selected-number {
+  margin: 0 0 10px;
+  font-size: clamp(3.8rem, 7vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: #f5d0ff;
+}
+
+.selected-number-wrap h3 {
+  margin: 0 0 10px;
+  font-size: 1.95rem;
+  line-height: 1;
+}
+
+.selected-number-wrap p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.55;
+}
+
+.selected-content {
+  padding: 0 28px 24px;
+}
+
+.selected-toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+  margin: 18px 0 14px;
+}
+
+.selected-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.selected-drawer-open {
+  max-height: 2000px;
+  overflow: visible;
+  padding-bottom: 8px;
+}
+
+.selected-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.selected-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.selected-link-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- CAPABILITIES ---------- */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.cap-column,
+.cap-card {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(0, 212, 255, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+}
+
+.cap-card {
+  padding: 28px;
+}
+
+.cap-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  line-height: 1.05;
+}
+
+.cap-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.55;
+}
+
+.cap-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 28px;
+}
+
+.cap-metric {
+  padding: 22px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cap-metric strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 3rem;
+  line-height: 0.95;
+  color: #d8f6ff;
+}
+
+.cap-metric span {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.45;
+}
+
+.cap-steps {
+  padding: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.cap-step {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cap-step:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.cap-step-num {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.cap-step h4 {
+  margin: 0 0 8px;
+  font-size: 1.32rem;
+  line-height: 1.04;
+}
+
+.cap-step p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.55;
+}
+
+/* ---------- HERO V18 DESKTOP ---------- */
 .hero-mobile-only,
 .hero-mobile-shell,
 .hero-tray-overlay,
@@ -1098,6 +1348,7 @@ video {
   display: none;
 }
 
+/* ---------- HERO V18 MOBILE + SITE MOBILE ---------- */
 @media (max-width: 767px) {
   html,
   body,
@@ -1427,4 +1678,65 @@ video {
     max-height: 2600px !important;
     overflow: visible !important;
   }
-}  
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .why-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .why-card h3 {
+    font-size: 1.14rem;
+  }
+
+  .cap-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cap-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .cap-metric {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .cap-metric strong {
+    font-size: 2.3rem;
+  }
+
+  .cap-steps,
+  .cap-card {
+    padding: 18px;
+  }
+
+  .selected-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .selected-card {
+    border-radius: 24px;
+  }
+
+  .selected-number-wrap {
+    min-height: auto;
+    padding: 20px 20px 14px;
+  }
+
+  .selected-number {
+    font-size: 3.2rem;
+  }
+
+  .selected-content {
+    padding: 0 20px 18px;
+  }
+}
