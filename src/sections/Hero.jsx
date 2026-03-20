@@ -166,38 +166,34 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* MOBILE */}
-      <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
-        <div className="hero-mobile-cutout-wrap">
-          <div className="hero-mobile-glow hero-mobile-glow-1" />
-          <div className="hero-mobile-glow hero-mobile-glow-2" />
-          <div className="hero-mobile-ring" />
+ {/* MOBILE */}
+<div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
+  <div className="hero-mobile-cutout-wrap">
+    <img
+      src={heroCutout}
+      alt="Abhishek De"
+      className="hero-mobile-cutout"
+    />
 
-          <img
-            src={heroCutout}
-            alt="Abhishek De"
-            className="hero-mobile-cutout"
-          />
+    <button
+      type="button"
+      className="hero-mini-cloud mini-cloud-brands"
+      onClick={() => setOpenTray("brands")}
+    >
+      <span className="mini-cloud-title">Brands & Agencies</span>
+      <span className="mini-cloud-sub">Tap to open ↗</span>
+    </button>
 
-          <button
-            type="button"
-            className="hero-mini-cloud mini-cloud-brands"
-            onClick={() => setOpenTray("brands")}
-          >
-            <span className="mini-cloud-title">Brands & Agencies</span>
-            <span className="mini-cloud-sub">Tap to open ↗</span>
-          </button>
-
-          <button
-            type="button"
-            className="hero-mini-cloud mini-cloud-events"
-            onClick={() => setOpenTray("events")}
-          >
-            <span className="mini-cloud-title">Events</span>
-            <span className="mini-cloud-sub">Tap to open ↗</span>
-          </button>
-        </div>
-      </div>
+    <button
+      type="button"
+      className="hero-mini-cloud mini-cloud-events"
+      onClick={() => setOpenTray("events")}
+    >
+      <span className="mini-cloud-title">Events</span>
+      <span className="mini-cloud-sub">Tap to open ↗</span>
+    </button>
+  </div>
+</div>
 
       <div
         id="hero-mobile-sheet"

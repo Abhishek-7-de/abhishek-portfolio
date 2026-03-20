@@ -1919,3 +1919,150 @@ video {
     border-color: rgba(255, 255, 255, 0.22);
   }
 }
+/* ===== MOBILE HERO + BUTTON OVERFLOW HARD FIX ===== */
+@media (max-width: 767px) {
+  .hero-mobile-visual {
+    display: block !important;
+    margin-top: 10px;
+  }
+
+  .hero-mobile-cutout-wrap {
+    position: relative;
+    height: 280px;
+    min-height: 280px;
+    overflow: visible;
+  }
+
+  .hero-mobile-cutout {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 170px !important;
+    max-width: 48vw;
+    height: auto;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.28));
+  }
+
+  .hero-mobile-glow,
+  .hero-mobile-ring {
+    display: none !important;
+  }
+
+  .hero-mini-cloud {
+    position: absolute;
+    z-index: 3;
+    min-width: 126px;
+    max-width: 140px;
+    padding: 10px 12px;
+    border-radius: 16px;
+  }
+
+  .mini-cloud-brands {
+    left: 0;
+    top: 18px;
+  }
+
+  .mini-cloud-events {
+    right: 0;
+    bottom: 22px;
+  }
+
+  .mini-cloud-title {
+    font-size: 10px;
+    line-height: 1.3;
+    letter-spacing: 0.14em;
+  }
+
+  .mini-cloud-sub {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  /* selected / hero cards should never overflow */
+  .hero-action-panel,
+  .selected-card,
+  .selected-content,
+  .selected-drawer,
+  .selected-drawer-open {
+    overflow: hidden;
+  }
+
+  /* force all action links into a clean vertical stack on mobile */
+  .hero-link-list,
+  .selected-links {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .hero-link-btn,
+  .selected-link-btn {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center;
+    text-align: center;
+    white-space: normal !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding: 12px 14px !important;
+    min-height: 48px;
+  }
+
+  /* make sure cards fit mobile width */
+  .hero-mobile-sheet,
+  .hero-action-panel,
+  .selected-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-action-title {
+    font-size: 1.3rem !important;
+    line-height: 1.08 !important;
+  }
+
+  .hero-action-kind {
+    margin-bottom: 12px !important;
+  }
+
+  /* keep video strip fine, just make cards stable */
+  .hero-video-strip-wrap {
+    margin-top: 6px !important;
+  }
+
+  .hero-video-track {
+    gap: 10px !important;
+  }
+
+  .hero-video-panel.video-square,
+  .video-square {
+    width: 104px !important;
+    height: 104px !important;
+    flex: 0 0 104px !important;
+  }
+
+  /* bottom tray should stay above everything cleanly */
+  .hero-tray-overlay {
+    z-index: 100 !important;
+  }
+
+  .hero-bottom-tray {
+    max-height: 72vh;
+    overflow-y: auto;
+  }
+
+  /* extra safety for weird mobile overflow */
+  body,
+  .site-shell,
+  .container {
+    overflow-x: hidden;
+  }
+}
