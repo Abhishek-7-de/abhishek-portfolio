@@ -2928,3 +2928,18 @@ video {
     border-radius: 16px !important;
   }
 }
+@media (max-width: 767px) {
+  .hero-mobile-cutout {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: 120px !important;
+    height: auto !important;
+    z-index: 99999 !important;
+    background: rgba(255, 0, 0, 0.25) !important;
+    transform: none !important;
+  }
+}
