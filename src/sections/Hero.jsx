@@ -33,14 +33,16 @@ export default function Hero() {
     }
   };
 
-  const toggleTray = (trayName) => {
-    setOpenTray((prev) => (prev === trayName ? null : trayName));
-  };
+  const trayItems = openTray === "brands" ? brandCloud : eventCloud;
+  const trayTitle =
+    openTray === "brands" ? "Brands & Agencies" : "Events";
 
   return (
     <section className="hero-v17">
       <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
+        <p className="eyebrow hero-kicker">
+          Brand strategist • content creator • host
+        </p>
 
         <h2 className="hero-name hero-name-main">Abhishek De</h2>
 
@@ -180,7 +182,7 @@ export default function Hero() {
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-brands"
-            onClick={() => toggleTray("brands")}
+            onClick={() => setOpenTray("brands")}
           >
             <span className="mini-cloud-title">Brands & Agencies</span>
             <span className="mini-cloud-sub">Tap to open ↗</span>
@@ -189,45 +191,11 @@ export default function Hero() {
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-events"
-            onClick={() => toggleTray("events")}
+            onClick={() => setOpenTray("events")}
           >
             <span className="mini-cloud-title">Events</span>
             <span className="mini-cloud-sub">Tap to open ↗</span>
           </button>
-
-          {openTray === "brands" && (
-            <div className="hero-mini-picker picker-brands">
-              {brandCloud.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`hero-picker-item ${
-                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
-                  }`}
-                  onClick={() => openItem(item)}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {openTray === "events" && (
-            <div className="hero-mini-picker picker-events">
-              {eventCloud.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`hero-picker-item ${
-                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
-                  }`}
-                  onClick={() => openItem(item)}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
@@ -278,7 +246,6 @@ export default function Hero() {
                     loop
                     playsInline
                     preload="metadata"
-                    poster=""
                     onError={() => handleVideoError(video.id)}
                   >
                     <source src={video.src} type="video/mp4" />
@@ -298,6 +265,38 @@ export default function Hero() {
               <span className="reaction-chip rc-8">♥ 1.3K</span>
               <span className="reaction-chip rc-9">💬 301</span>
               <span className="reaction-chip rc-10">★ Saved</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {openTray && (
+        <div className="hero-tray-overlay hero-mobile-only" onClick={() => setOpenTray(null)}>
+          <div className="hero-bottom-tray" onClick={(e) => e.stopPropagation()}>
+            <div className="hero-bottom-tray-head">
+              <span className="eyebrow">{trayTitle}</span>
+              <button
+                type="button"
+                className="hero-tray-close"
+                onClick={() => setOpenTray(null)}
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="hero-bottom-tray-list">
+              {trayItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-bottom-tray-item ${
+                    selectedItem.id === item.id ? "hero-bottom-tray-item-active" : ""
+                  }`}
+                  onClick={() => openItem(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
             </div>
           </div>
         </div>
