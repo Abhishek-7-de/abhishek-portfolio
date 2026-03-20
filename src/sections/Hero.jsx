@@ -34,13 +34,11 @@ export default function Hero() {
   return (
     <section className="hero-v17">
       <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker hero-mobile-kicker">
-          Brand strategist • content creator • host
-        </p>
+        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
 
         <h2 className="hero-name hero-name-main">Abhishek De</h2>
 
-        <p className="hero-role-line hero-mobile-copy">
+        <p className="hero-role-line">
           Social-first ideas, campaign direction, and content built to stop the
           scroll and stay in memory.
         </p>
@@ -55,8 +53,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-main hero-reveal hero-reveal-2">
-        <div className="hero-visual-clean hero-desktop-only">
+      {/* DESKTOP HERO ONLY */}
+      <div className="hero-main hero-reveal hero-reveal-2 hero-desktop-only">
+        <div className="hero-visual-clean">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
             <div className="hero-cutout-glow glow-2" />
@@ -130,7 +129,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-side-panel hero-desktop-only">
+        <div className="hero-side-panel">
           <div className="hero-action-panel desktop-panel">
             <p className="eyebrow">Selected</p>
             <h3 className="hero-action-title">{selectedItem.name}</h3>
@@ -159,67 +158,69 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-mobile-only hero-mobile-visual hero-reveal hero-reveal-3">
-  <div className="hero-mobile-cutout-wrap">
-    <div className="hero-mobile-glow hero-mobile-glow-1" />
-    <div className="hero-mobile-glow hero-mobile-glow-2" />
+      {/* MOBILE HERO ONLY */}
+      <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
+        <div className="hero-mobile-cutout-wrap">
+          <div className="hero-mobile-glow hero-mobile-glow-1" />
+          <div className="hero-mobile-glow hero-mobile-glow-2" />
+          <div className="hero-mobile-ring" />
 
-    <img
-      src={heroCutout}
-      alt="Abhishek De"
-      className="hero-mobile-cutout"
-    />
+          <img
+            src={heroCutout}
+            alt="Abhishek De"
+            className="hero-mobile-cutout"
+          />
 
-    <button
-      type="button"
-      className="hero-mini-cloud mini-cloud-brands"
-      onClick={() => openItem(brandCloud[0])}
-    >
-      <span className="mini-cloud-title">Brands & Agencies</span>
-      <span className="mini-cloud-sub">Tap to open ↗</span>
-    </button>
-
-    <button
-      type="button"
-      className="hero-mini-cloud mini-cloud-events"
-      onClick={() => openItem(eventCloud[0])}
-    >
-      <span className="mini-cloud-title">Events</span>
-      <span className="mini-cloud-sub">Tap to open ↗</span>
-    </button>
-  </div>
-</div>
-
-<div
-  id="hero-mobile-sheet"
-  className="hero-mobile-sheet hero-mobile-only hero-reveal hero-reveal-4"
->
-  <div className="hero-action-panel mobile-panel">
-    <p className="eyebrow">Selected</p>
-    <h3 className="hero-action-title">{selectedItem.name}</h3>
-    <p className="hero-action-kind">{selectedItem.kind}</p>
-
-    {selectedItem.links.length > 0 ? (
-      <div className="hero-link-list">
-        {selectedItem.links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-link-btn"
+          <button
+            type="button"
+            className="hero-mini-cloud mini-cloud-brands"
+            onClick={() => openItem(brandCloud[0])}
           >
-            {link.label}
-          </a>
-        ))}
+            <span className="mini-cloud-title">Brands & Agencies</span>
+            <span className="mini-cloud-sub">Tap to open ↗</span>
+          </button>
+
+          <button
+            type="button"
+            className="hero-mini-cloud mini-cloud-events"
+            onClick={() => openItem(eventCloud[0])}
+          >
+            <span className="mini-cloud-title">Events</span>
+            <span className="mini-cloud-sub">Tap to open ↗</span>
+          </button>
+        </div>
       </div>
-    ) : (
-      <p className="hero-empty-note">
-        Links for this will be added here later.
-      </p>
-    )}
-  </div>
-</div>
+
+      <div
+        id="hero-mobile-sheet"
+        className="hero-mobile-sheet hero-mobile-only hero-reveal hero-reveal-4"
+      >
+        <div className="hero-action-panel mobile-panel">
+          <p className="eyebrow">Selected</p>
+          <h3 className="hero-action-title">{selectedItem.name}</h3>
+          <p className="hero-action-kind">{selectedItem.kind}</p>
+
+          {selectedItem.links.length > 0 ? (
+            <div className="hero-link-list">
+              {selectedItem.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hero-link-btn"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="hero-empty-note">
+              Links for this will be added here later.
+            </p>
+          )}
+        </div>
+      </div>
 
       {visibleVideos.length > 0 && (
         <div className="hero-video-strip-wrap hero-reveal hero-reveal-4">
