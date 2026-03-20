@@ -2460,3 +2460,293 @@ video {
     overflow-x: hidden;
   }
 }
+/* ===== FINAL MOBILE HERO CSS FIX ===== */
+@media (max-width: 767px) {
+  html, body, .site-shell, .container {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .container {
+    width: calc(100% - 24px) !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-v18,
+  .hero-copy,
+  .hero-mobile-shell,
+  .hero-mobile-selected-card,
+  .hero-action-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .hero-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 54px !important;
+    padding: 12px 16px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+  }
+
+  .hero-mobile-stage {
+    position: relative !important;
+    min-height: 250px !important;
+    height: 250px !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    background:
+      radial-gradient(circle at 35% 45%, rgba(124, 58, 237, 0.18), transparent 32%),
+      radial-gradient(circle at 78% 24%, rgba(0, 212, 255, 0.14), transparent 30%),
+      rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .hero-mobile-orb {
+    display: block !important;
+    position: absolute !important;
+    border-radius: 999px !important;
+    filter: blur(42px) !important;
+    z-index: 0 !important;
+    opacity: 0.9 !important;
+  }
+
+  .hero-mobile-orb-1 {
+    width: 130px !important;
+    height: 130px !important;
+    background: rgba(124, 58, 237, 0.26) !important;
+    left: 10% !important;
+    top: 18% !important;
+  }
+
+  .hero-mobile-orb-2 {
+    width: 120px !important;
+    height: 120px !important;
+    background: rgba(0, 212, 255, 0.2) !important;
+    right: 10% !important;
+    bottom: 20% !important;
+  }
+
+  .hero-mobile-ring {
+    display: block !important;
+    position: absolute !important;
+    width: 170px !important;
+    height: 170px !important;
+    left: 50% !important;
+    top: 52% !important;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 72%) !important;
+    z-index: 1 !important;
+  }
+
+  .hero-mobile-cutout {
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 112px !important;
+    max-width: 32vw !important;
+    height: auto !important;
+    object-fit: contain !important;
+    z-index: 3 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.28)) !important;
+  }
+
+  .hero-mobile-chip {
+    position: absolute !important;
+    z-index: 4 !important;
+    min-width: 120px !important;
+    max-width: 132px !important;
+    padding: 10px 12px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background: rgba(10, 14, 24, 0.72) !important;
+    backdrop-filter: blur(14px) !important;
+    text-align: left !important;
+    overflow: hidden !important;
+  }
+
+  .hero-mobile-chip-brands {
+    left: 12px !important;
+    top: 14px !important;
+  }
+
+  .hero-mobile-chip-events {
+    right: 12px !important;
+    bottom: 14px !important;
+  }
+
+  .hero-mobile-chip-title {
+    display: block !important;
+    font-size: 10px !important;
+    letter-spacing: 0.13em !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+  }
+
+  .hero-mobile-chip-sub {
+    display: block !important;
+    margin-top: 3px !important;
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    color: rgba(255,255,255,0.68) !important;
+  }
+
+  .hero-mobile-selected-card {
+    margin-top: 14px !important;
+    padding: 18px !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .hero-action-title {
+    font-size: 1.3rem !important;
+    line-height: 1.08 !important;
+    margin: 8px 0 6px !important;
+  }
+
+  .hero-action-kind {
+    margin: 0 0 12px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-link-list,
+  .hero-link-list-mobile,
+  .selected-links {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .hero-link-btn,
+  .selected-link-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 48px !important;
+    padding: 12px 14px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    border-radius: 16px !important;
+  }
+
+  .hero-video-strip-wrap {
+    margin-top: 10px !important;
+  }
+
+  .hero-video-track {
+    gap: 10px !important;
+  }
+
+  .hero-video-panel.video-square,
+  .video-square {
+    width: 104px !important;
+    height: 104px !important;
+    flex: 0 0 104px !important;
+  }
+
+  .hero-tray-overlay {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 100 !important;
+    background: rgba(6, 8, 14, 0.42) !important;
+    backdrop-filter: blur(6px) !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding: 14px !important;
+  }
+
+  .hero-bottom-tray {
+    display: block !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    max-height: 72vh !important;
+    overflow-y: auto !important;
+    border-radius: 24px 24px 0 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background:
+      linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(0, 212, 255, 0.08)),
+      rgba(10, 14, 24, 0.94) !important;
+    box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.32) !important;
+    padding: 18px !important;
+  }
+
+  .hero-bottom-tray-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .hero-tray-close {
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    border-radius: 999px !important;
+    padding: 8px 12px !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+  }
+
+  .hero-bottom-tray-list {
+    display: grid !important;
+    gap: 10px !important;
+  }
+
+  .hero-bottom-tray-item {
+    width: 100% !important;
+    text-align: left !important;
+    padding: 13px 14px !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+  }
+
+  .hero-bottom-tray-item-active {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+  }
+
+  .selected-drawer {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.3s ease, padding 0.3s ease !important;
+  }
+
+  .selected-drawer-open {
+    max-height: 2600px !important;
+    overflow: visible !important;
+  }
+}
