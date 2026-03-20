@@ -168,16 +168,10 @@ export default function Hero() {
 
  {/* MOBILE */}
 <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
-  <div className="hero-mobile-cutout-wrap">
-    <img
-      src={heroCutout}
-      alt="Abhishek De"
-      className="hero-mobile-cutout"
-    />
-
+  <div className="hero-mobile-quick-actions">
     <button
       type="button"
-      className="hero-mini-cloud mini-cloud-brands"
+      className="hero-mini-cloud mobile-simple-chip"
       onClick={() => setOpenTray("brands")}
     >
       <span className="mini-cloud-title">Brands & Agencies</span>
@@ -186,7 +180,7 @@ export default function Hero() {
 
     <button
       type="button"
-      className="hero-mini-cloud mini-cloud-events"
+      className="hero-mini-cloud mobile-simple-chip"
       onClick={() => setOpenTray("events")}
     >
       <span className="mini-cloud-title">Events</span>
