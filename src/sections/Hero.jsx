@@ -4,7 +4,7 @@ import { topStripVideos, brandCloud, eventCloud } from "../data/heroMedia";
 
 export default function Hero() {
   const allItems = useMemo(() => [...brandCloud, ...eventCloud], []);
-  const [selectedItem, setSelectedItem] = useState(brandCloud[0]);
+  const [selectedItem, setSelectedItem] = useState(allItems[0]);
   const [brokenVideos, setBrokenVideos] = useState([]);
   const [openTray, setOpenTray] = useState(null);
 
@@ -25,7 +25,7 @@ export default function Hero() {
 
     if (window.innerWidth < 768) {
       requestAnimationFrame(() => {
-        const panel = document.getElementById("hero-mobile-selected");
+        const panel = document.getElementById("hero-mobile-sheet");
         if (panel) {
           panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
@@ -33,15 +33,14 @@ export default function Hero() {
     }
   };
 
-  const trayItems = openTray === "brands" ? brandCloud : eventCloud;
-  const trayTitle = openTray === "brands" ? "Brands & Agencies" : "Events";
+  const toggleTray = (trayName) => {
+    setOpenTray((prev) => (prev === trayName ? null : trayName));
+  };
 
   return (
-    <section className="hero-v18">
+    <section className="hero-v17">
       <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker">
-          Brand strategist • content creator • host
-        </p>
+        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
 
         <h2 className="hero-name hero-name-main">Abhishek De</h2>
 
@@ -166,20 +165,11 @@ export default function Hero() {
       </div>
 
       {/* MOBILE */}
-      <div className="hero-mobile-shell hero-mobile-only hero-reveal hero-reveal-3">
-        <div className="hero-mobile-stage">
-          <div className="hero-mobile-orb hero-mobile-orb-1" />
-          <div className="hero-mobile-orb hero-mobile-orb-2" />
+      <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
+        <div className="hero-mobile-cutout-wrap">
+          <div className="hero-mobile-glow hero-mobile-glow-1" />
+          <div className="hero-mobile-glow hero-mobile-glow-2" />
           <div className="hero-mobile-ring" />
-
-          <button
-            type="button"
-            className="hero-mobile-chip hero-mobile-chip-brands"
-            onClick={() => setOpenTray("brands")}
-          >
-            <span className="hero-mobile-chip-title">Brands & Agencies</span>
-            <span className="hero-mobile-chip-sub">Tap to open ↗</span>
-          </button>
 
           <img
             src={heroCutout}
@@ -189,24 +179,69 @@ export default function Hero() {
 
           <button
             type="button"
-            className="hero-mobile-chip hero-mobile-chip-events"
-            onClick={() => setOpenTray("events")}
+            className="hero-mini-cloud mini-cloud-brands"
+            onClick={() => toggleTray("brands")}
           >
-            <span className="hero-mobile-chip-title">Events</span>
-            <span className="hero-mobile-chip-sub">Tap to open ↗</span>
+            <span className="mini-cloud-title">Brands & Agencies</span>
+            <span className="mini-cloud-sub">Tap to open ↗</span>
           </button>
-        </div>
 
-        <div
-          id="hero-mobile-selected"
-          className="hero-action-panel mobile-panel hero-mobile-selected-card"
-        >
+          <button
+            type="button"
+            className="hero-mini-cloud mini-cloud-events"
+            onClick={() => toggleTray("events")}
+          >
+            <span className="mini-cloud-title">Events</span>
+            <span className="mini-cloud-sub">Tap to open ↗</span>
+          </button>
+
+          {openTray === "brands" && (
+            <div className="hero-mini-picker picker-brands">
+              {brandCloud.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-picker-item ${
+                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
+                  }`}
+                  onClick={() => openItem(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {openTray === "events" && (
+            <div className="hero-mini-picker picker-events">
+              {eventCloud.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-picker-item ${
+                    selectedItem.id === item.id ? "hero-picker-item-active" : ""
+                  }`}
+                  onClick={() => openItem(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div
+        id="hero-mobile-sheet"
+        className="hero-mobile-sheet hero-mobile-only hero-reveal hero-reveal-4"
+      >
+        <div className="hero-action-panel mobile-panel">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
 
           {selectedItem.links.length > 0 ? (
-            <div className="hero-link-list hero-link-list-mobile">
+            <div className="hero-link-list">
               {selectedItem.links.map((link) => (
                 <a
                   key={link.label}
@@ -243,6 +278,7 @@ export default function Hero() {
                     loop
                     playsInline
                     preload="metadata"
+                    poster=""
                     onError={() => handleVideoError(video.id)}
                   >
                     <source src={video.src} type="video/mp4" />
@@ -262,46 +298,6 @@ export default function Hero() {
               <span className="reaction-chip rc-8">♥ 1.3K</span>
               <span className="reaction-chip rc-9">💬 301</span>
               <span className="reaction-chip rc-10">★ Saved</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {openTray && (
-        <div
-          className="hero-tray-overlay hero-mobile-only"
-          onClick={() => setOpenTray(null)}
-        >
-          <div
-            className="hero-bottom-tray"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="hero-bottom-tray-head">
-              <span className="eyebrow">{trayTitle}</span>
-              <button
-                type="button"
-                className="hero-tray-close"
-                onClick={() => setOpenTray(null)}
-              >
-                Close
-              </button>
-            </div>
-
-            <div className="hero-bottom-tray-list">
-              {trayItems.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`hero-bottom-tray-item ${
-                    selectedItem.id === item.id
-                      ? "hero-bottom-tray-item-active"
-                      : ""
-                  }`}
-                  onClick={() => openItem(item)}
-                >
-                  {item.name}
-                </button>
-              ))}
             </div>
           </div>
         </div>
