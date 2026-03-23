@@ -22,7 +22,6 @@ export default function Hero() {
   const openItem = (item) => {
     setSelectedItem(item);
     setOpenTray(null);
-
     if (window.innerWidth < 768) {
       requestAnimationFrame(() => {
         const panel = document.getElementById("hero-mobile-sheet");
@@ -39,28 +38,29 @@ export default function Hero() {
 
   return (
     <section className="hero-v17">
+
+      {/* ── COPY (both mobile + desktop) ── */}
       <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
-
-        <h2 className="hero-name hero-name-main">Abhishek De</h2>
-
+        <p className="eyebrow hero-kicker">
+          Brand strategist • content creator • host
+        </p>
+        <h1 className="hero-name hero-name-main">Abhishek De</h1>
         <p className="hero-role-line">
           Social-first ideas, campaign direction, and content built to stop the
           scroll and stay in memory.
         </p>
-
         <div className="hero-actions">
           <a href="#selected-works" className="btn btn-primary hero-btn">
             Enter Work
           </a>
           <a href="#contact" className="btn btn-secondary hero-btn">
-            Let’s Build
+            Let's Build
           </a>
         </div>
       </div>
 
-      {/* DESKTOP */}
-      <div className="hero-main hero-reveal hero-reveal-2 hero-desktop-only">
+      {/* ── DESKTOP visual (cutout + clouds + side panel) ── */}
+      <div className="hero-desktop-only hero-reveal hero-reveal-2">
         <div className="hero-visual-clean">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
@@ -78,7 +78,6 @@ export default function Hero() {
                 <span className="cloud-label">Brands & Agencies</span>
                 <span className="cloud-sub">Tap a logo</span>
               </div>
-
               <div className="cloud-grid cloud-grid-horizontal">
                 {brandCloud.map((item, index) => (
                   <button
@@ -90,11 +89,7 @@ export default function Hero() {
                     onClick={() => openItem(item)}
                   >
                     {item.logo ? (
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        className="logo-chip-img"
-                      />
+                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
                     ) : (
                       <span className="logo-chip-text">{item.name}</span>
                     )}
@@ -108,7 +103,6 @@ export default function Hero() {
                 <span className="cloud-label">Events</span>
                 <span className="cloud-sub">Tap a logo</span>
               </div>
-
               <div className="cloud-grid">
                 {eventCloud.map((item, index) => (
                   <button
@@ -120,11 +114,7 @@ export default function Hero() {
                     onClick={() => openItem(item)}
                   >
                     {item.logo ? (
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        className="logo-chip-img"
-                      />
+                      <img src={item.logo} alt={item.name} className="logo-chip-img" />
                     ) : (
                       <span className="logo-chip-text">{item.name}</span>
                     )}
@@ -140,7 +130,6 @@ export default function Hero() {
             <p className="eyebrow">Selected</p>
             <h3 className="hero-action-title">{selectedItem.name}</h3>
             <p className="hero-action-kind">{selectedItem.kind}</p>
-
             {selectedItem.links.length > 0 ? (
               <div className="hero-link-list">
                 {selectedItem.links.map((link) => (
@@ -164,19 +153,23 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* MOBILE */}
-      <div className="hero-mobile-visual hero-mobile-only hero-reveal hero-reveal-3">
+      {/* ── MOBILE visual (cutout + mini-cloud buttons) ── */}
+      <div className="hero-mobile-only hero-mobile-visual hero-reveal hero-reveal-3">
         <div className="hero-mobile-cutout-wrap">
+          {/* glows */}
           <div className="hero-mobile-glow hero-mobile-glow-1" />
           <div className="hero-mobile-glow hero-mobile-glow-2" />
+          {/* ring */}
           <div className="hero-mobile-ring" />
 
+          {/* cutout photo */}
           <img
             src={heroCutout}
             alt="Abhishek De"
             className="hero-mobile-cutout"
           />
 
+          {/* brand chip */}
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-brands"
@@ -186,6 +179,7 @@ export default function Hero() {
             <span className="mini-cloud-sub">Tap to open ↗</span>
           </button>
 
+          {/* events chip */}
           <button
             type="button"
             className="hero-mini-cloud mini-cloud-events"
@@ -195,6 +189,7 @@ export default function Hero() {
             <span className="mini-cloud-sub">Tap to open ↗</span>
           </button>
 
+          {/* brand picker tray */}
           {openTray === "brands" && (
             <div className="hero-mini-picker picker-brands">
               {brandCloud.map((item) => (
@@ -212,6 +207,7 @@ export default function Hero() {
             </div>
           )}
 
+          {/* events picker tray */}
           {openTray === "events" && (
             <div className="hero-mini-picker picker-events">
               {eventCloud.map((item) => (
@@ -231,15 +227,15 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* ── MOBILE selected panel ── */}
       <div
         id="hero-mobile-sheet"
-        className="hero-mobile-sheet hero-mobile-only hero-reveal hero-reveal-4"
+        className="hero-mobile-only hero-mobile-sheet hero-reveal hero-reveal-4"
       >
         <div className="hero-action-panel mobile-panel">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
-
           {selectedItem.links.length > 0 ? (
             <div className="hero-link-list">
               {selectedItem.links.map((link) => (
@@ -262,6 +258,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* ── VIDEO STRIP ── */}
       {visibleVideos.length > 0 && (
         <div className="hero-video-strip-wrap hero-reveal hero-reveal-4">
           <div className="hero-video-strip single-strip">
@@ -278,7 +275,6 @@ export default function Hero() {
                     loop
                     playsInline
                     preload="metadata"
-                    poster=""
                     onError={() => handleVideoError(video.id)}
                   >
                     <source src={video.src} type="video/mp4" />

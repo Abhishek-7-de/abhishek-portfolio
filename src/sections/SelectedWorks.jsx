@@ -22,17 +22,13 @@ function AnimatedNumber({ value }) {
         const timer = setInterval(() => {
           current += 1;
           setCount(current);
-
-          if (current >= value) {
-            clearInterval(timer);
-          }
+          if (current >= value) clearInterval(timer);
         }, stepTime);
       },
       { threshold: 0.35 }
     );
 
     observer.observe(node);
-
     return () => observer.disconnect();
   }, [value]);
 
@@ -73,12 +69,15 @@ export default function SelectedWorks() {
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <span className="drawer-toggle">
-                    {isOpen ? "Hide links" : "Open links"}
+                    {isOpen ? "▲ Hide links" : "▼ Show links"}
                   </span>
                 </div>
               </button>
 
-              <div className={`selected-drawer ${isOpen ? "selected-drawer-open" : ""}`}>
+              {/* Drawer — opens smoothly, scrollable if many links */}
+              <div
+                className={`selected-drawer ${isOpen ? "selected-drawer-open" : ""}`}
+              >
                 {item.links.length > 0 ? (
                   <div className="selected-links">
                     {item.links.map((link) => (
