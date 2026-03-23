@@ -1050,3 +1050,109 @@ video {
   .hero-v17 { grid-template-columns: 1.1fr 0.9fr; }
   .hero-cutout-stage { max-width: 520px; min-height: 560px; }
 }
+
+/* ============================================================
+   MOBILE SECTION CLASSES  (m-*)
+   ============================================================ */
+
+/* shown only on mobile */
+.hero-mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hero-mobile-only {
+    display: none !important;
+  }
+}
+
+/* photo stage */
+.m-stage {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: 8px;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.m-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(44px);
+  opacity: 0.8;
+  z-index: 0;
+}
+.m-glow-1 { width: 140px; height: 140px; background: rgba(124,58,237,0.36); left: 12%; top: 20px; }
+.m-glow-2 { width: 120px; height: 120px; background: rgba(0,212,255,0.26); right: 12%; top: 10px; }
+
+.m-ring {
+  position: absolute;
+  width: 220px; height: 220px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 70%);
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  z-index: 0;
+}
+
+.m-cutout {
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 190px; height: auto;
+  object-fit: contain;
+  z-index: 2;
+  display: block;
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,0.3));
+  pointer-events: none;
+}
+
+.m-chip {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(10,14,24,0.82);
+  backdrop-filter: blur(16px);
+  text-align: left;
+  cursor: pointer;
+  min-width: 120px;
+}
+.m-chip-brands { left: 0; top: 20px; }
+.m-chip-events { right: 0; bottom: 20px; }
+
+.m-chip-title {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+.m-chip-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* tray — below photo, normal block flow */
+.m-tray {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(10,14,24,0.92);
+  backdrop-filter: blur(18px);
+}
+
+.m-tray-label {
+  margin: 0 0 8px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.44);
+}
+
+.m-selected {
+  margin-top: 12px;
+}
