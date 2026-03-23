@@ -1284,3 +1284,600 @@ img, video { max-width: 100%; }
 .cloud {
   width: 190px !important;
 }
+
+/* ============================================================
+   PHOTO STRIP
+   ============================================================ */
+
+.photo-strip-section {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0 56px;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.photo-strip-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: photoStripMove 32s linear infinite;
+}
+
+.photo-strip-track:hover {
+  animation-play-state: paused;
+}
+
+.photo-strip-item {
+  position: relative;
+  width: 260px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.photo-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.88) saturate(0.9);
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.photo-strip-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(10, 10, 8, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.photo-strip-item:hover img {
+  filter: brightness(1) saturate(1.05);
+  transform: scale(1.04);
+}
+
+@keyframes photoStripMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (min-width: 768px) {
+  .photo-strip-item {
+    width: 320px;
+    height: 220px;
+  }
+}
+
+/* ============================================================
+   BRAND LOGO MARQUEE — desktop desktop hero strip
+   ============================================================ */
+
+.brand-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 20px;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.brand-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: max-content;
+  animation: marqueeMoveRight 18s linear infinite;
+}
+
+.brand-marquee-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-gold);
+  background: rgba(201, 168, 76, 0.06);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.brand-marquee-chip:hover {
+  background: rgba(201, 168, 76, 0.14);
+  transform: translateY(-2px);
+}
+
+.brand-marquee-chip img {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.2) saturate(0.7);
+  opacity: 0.85;
+}
+
+.brand-marquee-chip span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 235, 0.8);
+}
+
+.brand-marquee-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--gold);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   GLASS EFFECTS — upgrade cards
+   ============================================================ */
+
+/* Rounder corners everywhere */
+.selected-card { border-radius: 20px !important; }
+.selected-grid { background: transparent !important; gap: 14px !important; }
+.selected-card-open { border-color: var(--border-gold) !important; }
+
+.stat-card-mobile { border-radius: 16px !important; }
+.stats-grid-mobile { background: transparent !important; gap: 12px !important; border-radius: 0 !important; }
+
+.process-card-mobile { border-radius: 16px !important; }
+
+.hero-action-panel {
+  border-radius: 20px !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  background: linear-gradient(135deg,
+    rgba(201, 168, 76, 0.08) 0%,
+    rgba(10, 10, 8, 0.7) 100%
+  ) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(201,168,76,0.12) !important;
+}
+
+.m-chip {
+  border-radius: 14px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+}
+
+.m-tray {
+  border-radius: 18px !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4) !important;
+}
+
+.contact-v10-card {
+  border-radius: 28px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.why-card-muted { border-radius: 16px !important; }
+.why-linked-grid { border-radius: 16px !important; }
+.why-card-linked:first-child { border-radius: 16px 16px 0 0 !important; }
+.why-card-linked:last-child { border-radius: 0 0 16px 16px !important; }
+
+@media (min-width: 768px) {
+  .why-card-linked:first-child { border-radius: 16px 0 0 16px !important; }
+  .why-card-linked:last-child { border-radius: 0 16px 16px 0 !important; }
+  .why-card-linked:nth-child(2) { border-radius: 0 !important; }
+}
+
+.cloud {
+  border-radius: 18px !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  background: rgba(10, 10, 8, 0.75) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.1) !important;
+}
+
+/* Chips rounder */
+.chip { border-radius: 999px !important; }
+.btn { border-radius: 999px !important; }
+.hero-btn { border-radius: 999px !important; }
+.cv-btn { border-radius: 999px !important; }
+
+/* Selected link buttons rounder */
+.selected-link-btn { border-radius: 999px !important; }
+.hero-link-btn { border-radius: 999px !important; }
+
+/* ============================================================
+   FIX BUTTON FLASH on mobile — pre-render styles
+   ============================================================ */
+
+.btn-primary {
+  /* Ensure gold is visible immediately, no flash */
+  background: var(--gold) !important;
+  color: var(--black) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.btn-secondary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hero actions — no layout shift */
+.hero-actions {
+  min-height: 52px;
+}
+
+/* ============================================================
+   DEPTH & GLOW — make it less flat
+   ============================================================ */
+
+/* Gold shimmer line under navbar */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.3) 40%, rgba(201,168,76,0.3) 60%, transparent 100%);
+}
+
+/* Glow behind hero name */
+.hero-name::after,
+.hero-name-main::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  filter: blur(40px);
+  opacity: 0.15;
+  color: var(--gold);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Section headings — gold underline accent */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hover glow on stat cards */
+.stat-card-mobile {
+  background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(10,10,8,0.8)) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  transition: all 0.25s ease !important;
+}
+
+.stat-card-mobile:hover {
+  border-color: var(--border-gold) !important;
+  background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(10,10,8,0.8)) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important;
+}
+
+/* Process cards glass */
+.process-card-mobile {
+  background: linear-gradient(135deg, rgba(201,168,76,0.04), rgba(10,10,8,0.7)) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* Selected cards glass */
+.selected-card {
+  background: linear-gradient(145deg,
+    rgba(201,168,76,0.04) 0%,
+    rgba(10,10,8,0.85) 100%
+  ) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.selected-card:hover, .selected-card-open {
+  border-color: var(--border-gold) !important;
+  background: linear-gradient(145deg,
+    rgba(201,168,76,0.09) 0%,
+    rgba(10,10,8,0.9) 100%
+  ) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35) !important;
+}
+
+/* Why-me cards glass */
+.why-card-linked {
+  background: linear-gradient(135deg,
+    rgba(201,168,76,0.03) 0%,
+    rgba(14, 14, 11, 0.9) 100%
+  ) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.why-card-linked:hover {
+  background: linear-gradient(135deg,
+    rgba(201,168,76,0.08) 0%,
+    rgba(14, 14, 11, 0.95) 100%
+  ) !important;
+}
+
+
+/* ============================================================
+   INTRO FLIP — full screen card flip on load
+   ============================================================ */
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  animation: introFadeIn 0.6s ease forwards;
+}
+
+.intro-overlay-out {
+  animation: introFadeOut 0.6s ease forwards !important;
+  pointer-events: none;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 8, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.intro-skip {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.6);
+  background: none;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-skip:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* 3D flip card */
+.intro-card {
+  position: relative;
+  z-index: 2;
+  width: 240px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.intro-card-flip {
+  transform: rotateY(180deg);
+}
+
+.intro-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.1);
+}
+
+/* Front — photo */
+.intro-front {
+  background: var(--black-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.intro-front img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 -8px 24px rgba(201, 168, 76, 0.15));
+  animation: introFloat 3s ease-in-out infinite;
+}
+
+.intro-front-label {
+  position: relative;
+  z-index: 2;
+  padding: 12px 0 16px;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 100%);
+}
+
+.intro-front-label span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* Back — avatar */
+.intro-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #1a1a12, #0a0a08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle gold grid on back */
+.intro-back::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 24px;
+}
+
+.intro-avatar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.intro-avatar-svg {
+  width: 160px;
+  height: 176px;
+  filter: drop-shadow(0 8px 24px rgba(201, 168, 76, 0.2));
+}
+
+/* Waving hand animation */
+.intro-wave-hand {
+  transform-origin: 155px 175px;
+  animation: waveHand 0.5s ease-in-out 2.1s 4 alternate;
+}
+
+/* Speech bubble */
+.intro-bubble {
+  position: absolute;
+  top: -10px;
+  right: -110px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 16px 16px 16px 4px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+  animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 2.1s both;
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+
+.intro-bubble span:first-child {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.intro-bubble-sub {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}
+
+.intro-bubble-tail {
+  position: absolute;
+  bottom: -8px;
+  left: 16px;
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--gold);
+}
+
+/* Name tag */
+.intro-name-tag {
+  position: relative;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: rgba(201, 168, 76, 0.5);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.5s ease 0.2s;
+}
+
+.intro-name-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold ring pulse behind card */
+.intro-card::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 40px;
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  animation: introPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.intro-card::after {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 56px;
+  border: 1px solid rgba(201, 168, 76, 0.06);
+  animation: introPulse 2s ease-in-out 0.5s infinite;
+  pointer-events: none;
+}
+
+/* Keyframes */
+@keyframes introFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes introFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes introFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(-8px); }
+}
+
+@keyframes waveHand {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(28deg); }
+}
+
+@keyframes bubblePop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+@keyframes introPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 0.2; transform: scale(1.04); }
+}
