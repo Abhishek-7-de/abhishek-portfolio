@@ -654,7 +654,7 @@ video {
 }
 
 .marquee-track { display: flex; width: max-content; gap: 28px; }
-.skills-track { animation: marqueeMoveRight 16s linear infinite; }
+.skills-track { animation: marqueeMoveRight 9s linear infinite; }
 
 .marquee-item {
   white-space: nowrap;
@@ -946,10 +946,15 @@ video {
    FADE-UP (sections)
    ============================================================ */
 
+/* scroll-triggered — starts hidden, .is-visible added by JS */
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
-  animation: fadeUp 0.8s ease forwards;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ============================================================
@@ -1176,3 +1181,67 @@ video {
 .m-selected {
   margin-top: 12px;
 }
+
+/* ============================================================
+   CURSOR GLOW — desktop only
+   ============================================================ */
+
+@media (min-width: 768px) and (hover: hover) {
+  .cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.13) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: left 0.08s ease, top 0.08s ease;
+    will-change: left, top;
+  }
+}
+
+/* ============================================================
+   SECTION DIVIDERS — subtle line between sections
+   ============================================================ */
+
+.section + .section {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================================
+   SELECTED CARD — hover lift
+   ============================================================ */
+
+.selected-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* ============================================================
+   CONTACT CARD — bigger padding on desktop
+   ============================================================ */
+
+@media (min-width: 768px) {
+  .contact-v10-card {
+    padding: 72px 48px;
+  }
+}
+
+/* ============================================================
+   STAGGER fade-up delays for grid children
+   ============================================================ */
+
+.why-mini-grid .fade-up:nth-child(1) { transition-delay: 0s; }
+.why-mini-grid .fade-up:nth-child(2) { transition-delay: 0.08s; }
+.why-mini-grid .fade-up:nth-child(3) { transition-delay: 0.16s; }
+.why-mini-grid .fade-up:nth-child(4) { transition-delay: 0.24s; }
+
+.selected-grid .fade-up:nth-child(1) { transition-delay: 0s; }
+.selected-grid .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.selected-grid .fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+.stats-grid-mobile .fade-up:nth-child(1) { transition-delay: 0s; }
+.stats-grid-mobile .fade-up:nth-child(2) { transition-delay: 0.07s; }
+.stats-grid-mobile .fade-up:nth-child(3) { transition-delay: 0.14s; }
+.stats-grid-mobile .fade-up:nth-child(4) { transition-delay: 0.21s; }
