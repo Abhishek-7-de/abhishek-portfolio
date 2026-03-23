@@ -15,33 +15,37 @@ export default function Hero() {
   const openItem = (item) => {
     setSelectedItem(item);
     setOpenTray(null);
-    // Always scroll to panel immediately on mobile
     setTimeout(() => {
-      const panel = document.getElementById("m-sheet");
-      if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("m-sheet")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 80);
   };
 
   const toggleTray = (name) => {
-    setOpenTray((p) => (p === name ? null : name));
-    // Scroll to tray area
-    setTimeout(() => {
-      const tray = document.getElementById("hero-tray-area");
-      if (tray) tray.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 80);
+    const next = openTray === name ? null : name;
+    setOpenTray(next);
+    if (next) {
+      setTimeout(() => {
+        document.getElementById("hero-tray-area")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
   };
 
-  // Top 4 brand names to float around photo
-  const floatingBrands = brandCloud.slice(0, 4);
-  const floatingEvents = eventCloud.slice(0, 2);
+  // Brand pills — positioned carefully to NOT overlap chips
+  // Chips are: brands-chip top-left, events-chip bottom-right
+  // So we place pills: top-right area and left-center area
+  const floatingPills = [
+    { name: brandCloud[0]?.name, cls: "m-bf-1" },
+    { name: brandCloud[1]?.name, cls: "m-bf-2" },
+    { name: eventCloud[0]?.name, cls: "m-bf-3" },
+    { name: brandCloud[2]?.name, cls: "m-bf-4" },
+    { name: eventCloud[1]?.name, cls: "m-bf-5" },
+  ].filter(p => p.name);
 
   return (
     <div className="hero-wrap">
 
-      {/* ROW 1 — copy + desktop visual */}
+      {/* ROW 1 — copy + desktop */}
       <div className="hero-top-row">
-
-        {/* Copy */}
         <div className="hero-copy hero-reveal hero-reveal-1">
           <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
           <h1 className="hero-name hero-name-main">Abhishek De</h1>
@@ -54,7 +58,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop visual */}
         <div className="hero-desktop-col hero-reveal hero-reveal-2">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
@@ -97,7 +100,7 @@ export default function Hero() {
               <p className="eyebrow">Selected</p>
               <h3 className="hero-action-title">{selectedItem.name}</h3>
               <p className="hero-action-kind">{selectedItem.kind}</p>
-              {selectedItem.links.length > 0
+              {selectedItem.links?.length > 0
                 ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
                 : <p className="hero-empty-note">Links coming soon.</p>}
             </div>
@@ -105,25 +108,21 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ROW 2 — MOBILE ONLY */}
+      {/* ROW 2 — MOBILE */}
       <div className="hero-mobile-row">
-
-        {/* Photo stage with floating brand pills */}
         <div className="m-stage">
           <div className="m-glow m-glow-1" />
           <div className="m-glow m-glow-2" />
           <div className="m-ring" />
 
-          {/* Floating brand pills — decorative, scattered around photo */}
-          <div className="m-brand-float m-bf-1">{brandCloud[0]?.name}</div>
-          <div className="m-brand-float m-bf-2">{brandCloud[1]?.name}</div>
-          <div className="m-brand-float m-bf-3">{eventCloud[0]?.name}</div>
-          <div className="m-brand-float m-bf-4">{brandCloud[2]?.name}</div>
-          <div className="m-brand-float m-bf-5">{eventCloud[1]?.name}</div>
+          {/* Brand pills — top-right and left-mid ONLY, away from chips */}
+          {floatingPills.map((p, i) => (
+            <div key={i} className={`m-brand-float ${p.cls}`}>{p.name}</div>
+          ))}
 
           <img src={heroCutout} alt="Abhishek De" className="m-cutout" />
 
-          {/* Tap chips */}
+          {/* Chips — fixed positions, no overlap with pills */}
           <button type="button" className="m-chip m-chip-brands" onClick={() => toggleTray("brands")}>
             <span className="m-chip-title">Brands & Agencies</span>
             <span className="m-chip-sub">Tap to open ↗</span>
@@ -134,36 +133,46 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Tray area — scroll target */}
+        {/* Tray — scroll target, below photo, full width */}
         <div id="hero-tray-area">
           {openTray === "brands" && (
             <div className="m-tray">
-              <p className="m-tray-label">Brands & Agencies</p>
-              {brandCloud.map((item) => (
-                <button key={item.id} type="button"
-                  className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
-                  onClick={() => openItem(item)}>{item.name}</button>
-              ))}
+              <p className="m-tray-label">Brands & Agencies — tap to see work</p>
+              <div className="m-tray-grid">
+                {brandCloud.map((item) => (
+                  <button key={item.id} type="button"
+                    className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
+                    onClick={() => openItem(item)}>
+                    {item.logo && <img src={item.logo} alt={item.name} className="m-tray-logo" />}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
           {openTray === "events" && (
             <div className="m-tray">
-              <p className="m-tray-label">Events</p>
-              {eventCloud.map((item) => (
-                <button key={item.id} type="button"
-                  className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
-                  onClick={() => openItem(item)}>{item.name}</button>
-              ))}
+              <p className="m-tray-label">Events — tap to see work</p>
+              <div className="m-tray-grid">
+                {eventCloud.map((item) => (
+                  <button key={item.id} type="button"
+                    className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
+                    onClick={() => openItem(item)}>
+                    {item.logo && <img src={item.logo} alt={item.name} className="m-tray-logo" />}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
 
-        {/* Selected panel — scroll target */}
+        {/* Selected panel */}
         <div id="m-sheet" className="hero-action-panel m-selected">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
-          {selectedItem.links.length > 0
+          {selectedItem.links?.length > 0
             ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
             : <p className="hero-empty-note">Links coming soon.</p>}
         </div>
