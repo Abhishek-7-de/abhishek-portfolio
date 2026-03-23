@@ -1,28 +1,78 @@
-// Photo strip — place AFTER ProofStrip, BEFORE WhyMe
-// Import photos from public folder (place in /public/photos/)
+// Experience Strip — scrolling photos WITH context cards
+// Place photos in /public/photos/
 
-const photos = [
-  { src: "/photos/photo-1.jpg", alt: "Hosting on stage" },
-  { src: "/photos/photo-2.jpg", alt: "Panel at Buzz Confluence" },
-  { src: "/photos/photo-3.jpg", alt: "BPL interview" },
-  { src: "/photos/photo-4.jpg", alt: "ComicCon hosting" },
-  { src: "/photos/photo-5.jpg", alt: "Shoot direction" },
-  { src: "/photos/photo-6.jpg", alt: "CCU Festival stage" },
+const experiences = [
+  {
+    src: "/photos/photo-1.jpg",
+    title: "Hosting on Stage",
+    label: "CCU Festival",
+    tag: "Live Event",
+    year: "2024",
+  },
+  {
+    src: "/photos/photo-2.jpg",
+    title: "Panel Speaker",
+    label: "Buzz Confluence '24",
+    tag: "Industry Talk",
+    year: "2024",
+  },
+  {
+    src: "/photos/photo-3.jpg",
+    title: "Player Interview",
+    label: "Bengal Premier League",
+    tag: "Sports Media",
+    year: "2024",
+  },
+  {
+    src: "/photos/photo-4.jpg",
+    title: "Convention Host",
+    label: "ComicCon India",
+    tag: "Entertainment",
+    year: "2023",
+  },
+  {
+    src: "/photos/photo-5.jpg",
+    title: "Creative Direction",
+    label: "Brand Shoot",
+    tag: "Content",
+    year: "2024",
+  },
+  {
+    src: "/photos/photo-6.jpg",
+    title: "Stage Engagement",
+    label: "CCU Festival",
+    tag: "Live Event",
+    year: "2023",
+  },
 ];
 
-// Duplicate for seamless loop
-const doubled = [...photos, ...photos];
+const doubled = [...experiences, ...experiences];
 
 export default function PhotoStrip() {
   return (
-    <div className="photo-strip-section">
-      <div className="photo-strip-track">
-        {doubled.map((p, i) => (
-          <div className="photo-strip-item" key={i}>
-            <img src={p.src} alt={p.alt} loading="lazy" />
-            <div className="photo-strip-overlay" />
-          </div>
-        ))}
+    <div className="exp-strip-section fade-up">
+      <div className="exp-strip-header">
+        <p className="eyebrow">In the Field</p>
+        <h3 className="exp-strip-title">Where the work happened.</h3>
+      </div>
+
+      <div className="exp-strip-outer">
+        <div className="exp-strip-track">
+          {doubled.map((item, i) => (
+            <div className="exp-card" key={i}>
+              <div className="exp-card-img-wrap">
+                <img src={item.src} alt={item.title} loading="lazy" />
+                <div className="exp-card-img-overlay" />
+                <span className="exp-card-tag">{item.tag}</span>
+              </div>
+              <div className="exp-card-info">
+                <span className="exp-card-year">{item.year}</span>
+                <h4 className="exp-card-title">{item.title}</h4>
+                <p className="exp-card-label">{item.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -9,16 +9,12 @@ function AnimatedNumber({ value }) {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || started.current) return;
         started.current = true;
-
         let current = 0;
-        const duration = 900;
-        const stepTime = Math.max(40, Math.floor(duration / value));
-
+        const stepTime = Math.max(40, Math.floor(900 / value));
         const timer = setInterval(() => {
           current += 1;
           setCount(current);
@@ -27,16 +23,11 @@ function AnimatedNumber({ value }) {
       },
       { threshold: 0.35 }
     );
-
     observer.observe(node);
     return () => observer.disconnect();
   }, [value]);
 
-  return (
-    <span ref={ref} className="selected-number">
-      {count}+
-    </span>
-  );
+  return <span ref={ref} className="selected-number">{count}+</span>;
 }
 
 export default function SelectedWorks() {
@@ -50,14 +41,10 @@ export default function SelectedWorks() {
       <div className="selected-grid">
         {selectedWorks.map((item, index) => {
           const isOpen = openIndex === index;
-
-          // Generate a slug ID for direct linking
-          const cardId = `work-${item.title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
-
           return (
             <div
               key={item.title}
-              id={cardId}
+              id={`work-card-${index}`}
               className={`selected-card ${isOpen ? "selected-card-open" : ""}`}
             >
               <button
@@ -68,7 +55,6 @@ export default function SelectedWorks() {
                 <div className="selected-number-wrap">
                   <AnimatedNumber value={item.countTo} />
                 </div>
-
                 <div className="selected-content">
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
@@ -82,21 +68,13 @@ export default function SelectedWorks() {
                 {item.links.length > 0 ? (
                   <div className="selected-links">
                     {item.links.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="selected-link-btn"
-                      >
+                      <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="selected-link-btn">
                         {link.label}
                       </a>
                     ))}
                   </div>
                 ) : (
-                  <p className="selected-empty">
-                    Links for this will be added here later.
-                  </p>
+                  <p className="selected-empty">Links for this will be added here later.</p>
                 )}
               </div>
             </div>

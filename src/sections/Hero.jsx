@@ -15,25 +15,36 @@ export default function Hero() {
   const openItem = (item) => {
     setSelectedItem(item);
     setOpenTray(null);
-    requestAnimationFrame(() => {
-      document.getElementById("m-sheet")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
+    // Always scroll to panel immediately on mobile
+    setTimeout(() => {
+      const panel = document.getElementById("m-sheet");
+      if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
   };
 
-  const toggleTray = (name) => setOpenTray((p) => (p === name ? null : name));
+  const toggleTray = (name) => {
+    setOpenTray((p) => (p === name ? null : name));
+    // Scroll to tray area
+    setTimeout(() => {
+      const tray = document.getElementById("hero-tray-area");
+      if (tray) tray.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  };
+
+  // Top 4 brand names to float around photo
+  const floatingBrands = brandCloud.slice(0, 4);
+  const floatingEvents = eventCloud.slice(0, 2);
 
   return (
     <div className="hero-wrap">
 
-      {/* ═══════════════════════════════════════
-          ROW 1 — copy + desktop visual side by side
-      ═══════════════════════════════════════ */}
+      {/* ROW 1 — copy + desktop visual */}
       <div className="hero-top-row">
 
-        {/* Copy — always shown */}
+        {/* Copy */}
         <div className="hero-copy hero-reveal hero-reveal-1">
           <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
-          <h1 className="hero-name">Abhishek De</h1>
+          <h1 className="hero-name hero-name-main">Abhishek De</h1>
           <p className="hero-role-line">
             Social-first ideas, campaign direction, and content built to stop the scroll and stay in memory.
           </p>
@@ -43,7 +54,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop visual — hidden on mobile via CSS */}
+        {/* Desktop visual */}
         <div className="hero-desktop-col hero-reveal hero-reveal-2">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
@@ -92,21 +103,27 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
       </div>
-      {/* end hero-top-row */}
 
-      {/* ═══════════════════════════════════════
-          ROW 2 — mobile visual (hidden on desktop)
-      ═══════════════════════════════════════ */}
+      {/* ROW 2 — MOBILE ONLY */}
       <div className="hero-mobile-row">
 
-        {/* Photo stage */}
+        {/* Photo stage with floating brand pills */}
         <div className="m-stage">
           <div className="m-glow m-glow-1" />
           <div className="m-glow m-glow-2" />
           <div className="m-ring" />
+
+          {/* Floating brand pills — decorative, scattered around photo */}
+          <div className="m-brand-float m-bf-1">{brandCloud[0]?.name}</div>
+          <div className="m-brand-float m-bf-2">{brandCloud[1]?.name}</div>
+          <div className="m-brand-float m-bf-3">{eventCloud[0]?.name}</div>
+          <div className="m-brand-float m-bf-4">{brandCloud[2]?.name}</div>
+          <div className="m-brand-float m-bf-5">{eventCloud[1]?.name}</div>
+
           <img src={heroCutout} alt="Abhishek De" className="m-cutout" />
+
+          {/* Tap chips */}
           <button type="button" className="m-chip m-chip-brands" onClick={() => toggleTray("brands")}>
             <span className="m-chip-title">Brands & Agencies</span>
             <span className="m-chip-sub">Tap to open ↗</span>
@@ -117,25 +134,31 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Tray — below photo in normal flow */}
-        {openTray === "brands" && (
-          <div className="m-tray">
-            <p className="m-tray-label">Brands & Agencies</p>
-            {brandCloud.map((item) => (
-              <button key={item.id} type="button" className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`} onClick={() => openItem(item)}>{item.name}</button>
-            ))}
-          </div>
-        )}
-        {openTray === "events" && (
-          <div className="m-tray">
-            <p className="m-tray-label">Events</p>
-            {eventCloud.map((item) => (
-              <button key={item.id} type="button" className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`} onClick={() => openItem(item)}>{item.name}</button>
-            ))}
-          </div>
-        )}
+        {/* Tray area — scroll target */}
+        <div id="hero-tray-area">
+          {openTray === "brands" && (
+            <div className="m-tray">
+              <p className="m-tray-label">Brands & Agencies</p>
+              {brandCloud.map((item) => (
+                <button key={item.id} type="button"
+                  className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
+                  onClick={() => openItem(item)}>{item.name}</button>
+              ))}
+            </div>
+          )}
+          {openTray === "events" && (
+            <div className="m-tray">
+              <p className="m-tray-label">Events</p>
+              {eventCloud.map((item) => (
+                <button key={item.id} type="button"
+                  className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`}
+                  onClick={() => openItem(item)}>{item.name}</button>
+              ))}
+            </div>
+          )}
+        </div>
 
-        {/* Selected panel */}
+        {/* Selected panel — scroll target */}
         <div id="m-sheet" className="hero-action-panel m-selected">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
@@ -144,13 +167,9 @@ export default function Hero() {
             ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
             : <p className="hero-empty-note">Links coming soon.</p>}
         </div>
-
       </div>
-      {/* end hero-mobile-row */}
 
-      {/* ═══════════════════════════════════════
-          ROW 3 — video strip (always shown)
-      ═══════════════════════════════════════ */}
+      {/* VIDEO STRIP */}
       {visibleVideos.length > 0 && (
         <div className="hero-video-strip-wrap hero-reveal hero-reveal-4">
           <div className="hero-video-strip">
@@ -179,7 +198,6 @@ export default function Hero() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
