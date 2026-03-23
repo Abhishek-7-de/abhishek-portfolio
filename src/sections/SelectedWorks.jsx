@@ -51,9 +51,13 @@ export default function SelectedWorks() {
         {selectedWorks.map((item, index) => {
           const isOpen = openIndex === index;
 
+          // Generate a slug ID for direct linking
+          const cardId = `work-${item.title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
+
           return (
             <div
               key={item.title}
+              id={cardId}
               className={`selected-card ${isOpen ? "selected-card-open" : ""}`}
             >
               <button
@@ -74,10 +78,7 @@ export default function SelectedWorks() {
                 </div>
               </button>
 
-              {/* Drawer — opens smoothly, scrollable if many links */}
-              <div
-                className={`selected-drawer ${isOpen ? "selected-drawer-open" : ""}`}
-              >
+              <div className={`selected-drawer ${isOpen ? "selected-drawer-open" : ""}`}>
                 {item.links.length > 0 ? (
                   <div className="selected-links">
                     {item.links.map((link) => (
