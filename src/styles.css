@@ -198,14 +198,33 @@ video {
 }
 
 /* ============================================================
-   HERO  (single source of truth — hero-v17)
+   HERO  — 3 clear rows, zero grid conflict
    ============================================================ */
 
+/* outer wrapper */
+.hero-wrap {
+  padding: 18px 0 0;
+}
+
+/* ROW 1: copy on mobile, copy+desktop-visual side by side on desktop */
+.hero-top-row {
+  display: block;
+}
+
+/* ROW 2: mobile visual — shown mobile, hidden desktop */
+.hero-mobile-row {
+  display: block;
+  margin-top: 16px;
+}
+
+/* desktop col inside row 1 — hidden on mobile */
+.hero-desktop-col {
+  display: none;
+}
+
+/* legacy class — keep working */
 .hero-v17 {
-  display: grid;
-  gap: 20px;
-  padding: 18px 0 28px;
-  align-items: start;
+  padding: 18px 0 0;
 }
 
 /* --- copy --- */
@@ -550,7 +569,7 @@ video {
 
 /* --- video strip --- */
 
-.hero-video-strip-wrap { grid-column: 1 / -1; margin-top: 4px; }
+.hero-video-strip-wrap { width: 100%; margin-top: 16px; }
 
 .hero-video-strip {
   width: 100%;
@@ -988,12 +1007,25 @@ video {
   .navbar .brand-row { justify-content: flex-start; }
   .cv-btn { font-size: 12px; }
 
-  /* hero: 2-column layout */
-  .hero-v17 {
+  /* Hero layout: 2 columns */
+  .hero-top-row {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
-    padding: 28px 0 36px;
     align-items: center;
+    padding: 10px 0 20px;
+  }
+
+  /* show desktop col, hide mobile row */
+  .hero-desktop-col {
+    display: grid;
+    grid-template-columns: 0.88fr 0.72fr;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .hero-mobile-row {
+    display: none !important;
   }
 
   /* hero copy desktop tweaks */
@@ -1006,19 +1038,7 @@ video {
   .hero-actions .btn { width: auto; min-height: unset; font-size: inherit; }
   .hero-btn { min-height: unset; }
 
-  /* show desktop visual, hide mobile visual */
-  .hero-desktop-only {
-    display: grid;
-    grid-template-columns: 0.88fr 0.72fr;
-    gap: 14px;
-    align-items: center;
-  }
-
-  .hero-mobile-only,
-  .hero-mobile-visual,
-  .hero-mobile-sheet {
-    display: none !important;
-  }
+  /* show desktop col, hide mobile row — already handled above */
 
   /* cutout stage */
   .hero-cutout-stage { max-width: 470px; min-height: 520px; }

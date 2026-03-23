@@ -10,49 +10,41 @@ export default function Hero() {
 
   const visibleVideos = topStripVideos.filter((v) => !brokenVideos.includes(v.id));
   const repeatedVideos = visibleVideos.length > 0 ? [...visibleVideos, ...visibleVideos] : [];
-
-  const handleVideoError = (id) => {
-    setBrokenVideos((prev) => (prev.includes(id) ? prev : [...prev, id]));
-  };
+  const handleVideoError = (id) => setBrokenVideos((p) => p.includes(id) ? p : [...p, id]);
 
   const openItem = (item) => {
     setSelectedItem(item);
     setOpenTray(null);
     requestAnimationFrame(() => {
-      const panel = document.getElementById("hero-mobile-sheet");
-      if (panel) panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      document.getElementById("m-sheet")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
   };
 
   const toggleTray = (name) => setOpenTray((p) => (p === name ? null : name));
 
-  const pickerStyle = (active) => ({
-    width: "100%", textAlign: "left", padding: "10px 12px", borderRadius: "12px",
-    border: active ? "1px solid rgba(255,255,255,0.22)" : "1px solid rgba(255,255,255,0.12)",
-    background: active ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.06)",
-    color: "rgba(255,255,255,0.95)", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer",
-    marginBottom: "6px",
-  });
-
   return (
-    <section className="hero-v17">
+    <div className="hero-wrap">
 
-      {/* ── COPY — always visible ── */}
-      <div className="hero-copy hero-reveal hero-reveal-1">
-        <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
-        <h1 className="hero-name hero-name-main">Abhishek De</h1>
-        <p className="hero-role-line">
-          Social-first ideas, campaign direction, and content built to stop the scroll and stay in memory.
-        </p>
-        <div className="hero-actions">
-          <a href="#selected-works" className="btn btn-primary hero-btn">Enter Work</a>
-          <a href="#contact" className="btn btn-secondary hero-btn">Let's Build</a>
+      {/* ═══════════════════════════════════════
+          ROW 1 — copy + desktop visual side by side
+      ═══════════════════════════════════════ */}
+      <div className="hero-top-row">
+
+        {/* Copy — always shown */}
+        <div className="hero-copy hero-reveal hero-reveal-1">
+          <p className="eyebrow hero-kicker">Brand strategist • content creator • host</p>
+          <h1 className="hero-name">Abhishek De</h1>
+          <p className="hero-role-line">
+            Social-first ideas, campaign direction, and content built to stop the scroll and stay in memory.
+          </p>
+          <div className="hero-actions">
+            <a href="#selected-works" className="btn btn-primary hero-btn">Enter Work</a>
+            <a href="#contact" className="btn btn-secondary hero-btn">Let's Build</a>
+          </div>
         </div>
-      </div>
 
-      {/* ── DESKTOP visual — hidden on mobile via CSS ── */}
-      <div className="hero-desktop-only hero-reveal hero-reveal-2">
-        <div className="hero-visual-clean">
+        {/* Desktop visual — hidden on mobile via CSS */}
+        <div className="hero-desktop-col hero-reveal hero-reveal-2">
           <div className="hero-cutout-stage">
             <div className="hero-cutout-glow glow-1" />
             <div className="hero-cutout-glow glow-2" />
@@ -66,7 +58,7 @@ export default function Hero() {
               <div className="cloud-grid cloud-grid-horizontal">
                 {brandCloud.map((item, i) => (
                   <button key={item.id} type="button"
-                    className={`logo-chip clean-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""} float-${(i % 4) + 1}`}
+                    className={`logo-chip clean-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""} float-${(i%4)+1}`}
                     onClick={() => openItem(item)}>
                     {item.logo ? <img src={item.logo} alt={item.name} className="logo-chip-img" /> : <span className="logo-chip-text">{item.name}</span>}
                   </button>
@@ -81,7 +73,7 @@ export default function Hero() {
               <div className="cloud-grid">
                 {eventCloud.map((item, i) => (
                   <button key={item.id} type="button"
-                    className={`logo-chip clean-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""} float-${((i + 1) % 4) + 1}`}
+                    className={`logo-chip clean-chip ${selectedItem.id === item.id ? "logo-chip-active" : ""} float-${((i+1)%4)+1}`}
                     onClick={() => openItem(item)}>
                     {item.logo ? <img src={item.logo} alt={item.name} className="logo-chip-img" /> : <span className="logo-chip-text">{item.name}</span>}
                   </button>
@@ -89,30 +81,27 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="hero-side-panel">
-          <div className="hero-action-panel desktop-panel">
-            <p className="eyebrow">Selected</p>
-            <h3 className="hero-action-title">{selectedItem.name}</h3>
-            <p className="hero-action-kind">{selectedItem.kind}</p>
-            {selectedItem.links.length > 0 ? (
-              <div className="hero-link-list">
-                {selectedItem.links.map((l) => (
-                  <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>
-                ))}
-              </div>
-            ) : <p className="hero-empty-note">Links coming soon.</p>}
+          <div className="hero-side-panel">
+            <div className="hero-action-panel">
+              <p className="eyebrow">Selected</p>
+              <h3 className="hero-action-title">{selectedItem.name}</h3>
+              <p className="hero-action-kind">{selectedItem.kind}</p>
+              {selectedItem.links.length > 0
+                ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
+                : <p className="hero-empty-note">Links coming soon.</p>}
+            </div>
           </div>
         </div>
+
       </div>
+      {/* end hero-top-row */}
 
-      {/* ══════════════════════════════════════════
-          MOBILE SECTION — always in DOM, shown/hidden by CSS only
-          Uses className="hero-mobile-only" which CSS controls
-      ══════════════════════════════════════════ */}
-      <div className="hero-mobile-only">
+      {/* ═══════════════════════════════════════
+          ROW 2 — mobile visual (hidden on desktop)
+      ═══════════════════════════════════════ */}
+      <div className="hero-mobile-row">
 
-        {/* Photo */}
+        {/* Photo stage */}
         <div className="m-stage">
           <div className="m-glow m-glow-1" />
           <div className="m-glow m-glow-2" />
@@ -128,14 +117,12 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Tray — BELOW photo, normal flow, no overlap */}
+        {/* Tray — below photo in normal flow */}
         {openTray === "brands" && (
           <div className="m-tray">
             <p className="m-tray-label">Brands & Agencies</p>
             {brandCloud.map((item) => (
-              <button key={item.id} type="button" style={pickerStyle(selectedItem.id === item.id)} onClick={() => openItem(item)}>
-                {item.name}
-              </button>
+              <button key={item.id} type="button" className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`} onClick={() => openItem(item)}>{item.name}</button>
             ))}
           </div>
         )}
@@ -143,31 +130,27 @@ export default function Hero() {
           <div className="m-tray">
             <p className="m-tray-label">Events</p>
             {eventCloud.map((item) => (
-              <button key={item.id} type="button" style={pickerStyle(selectedItem.id === item.id)} onClick={() => openItem(item)}>
-                {item.name}
-              </button>
+              <button key={item.id} type="button" className={`m-tray-item ${selectedItem.id === item.id ? "m-tray-item-active" : ""}`} onClick={() => openItem(item)}>{item.name}</button>
             ))}
           </div>
         )}
 
         {/* Selected panel */}
-        <div id="hero-mobile-sheet" className="hero-action-panel m-selected">
+        <div id="m-sheet" className="hero-action-panel m-selected">
           <p className="eyebrow">Selected</p>
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
-          {selectedItem.links.length > 0 ? (
-            <div className="hero-link-list">
-              {selectedItem.links.map((l) => (
-                <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>
-              ))}
-            </div>
-          ) : <p className="hero-empty-note">Links coming soon.</p>}
+          {selectedItem.links.length > 0
+            ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
+            : <p className="hero-empty-note">Links coming soon.</p>}
         </div>
 
       </div>
-      {/* end mobile */}
+      {/* end hero-mobile-row */}
 
-      {/* ── VIDEO STRIP ── */}
+      {/* ═══════════════════════════════════════
+          ROW 3 — video strip (always shown)
+      ═══════════════════════════════════════ */}
       {visibleVideos.length > 0 && (
         <div className="hero-video-strip-wrap hero-reveal hero-reveal-4">
           <div className="hero-video-strip">
@@ -197,6 +180,6 @@ export default function Hero() {
         </div>
       )}
 
-    </section>
+    </div>
   );
 }
