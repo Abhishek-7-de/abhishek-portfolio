@@ -20,7 +20,7 @@ const campaigns = [
       { number: "24", label: "Outlets" },
       { number: "6", label: "Keychain Designs" },
     ],
-    description: "I conceptualised and executed the Metaverse Keychain Campaign where customers received a collectible keychain with every bill. The idea was to build recall, create a fun "share-with-your-friend" moment, and drive repeat engagement. I created the full content series, strategy deck, and social storytelling for the rollout.",
+    description: `I conceptualised and executed the Metaverse Keychain Campaign where customers received a collectible keychain with every bill. The idea was to build recall, create a fun "share-with-your-friend" moment, and drive repeat engagement. I created the full content series, strategy deck, and social storytelling for the rollout.`,
     deliverables: [
       "Full content strategy & rollout deck",
       "6 collectible keychain concepts (Kal Se Pakka, Full Senti, Kaleshi, Certified Bhookad, Meme Material, Rizz Master)",
