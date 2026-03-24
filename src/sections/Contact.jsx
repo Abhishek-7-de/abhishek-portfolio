@@ -2,7 +2,7 @@ export default function Contact() {
   const actions = [
     {
       label: "Email Me",
-      href: "mailto:baban07dey@gmail.com",
+      href: "mailto:abhishek7de@gmail.com",
       primary: true,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">

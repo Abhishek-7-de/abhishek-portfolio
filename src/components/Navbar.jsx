@@ -82,7 +82,7 @@ export default function Navbar() {
         </nav>
 
         <div className="side-nav-footer">
-          <a href="mailto:baban07dey@gmail.com" className="side-nav-contact">baban07dey@gmail.com</a>
+          <a href="mailto:abhishek7de@gmail.com" className="side-nav-contact">abhishek7de@gmail.com</a>
           <div className="side-nav-socials">
             <a href="https://www.instagram.com/abhishek7.exe" target="_blank" rel="noreferrer">IG</a>
             <a href="https://www.linkedin.com/in/abhishek-de-157819221" target="_blank" rel="noreferrer">LI</a>

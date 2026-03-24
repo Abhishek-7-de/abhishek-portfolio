@@ -10,6 +10,7 @@ import Contact from "./sections/Contact";
 import IntroFlip from "./components/IntroFlip";
 import Chatbot from "./components/Chatbot";
 import CampaignPage from "./pages/CampaignPage";
+import CVPage from "./pages/CVPage";
 
 function HomePage() {
   return (
@@ -36,19 +37,26 @@ function HomePage() {
 }
 
 export default function App() {
-  // Simple client-side routing without react-router dependency
   const path = window.location.pathname;
 
-  if (path === "/campaigns/chai-break" || path === "/campaigns/chai-break/") {
+  if (path.startsWith("/campaigns/chai-break")) {
     return (
       <div className="site-shell">
         <Chatbot />
-        <div className="bg-orb orb-1" />
-        <div className="bg-orb orb-2" />
+        <div className="bg-orb orb-1" /><div className="bg-orb orb-2" />
         <div className="bg-grid" />
-        <main className="container">
-          <CampaignPage />
-        </main>
+        <main className="container"><CampaignPage /></main>
+      </div>
+    );
+  }
+
+  if (path === "/cv" || path === "/cv/") {
+    return (
+      <div className="site-shell">
+        <Chatbot />
+        <div className="bg-orb orb-1" /><div className="bg-orb orb-2" />
+        <div className="bg-grid" />
+        <main className="container"><CVPage /></main>
       </div>
     );
   }
