@@ -5,7 +5,7 @@ export default function CVPage() {
     <div className="cv-page">
       <div className="cv-top-bar">
         <a href="/" className="cv-back-btn">← Portfolio</a>
-        <a href="/cv.pdf" download className="cv-download-btn">
+        <a href="/Abhishek-De-CV.pdf" download="Abhishek-De-CV.pdf" className="cv-download-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             <polyline points="7 10 12 15 17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

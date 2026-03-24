@@ -38,7 +38,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <a href="/cv.pdf" className="cv-btn" download>Download CV</a>
+          <a href="/Abhishek-De-CV.pdf" className="cv-btn" download="Abhishek-De-CV.pdf">Download CV</a>
 
           {/* Mobile hamburger */}
           <button
