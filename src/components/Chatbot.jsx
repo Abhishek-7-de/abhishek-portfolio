@@ -1,60 +1,57 @@
 import { useState, useRef, useEffect } from "react";
 
-const SYSTEM_PROMPT = `You are Abhi, the portfolio assistant for Abhishek De — a brand strategist, content creator, and host based in Kolkata, India.
+const SYSTEM_PROMPT = `You are Abhi — Abhishek De's personal portfolio assistant. You're fun, sharp, and direct. You know everything about his work and you help visitors understand what he does, see his campaigns, or get in touch.
 
-Your job is to help visitors understand Abhishek's work, skills, and how to hire him. Be warm, sharp, and concise. Never be generic. Sound like you actually know him.
+PERSONALITY: Warm but witty. Like a smart friend who happens to know everything about Abhishek. Keep answers short unless someone needs detail. Use casual language. No corporate speak.
 
-KEY FACTS about Abhishek De:
-- Brand Strategist, Content Creator, and Host
-- Based in Kolkata, India
+WHO IS ABHISHEK DE:
+- Brand Strategist, Content Creator, and Host based in Kolkata, India
+- He does: brand strategy, campaign direction, social-first content, hosting, voxpops, panel moderation, shoot direction, content calendars
 - Email: baban07dey@gmail.com | Phone: +91 7001684412
 - Instagram: @abhishek7.exe | LinkedIn: abhishek-de-157819221
 
-BRANDS & AGENCIES he has worked with:
-- Chai Break (Instagram page managed, Mid Year & End Year Campaigns)
+CAMPAIGNS & BRAND RESEARCH (his main work):
+Chai Break (main client):
+  - Friendship Day: Metaverse Keychain Campaign — 75+ redemptions across 24 outlets, 6 keychain designs (Kal Se Pakka, Full Senti, Kaleshi, Certified Bhookad, Meme Material, Rizz Master), full content series + strategy deck
+  - Korean Festival (K-Dish Carnival): Month-long Korean food festival with Coca-Cola partnership, handled theme, pitch deck, all creative assets
+  - Durga Puja (Glam The Gram): UGC OOTD challenge, 100+ redemptions, 70+ fashion tags, 3.9M reel views, Spykar partnership, blogger activation across 7 outlets
 - CB Caters
 - Turtle
 - StoryBizz Media
 - Make Calcutta Relevant Again
 
-EVENTS he has hosted/covered:
+EVENTS:
 - Bengal Premier League (field interviews)
-- ComicCon India (voxpop/street interviews)
-- CCU Festival (solo stage host)
-- Buzz Confluence '24 (hosted the panel)
+- ComicCon India (voxpop)
+- CCU Festival (solo stage host, 2024)
+- Buzz Confluence '24 (hosted the panel, 2024)
+- Stage interaction with Akash Gupta (standup comedian)
+- BTS content with Tridha Choudhury (actress)
 
-WORK NUMBERS:
+NUMBERS:
 - 10+ Campaign launches
 - 30+ Voxpop, UGC & outlet content pieces
-- 50+ Decks, references & brand docs
+- 50+ Campaign decks & brand research docs
 - Multi brands, outlets & event formats
-
-SKILLS & CAPABILITIES:
-- Content Calendars (backbone of brand consistency)
-- PPT Thinking — Decks, references, brand docs
-- Shoot Logic — References and execution support
-- Campaign Flow — Rollout logic, social direction
-- Hosting, interviewing, voxpops, panel moderation
-- Brand strategy, social-first thinking
-
-TOOLS he uses: ChatGPT, Claude, Gemini, Perplexity (AI tools), plus standard content & strategy tools
 
 PROCESS: Understand → Plan → Reference → Execute
 
-He is open to: brand strategy, content creation, campaign work, hosting gigs, deck creation, creative briefs, and collaborations.
+TOOLS: ChatGPT, Claude, Gemini, Perplexity + standard content tools
 
-TONE RULES:
-- Be concise, max 3 sentences unless explaining something complex
-- Sound confident and direct, not corporate
-- If someone asks about hiring, always give the email and Instagram
-- If you don't know something specific, say "You'd need to ask Abhishek directly" and give contact info
-- Never make up numbers, projects, or facts not listed above`;
+ANSWER RULES:
+- If someone asks about hiring: give email + Instagram, say he's open to brand strategy, campaigns, hosting, decks, shoots
+- "PPT" or "deck" = "campaign deck" or "brand research doc"
+- If you don't know something specific, say so and point to email
+- For campaign details, mention the /campaigns/chai-break page
+- Keep it under 3 sentences unless they ask for detail
+- Be a bit fun — a well-placed emoji is fine but don't overdo it
+- Never make up numbers or projects not listed above`;
 
 const SUGGESTIONS = [
-  "What brands has he worked with?",
-  "What does he charge?",
+  "What campaigns has he done? 🚀",
   "How do I hire him?",
-  "What's his process?",
+  "What's his process like?",
+  "Tell me about the Chai Break work",
 ];
 
 export default function Chatbot() {
@@ -62,7 +59,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hey! 👋 I'm Abhi, Abhishek's portfolio assistant. Ask me anything about his work, process, or how to collaborate.",
+      content: "Hey! 👋 I'm Abhi — Abhishek's portfolio assistant. Ask me anything about his work, campaigns, or how to collab!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -72,9 +69,7 @@ export default function Chatbot() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 300);
-    }
+    if (open) setTimeout(() => inputRef.current?.focus(), 300);
   }, [open]);
 
   useEffect(() => {
@@ -87,7 +82,8 @@ export default function Chatbot() {
 
     setInput("");
     setShowSuggestions(false);
-    setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
+    const newMessages = [...messages, { role: "user", content: userMsg }];
+    setMessages(newMessages);
     setLoading(true);
 
     try {
@@ -98,106 +94,66 @@ export default function Chatbot() {
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
           system: SYSTEM_PROMPT,
-          messages: [
-            ...messages.filter((m) => m.role !== "assistant" || messages.indexOf(m) > 0).map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
-            { role: "user", content: userMsg },
-          ],
+          messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
         }),
       });
 
       const data = await response.json();
-      const reply = data?.content?.[0]?.text || "Sorry, I ran into an issue. Try reaching Abhishek directly at baban07dey@gmail.com";
-
+      const reply = data?.content?.[0]?.text || "Hmm, something went wrong. Hit Abhishek directly at baban07dey@gmail.com!";
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "Connection hiccup! Reach Abhishek directly at baban07dey@gmail.com or @abhishek7.exe on Instagram." },
-      ]);
+      setMessages((prev) => [...prev, { role: "assistant", content: "Connection dropped! Reach Abhishek at baban07dey@gmail.com or @abhishek7.exe on Instagram 📱" }]);
     } finally {
       setLoading(false);
     }
   };
 
   const handleKey = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      send();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
   };
 
   return (
     <>
-      {/* Chat bubble */}
-      <button
-        className={`chat-bubble ${open ? "chat-bubble-open" : ""}`}
-        onClick={() => setOpen((v) => !v)}
-        aria-label="Open chat"
-      >
+      <button className={`chat-bubble ${open ? "chat-bubble-open" : ""}`} onClick={() => setOpen((v) => !v)} aria-label="Chat">
         {open ? (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>
         ) : (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-            <line x1="8" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
-            <line x1="8" y1="14" x2="13" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-          </svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><line x1="8" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/><line x1="8" y1="14" x2="13" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/></svg>
         )}
         {!open && <span className="chat-bubble-dot" />}
       </button>
 
-      {/* Chat panel */}
       <div className={`chat-panel ${open ? "chat-panel-open" : ""}`}>
-        {/* Header */}
         <div className="chat-header">
           <div className="chat-header-avatar">A</div>
           <div>
-            <div className="chat-header-name">Abhi</div>
-            <div className="chat-header-sub">Portfolio assistant · Always here</div>
+            <div className="chat-header-name">Abhi ✦</div>
+            <div className="chat-header-sub">Portfolio assistant · Ask me anything</div>
           </div>
           <button className="chat-close" onClick={() => setOpen(false)}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>
           </button>
         </div>
 
-        {/* Messages */}
         <div className="chat-messages">
           {messages.map((msg, i) => (
             <div key={i} className={`chat-msg ${msg.role === "user" ? "chat-msg-user" : "chat-msg-bot"}`}>
               {msg.content}
             </div>
           ))}
-
           {loading && (
-            <div className="chat-msg chat-msg-bot chat-typing">
-              <span /><span /><span />
-            </div>
+            <div className="chat-msg chat-msg-bot chat-typing"><span /><span /><span /></div>
           )}
-
-          {/* Quick suggestions after greeting */}
           {showSuggestions && messages.length === 1 && (
             <div className="chat-suggestions">
               {SUGGESTIONS.map((s) => (
-                <button key={s} className="chat-suggestion" onClick={() => send(s)}>
-                  {s}
-                </button>
+                <button key={s} className="chat-suggestion" onClick={() => send(s)}>{s}</button>
               ))}
             </div>
           )}
-
           <div ref={bottomRef} />
         </div>
 
-        {/* Input */}
         <div className="chat-input-wrap">
           <input
             ref={inputRef}
@@ -205,18 +161,11 @@ export default function Chatbot() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}
-            placeholder="Ask anything about Abhishek..."
+            placeholder="Ask about campaigns, collabs, process..."
             disabled={loading}
           />
-          <button
-            className="chat-send"
-            onClick={() => send()}
-            disabled={!input.trim() || loading}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-            </svg>
+          <button className="chat-send" onClick={() => send()} disabled={!input.trim() || loading}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>

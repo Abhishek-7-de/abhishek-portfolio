@@ -3123,3 +3123,387 @@ img, video { max-width: 100%; }
   0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
   40%            { transform: translateY(-6px); opacity: 1; }
 }
+
+/* ============================================================
+   VIDEO STRIP — more depth & life
+   ============================================================ */
+
+.hero-video-strip-wrap {
+  position: relative;
+}
+
+.hero-video-strip-wrap::before {
+  content: 'CONTENT · CAMPAIGNS · REELS · VIRAL ·';
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.35);
+  text-align: center;
+  padding: 8px 0 10px;
+}
+
+.hero-video-panel {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-video-panel:hover {
+  transform: scale(1.06) translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px var(--border-gold) !important;
+  z-index: 2;
+}
+
+.hero-video-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, transparent 50%, rgba(10,10,8,0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glow under strip */
+.hero-video-strip {
+  filter: drop-shadow(0 8px 32px rgba(201,168,76,0.08));
+}
+
+/* ============================================================
+   CAMPAIGN PAGE
+   ============================================================ */
+
+.camp-page {
+  padding: 32px 0 80px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.camp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.6);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  margin-bottom: 32px;
+  display: inline-flex;
+}
+
+.camp-back:hover { color: var(--gold); border-color: var(--gold); }
+
+.camp-header { margin-bottom: 40px; }
+
+.camp-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 8px 0 4px;
+  line-height: 0.95;
+}
+
+.camp-header-sub {
+  font-size: 0.9rem;
+  color: rgba(201,168,76,0.6);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+/* Tabs */
+.camp-tabs {
+  display: flex;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.camp-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 10px;
+  background: var(--black-2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.camp-tab:hover { background: var(--black-3); }
+
+.camp-tab-active {
+  background: linear-gradient(135deg, rgba(var(--tab-color-rgb, 201,168,76), 0.12), var(--black-2)) !important;
+  border-bottom: 2px solid var(--tab-color, var(--gold));
+}
+
+.camp-tab-num {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: rgba(245,242,235,0.3);
+  transition: color 0.2s ease;
+}
+
+.camp-tab-active .camp-tab-num { color: var(--tab-color, var(--gold)); }
+
+.camp-tab-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,242,235,0.6);
+  transition: color 0.2s ease;
+}
+
+.camp-tab-active .camp-tab-name { color: var(--white); }
+
+/* Hero banner */
+.camp-hero-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 24px;
+}
+
+.camp-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--camp-accent, #1a1a00) 0%, rgba(10,10,8,0.95) 100%);
+}
+
+.camp-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, var(--camp-color, #c9a84c) 0%, transparent 50%);
+  opacity: 0.08;
+}
+
+.camp-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 28px;
+}
+
+@media (min-width: 768px) {
+  .camp-hero-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.camp-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.camp-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 0.9;
+  margin: 0 0 6px;
+}
+
+.camp-subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--camp-color, var(--gold));
+  margin: 0 0 8px;
+}
+
+.camp-tagline {
+  font-size: 0.9rem;
+  color: var(--white-60);
+  margin: 0 0 16px;
+  font-weight: 300;
+}
+
+.camp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--white-30);
+  letter-spacing: 0.06em;
+}
+
+/* Stats */
+.camp-stats-wrap {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.camp-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.camp-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.camp-stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-30);
+  text-align: center;
+}
+
+/* Content grid */
+.camp-content-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .camp-content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .camp-card-full { grid-column: 1 / -1; }
+}
+
+.camp-card {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--white-06);
+  backdrop-filter: blur(12px);
+}
+
+.camp-card-insight {
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), var(--white-06));
+}
+
+.camp-card-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.camp-card-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--white-60);
+  font-weight: 300;
+  margin: 0;
+}
+
+.camp-insight-text {
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(245,242,235,0.85) !important;
+  line-height: 1.6;
+}
+
+.camp-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.camp-deliverable {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--white-60);
+  line-height: 1.5;
+}
+
+.camp-deliverable-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* CTA */
+.camp-canva-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 40px 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border-gold);
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.camp-canva-link p {
+  font-size: 0.9rem;
+  color: var(--white-60);
+  margin: 0;
+}
+
+.camp-cta-btn { min-width: 200px; justify-content: center; }
+
+@media (min-width: 480px) {
+  .camp-canva-link { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+/* Navigation */
+.camp-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.camp-nav-btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--white-06);
+  color: var(--white-60);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.camp-nav-btn:hover { border-color: var(--border-gold); color: var(--gold); }
+.camp-nav-next { margin-left: auto; }
+
