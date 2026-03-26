@@ -1,28 +1,33 @@
+// src/sections/WhyMe.jsx
+
 export default function WhyMe() {
   const linked = [
     {
-      title: "PPT Thinking",
+      title: "Research & Strategy",
       tag: "02",
-      text: "Decks, references, and brand docs",
-      sub: "→ Decks & PPTs",
+      text: "Brand research, campaign planning, strategy docs — the thinking before the doing.",
+      sub: "→ See strategy work",
       mobileTarget: "work-card-1",
       href: "#selected-works",
+      icon: "🧠",
     },
     {
-      title: "Shoot Logic",
+      title: "Shoot & Content",
       tag: "03",
-      text: "References and execution support",
-      sub: "→ Outlet launches & UGC",
+      text: "On-ground execution — directing shoots, UGC, reels, influencer briefs.",
+      sub: "→ See content work",
       mobileTarget: "work-card-2",
       href: "#selected-works",
+      icon: "🎬",
     },
     {
-      title: "Campaign Flow",
+      title: "Campaign Launches",
       tag: "04",
-      text: "Rollout logic and social direction",
-      sub: "→ Campaign launches",
+      text: "End-to-end rollouts — from concept to live, across 35+ outlets.",
+      sub: "→ See campaigns",
       mobileTarget: "work-card-0",
       href: "#selected-works",
+      icon: "🚀",
     },
   ];
 
@@ -41,8 +46,8 @@ export default function WhyMe() {
 
       <div className="why-grid-new">
 
-        {/* Calendar card — with icon, not clickable but visually strong */}
-        <div className="why-card-muted">
+        {/* Top stat card */}
+        <div className="why-card-muted why-card-calendar">
           <div className="why-calendar-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
               <rect x="2" y="5" width="24" height="21" rx="4" stroke="#c9a84c" strokeWidth="1.5" fill="rgba(201,168,76,0.06)"/>
@@ -57,14 +62,15 @@ export default function WhyMe() {
             </svg>
           </div>
           <div className="why-card-body">
-            <h3>Calendars</h3>
-            <p>Content calendar systems — the backbone behind every consistent brand presence.</p>
-            <span className="why-no-link">Foundation work · No direct link</span>
+            <h3>Content Systems</h3>
+            <p>Monthly calendars, rollout plans, and posting systems that keep brands consistent without burning out teams.</p>
+            <span className="why-no-link">Foundation layer · Runs behind everything</span>
           </div>
+          <div className="why-card-badge">01</div>
         </div>
 
         <div className="why-divider">
-          <span>Click any card below to see the work</span>
+          <span>Tap any card to jump to the work</span>
         </div>
 
         <div className="why-linked-grid">
@@ -80,6 +86,7 @@ export default function WhyMe() {
                 }
               }}
             >
+              <div className="why-card-icon-wrap">{card.icon}</div>
               <span className="why-tag why-tag-gold">{card.tag}</span>
               <div className="why-card-body">
                 <h3>{card.title}</h3>

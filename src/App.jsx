@@ -8,14 +8,18 @@ import Capabilities from "./sections/Capabilities";
 import Tools from "./sections/Tools";
 import Contact from "./sections/Contact";
 import Chatbot from "./components/Chatbot";
+import PageLoader from "./components/PageLoader";
+import CustomCursor from "./components/CustomCursor";
 import CampaignPage from "./pages/CampaignPage";
 import CVPage from "./pages/CVPage";
 
-// IntroFlip REMOVED — was making bad first impression
+// IntroFlip REMOVED — replaced by PageLoader
 
 function HomePage() {
   return (
     <div className="site-shell">
+      <PageLoader />
+      <CustomCursor />
       <Chatbot />
       <div className="bg-orb orb-1" />
       <div className="bg-orb orb-2" />
@@ -42,8 +46,10 @@ export default function App() {
   if (path.startsWith("/campaigns/chai-break")) {
     return (
       <div className="site-shell">
+        <CustomCursor />
         <Chatbot />
-        <div className="bg-orb orb-1" /><div className="bg-orb orb-2" />
+        <div className="bg-orb orb-1" />
+        <div className="bg-orb orb-2" />
         <div className="bg-grid" />
         <main className="container"><CampaignPage /></main>
       </div>
@@ -53,8 +59,10 @@ export default function App() {
   if (path === "/cv" || path === "/cv/") {
     return (
       <div className="site-shell">
+        <CustomCursor />
         <Chatbot />
-        <div className="bg-orb orb-1" /><div className="bg-orb orb-2" />
+        <div className="bg-orb orb-1" />
+        <div className="bg-orb orb-2" />
         <div className="bg-grid" />
         <main className="container"><CVPage /></main>
       </div>
