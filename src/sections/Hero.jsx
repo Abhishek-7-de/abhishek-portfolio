@@ -8,11 +8,18 @@ export default function Hero() {
   const [brokenVideos, setBrokenVideos] = useState([]);
   const [openTray, setOpenTray] = useState(null);
   const [tickerPaused, setTickerPaused] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const nameRef = useRef(null);
 
   const visibleVideos = topStripVideos.filter((v) => !brokenVideos.includes(v.id));
   const repeatedVideos = visibleVideos.length > 0 ? [...visibleVideos, ...visibleVideos] : [];
   const handleVideoError = (id) => setBrokenVideos((p) => p.includes(id) ? p : [...p, id]);
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const openItem = (item) => {
     setSelectedItem(item);
@@ -36,58 +43,88 @@ export default function Hero() {
   return (
     <div className="hero-wrap">
 
-      {/* ── DESKTOP: full-bleed cinematic layout ── */}
+      {/* ── DESKTOP: editorial cinematic layout ── */}
       <div className="hero-top-row">
 
-        {/* LEFT: copy */}
+        {/* LEFT: editorial copy */}
         <div className="hero-copy hero-reveal hero-reveal-1">
-          {/* Animated role badges */}
-          <div className="hero-badges">
-            <span className="hero-badge">Brand Strategy</span>
-            <span className="hero-badge hero-badge-gold">Content Creation</span>
-            <span className="hero-badge">Hosting</span>
+
+          {/* Eyebrow line like Koto */}
+          <div className="hero-eyebrow-row">
+            <span className="hero-eyebrow-line" />
+            <span className="hero-eyebrow-text">Brand Strategist · Content Creator · Host</span>
           </div>
 
-          <h1 className="hero-name hero-name-main" ref={nameRef}>
-            <span className="hero-name-line">Abhishek</span>
-            <span className="hero-name-line hero-name-line-2">De</span>
+          {/* MASSIVE editorial name — Koto/Nikola style */}
+          <h1 className="hero-name hero-name-main hero-name-editorial" ref={nameRef}>
+            <span className="hero-name-line hero-name-first">Abhishek</span>
+            <span className="hero-name-line hero-name-last">De</span>
           </h1>
 
-          <p className="hero-role-line">
-            Social-first ideas, campaign direction, and content built to stop the scroll and stay in memory.
+          {/* Role descriptor — clean and bold */}
+          <p className="hero-role-line hero-role-editorial">
+            Social-first ideas, campaign direction,<br />
+            and content built to stop the scroll.
           </p>
 
-          <div className="hero-actions">
-            <a href="#selected-works" className="btn btn-primary hero-btn">
-              <span>Enter Work</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          {/* CTA row */}
+          <div className="hero-actions hero-actions-editorial">
+            <a href="#selected-works" className="btn btn-primary hero-btn hero-btn-editorial">
+              <span>View Work</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </a>
-            <a href="#contact" className="btn btn-secondary hero-btn">Let's Build</a>
+            <a href="#contact" className="btn btn-ghost hero-btn">Let's Build</a>
           </div>
 
-          {/* Stat pills */}
-          <div className="hero-stat-pills">
-            <div className="hero-stat-pill"><span className="hsp-num">10+</span><span className="hsp-label">Campaigns</span></div>
-            <div className="hero-stat-pill"><span className="hsp-num">3.9M</span><span className="hsp-label">Reel Views</span></div>
-            <div className="hero-stat-pill"><span className="hsp-num">50+</span><span className="hsp-label">Decks</span></div>
+          {/* Stat pills — horizontal, clean */}
+          <div className="hero-stat-pills hero-stats-editorial">
+            <div className="hero-stat-pill">
+              <span className="hsp-num">10+</span>
+              <span className="hsp-label">Campaigns</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat-pill">
+              <span className="hsp-num">3.9M</span>
+              <span className="hsp-label">Reel Views</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat-pill">
+              <span className="hsp-num">50+</span>
+              <span className="hsp-label">Decks</span>
+            </div>
+          </div>
+
+          {/* Scroll indicator like Nikola */}
+          <div className="hero-scroll-hint">
+            <div className="hero-scroll-line" />
+            <span className="hero-scroll-text">Scroll</span>
           </div>
         </div>
 
-        {/* RIGHT: desktop visual */}
+        {/* RIGHT: photo + clouds */}
         <div className="hero-desktop-col hero-reveal hero-reveal-2">
-          <div className="hero-cutout-stage">
-            {/* Animated rings */}
+          <div className="hero-cutout-stage"
+            style={{ transform: `translateY(${scrollY * 0.08}px)` }}>
+
+            {/* Rings */}
             <div className="hero-ring hero-ring-1" />
             <div className="hero-ring hero-ring-2" />
             <div className="hero-ring hero-ring-3" />
-
             <div className="hero-cutout-glow glow-1" />
             <div className="hero-cutout-glow glow-2" />
             <div className="hero-cutout-ring" />
 
-            <img src={heroCutout} alt="Abhishek De" className="hero-cutout-image" />
+            <img
+              src={heroCutout}
+              alt="Abhishek De"
+              className="hero-cutout-image"
+              style={{ transform: `translateY(${scrollY * -0.05}px)` }}
+            />
 
-            {/* Brand cloud — now as orbit chips with logos */}
+            {/* Brand cloud */}
             <div className="cloud cloud-brands">
               <div className="cloud-label-wrap">
                 <span className="cloud-label">Brands & Agencies</span>
@@ -132,7 +169,9 @@ export default function Hero() {
               <h3 className="hero-action-title">{selectedItem.name}</h3>
               <p className="hero-action-kind">{selectedItem.kind}</p>
               {selectedItem.links?.length > 0
-                ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
+                ? <div className="hero-link-list">{selectedItem.links.map((l) => (
+                    <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>
+                  ))}</div>
                 : <p className="hero-empty-note">Links coming soon.</p>}
             </div>
           </div>
@@ -141,11 +180,18 @@ export default function Hero() {
 
       {/* ── MOBILE layout ── */}
       <div className="hero-mobile-row">
+        <div className="hero-mobile-editorial-header">
+          <span className="hero-eyebrow-text">Brand Strategist · Content Creator · Host</span>
+          <h1 className="hero-name hero-name-main hero-name-mobile-editorial" ref={nameRef}>
+            <span className="hero-name-line hero-name-first">Abhishek</span>
+            <span className="hero-name-line hero-name-last">De</span>
+          </h1>
+        </div>
+
         <div className="m-stage">
           <div className="m-glow m-glow-1" />
           <div className="m-glow m-glow-2" />
           <div className="m-ring" />
-          {/* Pulsing rings on mobile too */}
           <div className="m-pulse-ring m-pr-1" />
           <div className="m-pulse-ring m-pr-2" />
           <img src={heroCutout} alt="Abhishek De" className="m-cutout" />
@@ -159,7 +205,22 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* BRAND TICKER STRIP — scrolling marquee of all logos */}
+        {/* Mobile stats */}
+        <div className="hero-stats-mobile-editorial">
+          <div className="hero-stat-pill"><span className="hsp-num">10+</span><span className="hsp-label">Campaigns</span></div>
+          <div className="hero-stat-divider" />
+          <div className="hero-stat-pill"><span className="hsp-num">3.9M</span><span className="hsp-label">Views</span></div>
+          <div className="hero-stat-divider" />
+          <div className="hero-stat-pill"><span className="hsp-num">50+</span><span className="hsp-label">Decks</span></div>
+        </div>
+
+        {/* Mobile CTAs */}
+        <div className="hero-actions-mobile">
+          <a href="#selected-works" className="btn btn-primary">View Work</a>
+          <a href="#contact" className="btn btn-ghost">Let's Build</a>
+        </div>
+
+        {/* Brand ticker */}
         <div
           className="brand-ticker-wrap"
           onMouseEnter={() => setTickerPaused(true)}
@@ -220,7 +281,9 @@ export default function Hero() {
           <h3 className="hero-action-title">{selectedItem.name}</h3>
           <p className="hero-action-kind">{selectedItem.kind}</p>
           {selectedItem.links?.length > 0
-            ? <div className="hero-link-list">{selectedItem.links.map((l) => <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>)}</div>
+            ? <div className="hero-link-list">{selectedItem.links.map((l) => (
+                <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="hero-link-btn">{l.label}</a>
+              ))}</div>
             : <p className="hero-empty-note">Links coming soon.</p>}
         </div>
       </div>
