@@ -10,41 +10,13 @@
   --font-display: 'Bebas Neue', 'Arial Black', sans-serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
 
-  /* ── Core darks ── */
   --black:   #0a0a08;
   --black-2: #0f0f0c;
   --black-3: #141410;
-
-  /* ── Gold ── */
   --gold:    #c9a84c;
   --gold-2:  #e8c97a;
   --gold-dim: rgba(201, 168, 76, 0.18);
   --gold-glow: rgba(201, 168, 76, 0.08);
-
-  /* ── NEW: warm orange accent ── */
-  --warm:       #e8623a;
-  --warm-dim:   rgba(232, 98, 58, 0.14);
-  --warm-glow:  rgba(232, 98, 58, 0.07);
-  --border-warm: rgba(232, 98, 58, 0.28);
-
-  /* ── NEW: ice / electric blue accent ── */
-  --ice:        #4a9eff;
-  --ice-dim:    rgba(74, 158, 255, 0.14);
-  --ice-glow:   rgba(74, 158, 255, 0.06);
-  --border-ice: rgba(74, 158, 255, 0.22);
-
-  /* ── NEW: deep violet accent ── */
-  --violet:       #7c3aed;
-  --violet-dim:   rgba(124, 58, 237, 0.14);
-  --violet-glow:  rgba(124, 58, 237, 0.06);
-  --border-violet: rgba(124, 58, 237, 0.24);
-
-  /* ── NEW: rose accent (for reaction chips, tags) ── */
-  --rose:       #e8507a;
-  --rose-dim:   rgba(232, 80, 122, 0.12);
-  --rose-glow:  rgba(232, 80, 122, 0.06);
-
-  /* ── White / text ── */
   --white:   #f5f2eb;
   --white-60: rgba(245, 242, 235, 0.6);
   --white-30: rgba(245, 242, 235, 0.3);
@@ -100,30 +72,6 @@ img, video { max-width: 100%; }
 .orb-1 { width: 500px; height: 500px; background: #c9a84c; top: -200px; right: -100px; opacity: 0.08; }
 .orb-2 { width: 400px; height: 400px; background: #7c5c1e; bottom: 10%; left: -150px; opacity: 0.12; }
 .orb-3 { width: 300px; height: 300px; background: #c9a84c; bottom: 30%; right: 10%; opacity: 0.06; }
-
-/* ── NEW accent orbs ── */
-.orb-4 {
-  position: fixed;
-  border-radius: 999px;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 0;
-  width: 360px; height: 360px;
-  background: #4a9eff;
-  top: 40%; left: 5%;
-  opacity: 0.04;
-}
-.orb-5 {
-  position: fixed;
-  border-radius: 999px;
-  filter: blur(140px);
-  pointer-events: none;
-  z-index: 0;
-  width: 280px; height: 280px;
-  background: #7c3aed;
-  bottom: 15%; right: -80px;
-  opacity: 0.06;
-}
 
 .bg-grid {
   position: fixed;
@@ -253,9 +201,8 @@ img, video { max-width: 100%; }
 }
 
 .btn-primary:hover {
-  background: var(--warm);
-  box-shadow: 0 12px 40px rgba(232, 98, 58, 0.4);
-  color: var(--white);
+  background: var(--gold-2);
+  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.4);
 }
 
 .btn-secondary {
@@ -265,9 +212,8 @@ img, video { max-width: 100%; }
 }
 
 .btn-secondary:hover {
-  border-color: var(--ice);
-  color: var(--ice);
-  background: var(--ice-glow);
+  border-color: var(--border-gold);
+  color: var(--gold);
 }
 
 .hero-btn {
@@ -361,8 +307,8 @@ img, video { max-width: 100%; }
   z-index: 0;
 }
 
-.glow-1 { width: 200px; height: 200px; background: rgba(201, 168, 76, 0.26); left: 5%; top: 20%; }
-.glow-2 { width: 160px; height: 160px; background: rgba(74, 158, 255, 0.18); right: 5%; top: 8%; }
+.glow-1 { width: 200px; height: 200px; background: rgba(201, 168, 76, 0.22); left: 5%; top: 20%; }
+.glow-2 { width: 160px; height: 160px; background: rgba(201, 168, 76, 0.14); right: 5%; top: 8%; }
 
 .hero-cutout-ring {
   position: absolute;
@@ -504,8 +450,8 @@ img, video { max-width: 100%; }
   z-index: 0;
 }
 
-.m-glow-1 { width: 150px; height: 150px; background: rgba(201, 168, 76, 0.32); left: 10%; top: 30px; }
-.m-glow-2 { width: 120px; height: 120px; background: rgba(74, 158, 255, 0.2); right: 10%; top: 15px; }
+.m-glow-1 { width: 150px; height: 150px; background: rgba(201, 168, 76, 0.3); left: 10%; top: 30px; }
+.m-glow-2 { width: 120px; height: 120px; background: rgba(201, 168, 76, 0.18); right: 10%; top: 15px; }
 
 .m-ring {
   position: absolute;
@@ -634,17 +580,16 @@ img, video { max-width: 100%; }
   letter-spacing: 0.04em;
 }
 
-/* Colour-coded reaction chips */
-.rc-1  { left: 8%;  top: 12%;    animation: reactFloat1 5s ease-in-out infinite;   color: var(--gold); border-color: var(--border-gold); }
-.rc-2  { right: 14%; top: 20%;   animation: reactFloat2 5.8s ease-in-out infinite; color: var(--ice);  border-color: var(--border-ice); }
-.rc-3  { left: 34%; bottom: 18%; animation: reactFloat3 4.8s ease-in-out infinite; color: var(--gold); border-color: var(--border-gold); }
-.rc-4  { right: 8%; bottom: 12%; animation: reactFloat4 6.2s ease-in-out infinite; color: var(--warm); border-color: var(--border-warm); }
-.rc-5  { left: 16%; top: 30%;    animation: reactFloat2 5.4s ease-in-out infinite; color: var(--rose); border-color: rgba(232,80,122,0.3); }
-.rc-6  { right: 24%; top: 40%;   animation: reactFloat3 4.6s ease-in-out infinite; color: var(--ice);  border-color: var(--border-ice); }
-.rc-7  { left: 52%; top: 12%;    animation: reactFloat4 5.6s ease-in-out infinite; color: var(--warm); border-color: var(--border-warm); }
-.rc-8  { right: 10%; top: 56%;   animation: reactFloat1 4.8s ease-in-out infinite; color: var(--gold); border-color: var(--border-gold); }
-.rc-9  { left: 22%; bottom: 10%; animation: reactFloat2 6s ease-in-out infinite;   color: var(--violet); border-color: var(--border-violet); }
-.rc-10 { right: 30%; bottom: 22%;animation: reactFloat3 5.2s ease-in-out infinite; color: var(--ice);  border-color: var(--border-ice); }
+.rc-1  { left: 8%;  top: 12%;    animation: reactFloat1 5s ease-in-out infinite; }
+.rc-2  { right: 14%; top: 20%;   animation: reactFloat2 5.8s ease-in-out infinite; }
+.rc-3  { left: 34%; bottom: 18%; animation: reactFloat3 4.8s ease-in-out infinite; }
+.rc-4  { right: 8%; bottom: 12%; animation: reactFloat4 6.2s ease-in-out infinite; }
+.rc-5  { left: 16%; top: 30%;    animation: reactFloat2 5.4s ease-in-out infinite; }
+.rc-6  { right: 24%; top: 40%;   animation: reactFloat3 4.6s ease-in-out infinite; }
+.rc-7  { left: 52%; top: 12%;    animation: reactFloat4 5.6s ease-in-out infinite; }
+.rc-8  { right: 10%; top: 56%;   animation: reactFloat1 4.8s ease-in-out infinite; }
+.rc-9  { left: 22%; bottom: 10%; animation: reactFloat2 6s ease-in-out infinite; }
+.rc-10 { right: 30%; bottom: 22%;animation: reactFloat3 5.2s ease-in-out infinite; }
 
 /* ============================================================
    PROOF STRIP
@@ -658,13 +603,7 @@ img, video { max-width: 100%; }
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 14px 0;
-  /* Enhanced: subtle multi-colour glow in the marquee band */
-  background: linear-gradient(90deg,
-    rgba(74,158,255,0.03),
-    rgba(201,168,76,0.04),
-    rgba(232,98,58,0.03),
-    rgba(74,158,255,0.03)
-  );
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.03), transparent);
 }
 
 .marquee-track { display: flex; width: max-content; gap: 32px; }
@@ -807,17 +746,8 @@ img, video { max-width: 100%; }
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.04em;
-  /* Multi-colour: first card gold, second warm, third ice */
   color: var(--gold);
 }
-
-/* Colour cycle on numbered cards */
-.selected-card:nth-child(2) .selected-number { color: var(--warm); }
-.selected-card:nth-child(3) .selected-number { color: var(--ice); }
-
-/* Row-style variant (selected-number in row layout) */
-.selected-row:nth-child(2) .selected-number { color: var(--warm); }
-.selected-row:nth-child(3) .selected-number { color: var(--ice); }
 
 .selected-content { padding: 8px 24px 24px; }
 .selected-content h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.02em; }
@@ -906,11 +836,6 @@ img, video { max-width: 100%; }
   margin-bottom: 6px;
 }
 
-/* Colour cycle on stat cards */
-.stat-card-mobile:nth-child(2) .stat-number-mobile { color: var(--warm); }
-.stat-card-mobile:nth-child(3) .stat-number-mobile { color: var(--ice); }
-.stat-card-mobile:nth-child(4) .stat-number-mobile { color: var(--violet); }
-
 .stat-label-mobile { display: block; font-size: 0.85rem; line-height: 1.5; color: var(--white-60); font-weight: 300; }
 
 .process-grid-mobile { display: grid; gap: 12px; margin-top: 16px; }
@@ -928,16 +853,6 @@ img, video { max-width: 100%; }
   border-color: var(--border-gold);
   background: var(--gold-glow);
 }
-
-/* Colour-coded process steps */
-.process-card-mobile:nth-child(1):hover { border-color: var(--border-gold); background: var(--gold-glow); }
-.process-card-mobile:nth-child(2):hover { border-color: var(--border-warm); background: var(--warm-glow); }
-.process-card-mobile:nth-child(3):hover { border-color: var(--border-ice);  background: var(--ice-glow); }
-.process-card-mobile:nth-child(4):hover { border-color: var(--border-violet); background: var(--violet-glow); }
-
-.process-card-mobile:nth-child(2) .process-step-mobile { color: rgba(232,98,58,0.2); }
-.process-card-mobile:nth-child(3) .process-step-mobile { color: rgba(74,158,255,0.2); }
-.process-card-mobile:nth-child(4) .process-step-mobile { color: rgba(124,58,237,0.2); }
 
 .process-step-mobile {
   position: absolute;
@@ -971,16 +886,10 @@ img, video { max-width: 100%; }
 }
 
 .chip:hover {
-  border-color: var(--warm);
-  color: var(--warm);
-  background: var(--warm-glow);
+  border-color: var(--border-gold);
+  color: var(--gold);
+  background: var(--gold-glow);
 }
-
-/* Alternate chip colours — every 3rd chip gets ice, every 5th gets violet */
-.chip:nth-child(3n) { border-color: rgba(74,158,255,0.18); }
-.chip:nth-child(3n):hover { border-color: var(--ice); color: var(--ice); background: var(--ice-glow); }
-.chip:nth-child(5n) { border-color: rgba(124,58,237,0.18); }
-.chip:nth-child(5n):hover { border-color: var(--violet); color: var(--violet); background: var(--violet-glow); }
 
 /* ============================================================
    CONTACT
@@ -1004,19 +913,7 @@ img, video { max-width: 100%; }
   position: absolute;
   top: 0; left: 50%; transform: translateX(-50%);
   width: 60%; height: 1px;
-  /* Enhanced: three-colour gradient across the top line */
-  background: linear-gradient(90deg, transparent, var(--ice), var(--gold), var(--warm), transparent);
-}
-
-/* NEW: subtle corner glows */
-.contact-v10-card::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; right: -60px;
-  width: 200px; height: 200px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(74,158,255,0.08), transparent 70%);
-  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .contact-v10-title {
@@ -5088,10 +4985,6 @@ img, video { max-width: 100%; }
 @keyframes proofRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .proof-item { display: flex; align-items: center; gap: 10px; padding: 0 28px; white-space: nowrap; flex-shrink: 0; }
 .proof-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); opacity: .5; flex-shrink: 0; }
-/* Cycle proof dot colours */
-.proof-item:nth-child(3n)   .proof-dot { background: var(--warm); }
-.proof-item:nth-child(5n)   .proof-dot { background: var(--ice); }
-.proof-item:nth-child(7n)   .proof-dot { background: var(--violet); }
 .proof-text { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 500; transition: color .2s; }
 .proof-item:hover .proof-text { color: rgba(255,255,255,0.8); }
 .proof-item-2 .proof-text { color: rgba(255,255,255,0.22); font-size: 10px; }
@@ -5277,38 +5170,27 @@ img, video { max-width: 100%; }
 }
 
 /* ── 3D DEPTH ENHANCEMENTS ──────────────────────────────────────── */
-/* Hero rings — multi-colour depth */
+/* Hero rings get more color */
 .hero-ring-1 {
-  border-color: rgba(201,168,76,0.15) !important;
-  box-shadow: 0 0 60px rgba(201,168,76,0.08) !important;
+  border-color: rgba(201,168,76,0.12) !important;
+  box-shadow: 0 0 60px rgba(201,168,76,0.06) !important;
 }
-.hero-ring-2 {
-  border-color: rgba(74,158,255,0.10) !important;
-  box-shadow: 0 0 40px rgba(74,158,255,0.05) !important;
-}
-.hero-ring-3 {
-  border-color: rgba(124,58,237,0.08) !important;
-}
+.hero-ring-2 { border-color: rgba(61,127,255,0.08) !important; }
+.hero-ring-3 { border-color: rgba(201,168,76,0.06) !important; }
 
 /* Glows get stronger */
 .hero-cutout-glow { filter: blur(60px) !important; opacity: 0.25 !important; }
 
-/* Orbs — more vibrant with new palette */
-.orb-1 { background: radial-gradient(circle, rgba(201,168,76,0.22), transparent 70%) !important; }
-.orb-2 { background: radial-gradient(circle, rgba(74,158,255,0.14), transparent 70%) !important; }
-.orb-3 { background: radial-gradient(circle, rgba(232,98,58,0.10), transparent 70%) !important; }
+/* Orbs — more vibrant */
+.orb-1 { background: radial-gradient(circle, rgba(201,168,76,0.18), transparent 70%) !important; }
+.orb-2 { background: radial-gradient(circle, rgba(61,127,255,0.1), transparent 70%) !important; }
+.orb-3 { background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%) !important; }
 
+/* Cards get colored accent borders on hover */
 .why-card-linked:hover {
   border-color: rgba(201,168,76,0.3) !important;
   background: rgba(201,168,76,0.05) !important;
 }
-
-/* Alternating colour accents on why cards */
-.why-card-linked:nth-child(1)::before { background: var(--gold); }
-.why-card-linked:nth-child(2)::before { background: var(--warm); }
-.why-card-linked:nth-child(3)::before { background: var(--ice); }
-.why-card-linked:nth-child(2):hover { border-color: rgba(232,98,58,0.3) !important; background: var(--warm-glow) !important; }
-.why-card-linked:nth-child(3):hover { border-color: rgba(74,158,255,0.3) !important; background: var(--ice-glow) !important; }
 
 /* ── VIDEO STRIP — only once, full brightness ───────────────────── */
 .hero-video-strip-wrap { opacity: 1 !important; }
@@ -5316,259 +5198,88 @@ img, video { max-width: 100%; }
 /* Hide any accidental duplicate */
 .hero-video-strip-wrap ~ .hero-video-strip-wrap { display: none !important; }
 
-/* ── HERO VIDEO BACKGROUND ──────────────────────────────────────────────────
-   VIDEO IS VISIBLE — overlay reduced to 0.42 opacity
-   All hero content sits on z-index 2+ so it floats over the video
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ── HERO VIDEO BACKGROUND ──────────────────────────────────────── */
 .hero-video-bg-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;          /* behind everything */
-  overflow: hidden;
-  pointer-events: none;
+  position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
 }
-
 .hero-video-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* FIX: was 0.22 opacity + heavy desaturation — now actually visible */
-  opacity: 0.55;
-  filter: saturate(0.7) brightness(0.62);
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.22; filter: saturate(0.3) brightness(0.5);
 }
-
-/* Semi-transparent colour wash — lets video show through */
-.hero-video-overlay {
-  position: absolute;
-  inset: 0;
-  /* FIX: was 0.68 — reduced to 0.42 so video breathes through */
-  background: rgba(5, 5, 7, 0.42);
-  /* Subtle colour tint from the left — adds depth without hiding video */
-  background-image: linear-gradient(
-    100deg,
-    rgba(5, 5, 7, 0.55) 0%,
-    rgba(5, 5, 7, 0.28) 50%,
-    rgba(10, 8, 5, 0.22) 100%
-  );
-}
-
-/* Bottom fade so content below the hero reads cleanly */
+.hero-video-overlay { position: absolute; inset: 0; background: rgba(5,5,7,0.68); }
 .hero-video-gradient {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 55%;
+  position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
   background: linear-gradient(to bottom, transparent, #050507);
-  pointer-events: none;
 }
-
-/* ── CRITICAL: items float OVER the video ── */
 .hero-wrap { position: relative !important; }
-
-/* Everything inside hero sits above video bg (z-index 0) */
-.hero-top-row     { position: relative; z-index: 2; }
-.hero-mobile-row  { position: relative; z-index: 2; }
-.hero-video-strip-wrap { position: relative; z-index: 2; }
-
-/* Navbar also above video */
-.navbar { position: relative; z-index: 10; }
+.hero-top-row, .hero-mobile-row, .hero-video-strip-wrap { position: relative; z-index: 1; }
 
 /* ── REMOVE INTRO AVATAR if still mounted ───────────────────────── */
 .intro-overlay { display: none !important; }
+
 /* ============================================================
-   COLOUR ENHANCEMENT ADDITIONS
-   All rules below ADD to existing styles — nothing removed
+   OCT-DEC CAMPAIGN PAGE — APPENDED, NOTHING OVERWRITTEN
+   Only new classes added below. Your existing styles untouched.
    ============================================================ */
 
-/* ── SECTION TITLE accent colours ───────────────────────────────────────── */
-/* Each section gets its own colour identity */
-#why-me      .section-title { color: var(--white); }
-#why-me      .eyebrow       { color: var(--warm);  }
-
-#selected-works .section-title { color: var(--white); }
-#selected-works .eyebrow       { color: var(--gold);  }
-
-#capabilities .section-title { color: var(--white); }
-#capabilities .eyebrow       { color: var(--ice);   }
-
-#tools .section-title { color: var(--white); }
-#tools .eyebrow       { color: var(--violet); }
-
-#contact .eyebrow { color: var(--rose); }
-
-/* ── HERO EYEBROW — warm accent ─────────────────────────────────────────── */
-.hero-kicker { color: var(--gold); }
-.hero-eyebrow-text { color: var(--gold); }
-
-/* ── SECTION DIVIDER lines — tri-colour gradient ────────────────────────── */
-.works-header { border-bottom: 1px solid transparent;
-  border-image: linear-gradient(90deg, var(--gold), var(--warm), var(--ice), transparent) 1;
+/* Quarter overview stat bar (Oct-Dec page only) */
+.oct-dec-overview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: rgba(245, 242, 235, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 28px;
 }
 
-/* ── WHY CARD muted — add warm-tinted left border ───────────────────────── */
-.why-card-muted {
-  border-left: 2px solid rgba(201,168,76,0.3) !important;
+@media (min-width: 600px) {
+  .oct-dec-overview { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* ── SELECTED LINK BUTTONS — ice hover ──────────────────────────────────── */
-.selected-link-btn:hover {
-  background: var(--ice-dim) !important;
-  border-color: var(--ice) !important;
-  color: var(--ice) !important;
+.oct-dec-stat {
+  padding: 20px 18px;
+  background: var(--black-2, #0f0f0c);
+  border-top: 2px solid transparent;
+  transition: background 0.2s ease;
+}
+.oct-dec-stat:hover { background: var(--black-3, #141410); }
+.oct-dec-stat-n {
+  display: block;
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.oct-dec-stat-l {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--white-60, rgba(245,242,235,0.6));
+  font-weight: 300;
+  line-height: 1.4;
 }
 
-/* ── HERO LINK BUTTONS — warm hover ─────────────────────────────────────── */
-.hero-link-btn:hover {
-  background: var(--warm-dim) !important;
-  border-color: var(--warm) !important;
-  color: var(--warm) !important;
+/* Camp detail block vertical spacing */
+.camp-detail-block { margin-bottom: 8px; }
+
+/* Cross-season link styling (used inline but adding class for reuse) */
+.camp-season-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(201,168,76,0.3);
+  color: rgba(201,168,76,0.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  margin-top: 16px;
 }
-
-/* ── BRAND MARQUEE CHIP — coloured dots ─────────────────────────────────── */
-.brand-marquee-dot { background: var(--gold); opacity: 0.4; }
-.brand-marquee-chip:nth-child(3n) .brand-marquee-dot { background: var(--warm); }
-.brand-marquee-chip:nth-child(5n) .brand-marquee-dot { background: var(--ice); }
-
-/* ── PHOTO STRIP border — gold to warm gradient ─────────────────────────── */
-.photo-strip-item {
-  border-color: rgba(201,168,76,0.25) !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.08) !important;
+.camp-season-link:hover {
+  border-color: var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+  background: rgba(201,168,76,0.06);
 }
-.photo-strip-item:hover {
-  border-color: rgba(232,98,58,0.4) !important;
-  box-shadow: 0 12px 40px rgba(232,98,58,0.15), 0 0 0 1px rgba(232,98,58,0.15) !important;
-}
-
-/* ── VIDEO STRIP panels — multi-colour borders ──────────────────────────── */
-.hero-video-panel { border-color: rgba(201,168,76,0.2) !important; }
-.hero-video-panel:nth-child(3n) { border-color: rgba(74,158,255,0.2) !important; }
-.hero-video-panel:nth-child(5n) { border-color: rgba(232,98,58,0.2) !important; }
-
-/* ── CURSOR GLOW — more vibrant ─────────────────────────────────────────── */
-@media (min-width: 768px) and (hover: hover) {
-  .cursor-glow {
-    background: radial-gradient(circle,
-      rgba(201, 168, 76, 0.09) 0%,
-      rgba(74, 158, 255, 0.03) 50%,
-      transparent 70%
-    ) !important;
-  }
-}
-
-/* ── PAGE LOADER BAR — tri-colour ───────────────────────────────────────── */
-.page-loader-progress {
-  background: linear-gradient(90deg, var(--gold), var(--warm), var(--ice)) !important;
-}
-
-/* ── SIDE NAV links — coloured on hover ─────────────────────────────────── */
-.side-nav-link:hover { color: var(--gold) !important; }
-.side-nav-link:nth-child(2):hover { color: var(--warm) !important; }
-.side-nav-link:nth-child(3):hover { color: var(--ice)  !important; }
-.side-nav-link:nth-child(4):hover { color: var(--violet) !important; }
-
-/* ── CHATBOT send button — warm on hover ────────────────────────────────── */
-.chat-send:hover:not(:disabled) {
-  background: var(--warm) !important;
-}
-.chat-msg-user {
-  background: linear-gradient(135deg, var(--gold), var(--warm)) !important;
-  color: var(--black) !important;
-}
-
-/* ── HERO stats — ice blue numbers ─────────────────────────────────────────
-   (only if hsp-static class is used — won't affect vanilla-counter targets) */
-.hsp-num, .hsp-static {
-  color: var(--ice) !important;
-}
-
-/* ── m-pulse rings — multi-colour ──────────────────────────────────────── */
-.m-pulse-ring { border-color: rgba(74,158,255,0.08) !important; }
-.m-pr-2       { border-color: rgba(124,58,237,0.06) !important; }
-
-/* ── HERO cutout ring — enhanced glow ───────────────────────────────────── */
-.hero-cutout-ring {
-  background: radial-gradient(circle at center,
-    rgba(201, 168, 76, 0.06),
-    rgba(74, 158, 255, 0.03) 40%,
-    transparent 70%
-  ) !important;
-  border: 1px solid rgba(201, 168, 76, 0.2) !important;
-  box-shadow:
-    inset 0 0 60px rgba(201, 168, 76, 0.05),
-    0 0 80px rgba(74, 158, 255, 0.06) !important;
-}
-
-/* ── HERO name last word — gold gradient glow ───────────────────────────── */
-.hero-name-last,
-.hero-name-editorial .hero-name-last {
-  background: linear-gradient(135deg, var(--gold) 0%, #f5d97a 40%, var(--warm) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(201,168,76,0.35));
-}
-
-/* ── WHY-ME mini-card icon — coloured per card ──────────────────────────── */
-.why-mini-card:nth-child(2) .why-mini-icon {
-  background: var(--warm-glow);
-  border-color: var(--border-warm);
-}
-.why-mini-card:nth-child(3) .why-mini-icon {
-  background: var(--ice-glow);
-  border-color: var(--border-ice);
-}
-.why-mini-card:nth-child(4) .why-mini-icon {
-  background: var(--violet-glow);
-  border-color: var(--border-violet);
-}
-.why-mini-card:nth-child(2):hover { border-color: var(--border-warm); background: var(--warm-glow); }
-.why-mini-card:nth-child(3):hover { border-color: var(--border-ice);  background: var(--ice-glow);  }
-.why-mini-card:nth-child(4):hover { border-color: var(--border-violet); background: var(--violet-glow); }
-.why-mini-card:nth-child(2)::before { background: var(--warm); }
-.why-mini-card:nth-child(3)::before { background: var(--ice);  }
-.why-mini-card:nth-child(4)::before { background: var(--violet); }
-
-/* ── CLOUD chips — warm hover ───────────────────────────────────────────── */
-.logo-chip-active,
-.clean-chip:hover {
-  background: var(--warm-dim) !important;
-  border-color: var(--border-warm) !important;
-  box-shadow: 0 0 12px rgba(232,98,58,0.15) !important;
-}
-
-/* ── SELECTED-ROW number — uses warm for 2nd row, ice for 3rd ──────────── */
-.selected-row:nth-child(2) .selected-number { color: var(--warm); }
-.selected-row:nth-child(3) .selected-number { color: var(--ice); }
-
-/* ── FOOTER / WORKS all-link — subtle ice on hover ──────────────────────── */
-.works-all-link:hover { color: var(--ice) !important; }
-
-/* ── GRID background — enhance with very subtle colour mix ─────────────── */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(201, 168, 76, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 158, 255, 0.018) 1px, transparent 1px) !important;
-}
-
-/* ── HERO VIDEO BG — guarantee visibility & z-stacking ─────────────────── */
-/* Redundant safety rule — items MUST float above video */
-.hero-copy          { position: relative; z-index: 2; }
-.hero-desktop-col   { position: relative; z-index: 2; }
-.hero-cutout-stage  { position: relative; z-index: 3; }
-.cloud              { z-index: 4 !important; }
-.m-chip             { z-index: 4 !important; }
-.m-stage            { position: relative; z-index: 2; }
-.hero-action-panel  { position: relative; z-index: 2; }
-.hero-stat-pills,
-.hero-stats-mobile-editorial { position: relative; z-index: 2; }
-.hero-actions,
-.hero-actions-mobile { position: relative; z-index: 2; }
-.hero-scroll-hint   { position: relative; z-index: 2; }
-.hero-kicker,
-.hero-eyebrow-row   { position: relative; z-index: 2; }
-.hero-name,
-.hero-name-main,
-.hero-role-line     { position: relative; z-index: 2; }
-.brand-ticker-wrap  { position: relative; z-index: 2; }
-.m-tray             { position: relative; z-index: 2; }

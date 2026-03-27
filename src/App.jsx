@@ -8,23 +8,25 @@ import Capabilities from "./sections/Capabilities";
 import Tools from "./sections/Tools";
 import Contact from "./sections/Contact";
 import Chatbot from "./components/Chatbot";
-import PageLoader from "./components/PageLoader";
-import CustomCursor from "./components/CustomCursor";
 import CampaignPage from "./pages/CampaignPage";
 import CVPage from "./pages/CVPage";
 
-// IntroFlip REMOVED — replaced by PageLoader
-
-function HomePage() {
+function Shell({ children }) {
   return (
     <div className="site-shell">
-      <PageLoader />
-      <CustomCursor />
       <Chatbot />
       <div className="bg-orb orb-1" />
       <div className="bg-orb orb-2" />
       <div className="bg-orb orb-3" />
       <div className="bg-grid" />
+      {children}
+    </div>
+  );
+}
+
+function HomePage() {
+  return (
+    <Shell>
       <Navbar />
       <main className="container">
         <Hero />
@@ -36,36 +38,26 @@ function HomePage() {
         <Tools />
         <Contact />
       </main>
-    </div>
+    </Shell>
   );
 }
 
 export default function App() {
   const path = window.location.pathname;
 
-  if (path.startsWith("/campaigns/chai-break")) {
+  if (path.startsWith("/campaigns/")) {
     return (
-      <div className="site-shell">
-        <CustomCursor />
-        <Chatbot />
-        <div className="bg-orb orb-1" />
-        <div className="bg-orb orb-2" />
-        <div className="bg-grid" />
+      <Shell>
         <main className="container"><CampaignPage /></main>
-      </div>
+      </Shell>
     );
   }
 
   if (path === "/cv" || path === "/cv/") {
     return (
-      <div className="site-shell">
-        <CustomCursor />
-        <Chatbot />
-        <div className="bg-orb orb-1" />
-        <div className="bg-orb orb-2" />
-        <div className="bg-grid" />
+      <Shell>
         <main className="container"><CVPage /></main>
-      </div>
+      </Shell>
     );
   }
 

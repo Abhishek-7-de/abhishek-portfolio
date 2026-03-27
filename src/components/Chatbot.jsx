@@ -52,6 +52,25 @@ PROCESS: Understand → Plan → Reference → Execute
 
 TOOLS: ChatGPT, Claude, Gemini, Perplexity + content creation tools
 
+OCT-DEC 2025 CAMPAIGNS (4 more campaigns):
+1. Shagun Wali Diwali — Diwali Spin-The-Wheel gamification campaign
+   - 11.7M campaign views, 13.1K interactions, 2.9K+ spins, 11.4L+ sales driven
+   - Full campaign concept, in-store activation design, digital creative suite
+   
+2. Sizzler Festival (The Big Sizzle) — New F&B format launch
+   - 9.3M campaign views, 9.8K interactions, 1500+ sizzlers served, 7.7L+ sales
+   - Built entire campaign identity, food blogger partnerships, menu design
+   
+3. Choc N Roll — Winter Chocolate Beverage Festival
+   - 6.4M campaign views, 5.9K interactions, 3.6K+ beverages, 7.5L+ sales
+   - Seasonal winter campaign identity, beverage menu creative direction
+   
+4. Break A Boo, Great Mix Carnival, Glam The Gram, Combos @ 999 — supporting campaigns
+   - Always-on content ecosystem across 7 campaigns in one quarter
+
+Full Oct-Dec page: /campaigns/oct-dec
+Full Mid-Year page: /campaigns/chai-break
+
 HIRING INFO: Open to brand strategy retainers, campaign direction, content creation, hosting gigs, creative briefs, one-off decks
 Email: abhishek7de@gmail.com | Instagram DM: @abhishek7.exe
 
