@@ -1,5 +1,4 @@
 // src/sections/SelectedWorks.jsx
-// Fixed: scrollable links drawer, mobile optimized, working counters
 
 import { useEffect, useRef, useState } from "react";
 import { selectedWorks } from "../data/selectedWorks";
@@ -31,11 +30,7 @@ function AnimatedNumber({ value, suffix = "+" }) {
     return () => observer.disconnect();
   }, [value]);
 
-  return (
-    <span ref={ref} className="selected-number">
-      {count}{suffix}
-    </span>
-  );
+  return <span ref={ref} className="selected-number">{count}{suffix}</span>;
 }
 
 export default function SelectedWorks() {
@@ -66,7 +61,7 @@ export default function SelectedWorks() {
               id={`work-card-${index}`}
               className={`selected-row ${isOpen ? "selected-row-open" : ""}`}
             >
-              {/* Row header — clickable */}
+              {/* Clickable row header */}
               <button
                 type="button"
                 className="selected-row-top"
@@ -93,7 +88,7 @@ export default function SelectedWorks() {
                 </span>
               </button>
 
-              {/* Scrollable drawer — links are fully clickable */}
+              {/* Drawer — scrollable links */}
               <div className={`selected-drawer-row ${isOpen ? "selected-drawer-open" : ""}`}>
                 <div className="selected-drawer-inner">
                   {item.links && item.links.length > 0 ? (
@@ -102,7 +97,7 @@ export default function SelectedWorks() {
                         <a
                           key={link.label}
                           href={link.href}
-                          target="_blank"
+                          target={link.href.startsWith("http") ? "_blank" : "_self"}
                           rel="noreferrer"
                           className="selected-link-btn"
                           onClick={(e) => e.stopPropagation()}
@@ -112,7 +107,7 @@ export default function SelectedWorks() {
                       ))}
                     </div>
                   ) : (
-                    <p className="selected-empty">Links dropping soon.</p>
+                    <p className="selected-empty">Content links dropping soon — check Instagram for now.</p>
                   )}
                 </div>
               </div>
@@ -121,7 +116,7 @@ export default function SelectedWorks() {
         })}
       </div>
 
-      {/* Footer CTA */}
+      {/* Footer */}
       <div className="works-footer">
         <a href="/campaigns/chai-break" className="works-all-link">
           See Full Campaign Work
