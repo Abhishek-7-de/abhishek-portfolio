@@ -5218,25 +5218,21 @@ img, video { max-width: 100%; }
 .intro-overlay { display: none !important; }
 
 /* ============================================================
-   OCT-DEC CAMPAIGN PAGE — APPENDED, NOTHING OVERWRITTEN
-   Only new classes added below. Your existing styles untouched.
+   APPENDED — Oct-Dec campaign CSS + video bg reinforcement
+   Your 5218 lines above are untouched.
    ============================================================ */
 
-/* Quarter overview stat bar (Oct-Dec page only) */
+/* Oct-Dec overview stats */
 .oct-dec-overview {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2px;
-  background: rgba(245, 242, 235, 0.08);
+  background: rgba(245,242,235,0.08);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 28px;
 }
-
-@media (min-width: 600px) {
-  .oct-dec-overview { grid-template-columns: repeat(4, 1fr); }
-}
-
+@media (min-width: 600px) { .oct-dec-overview { grid-template-columns: repeat(4, 1fr); } }
 .oct-dec-stat {
   padding: 20px 18px;
   background: var(--black-2, #0f0f0c);
@@ -5244,42 +5240,22 @@ img, video { max-width: 100%; }
   transition: background 0.2s ease;
 }
 .oct-dec-stat:hover { background: var(--black-3, #141410); }
-.oct-dec-stat-n {
-  display: block;
-  font-family: var(--font-display, 'Bebas Neue', sans-serif);
-  font-size: 2rem;
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
-}
-.oct-dec-stat-l {
-  display: block;
-  font-size: 0.82rem;
-  color: var(--white-60, rgba(245,242,235,0.6));
-  font-weight: 300;
-  line-height: 1.4;
-}
-
-/* Camp detail block vertical spacing */
+.oct-dec-stat-n { display: block; font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.04em; margin-bottom: 4px; }
+.oct-dec-stat-l { display: block; font-size: 0.82rem; color: var(--white-60); font-weight: 300; line-height: 1.4; }
 .camp-detail-block { margin-bottom: 8px; }
-
-/* Cross-season link styling (used inline but adding class for reuse) */
 .camp-season-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(201,168,76,0.3);
-  color: rgba(201,168,76,0.8);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  margin-top: 16px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 999px;
+  border: 1px solid rgba(201,168,76,0.3); color: rgba(201,168,76,0.8);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: all 0.2s ease; margin-top: 16px;
 }
-.camp-season-link:hover {
-  border-color: var(--gold, #c9a84c);
-  color: var(--gold, #c9a84c);
-  background: rgba(201,168,76,0.06);
+.camp-season-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.06); }
+
+/* Hero background video — reinforce visibility */
+.hero-video-bg {
+  opacity: 0.22 !important;
+  filter: saturate(0.3) brightness(0.5) !important;
+  display: block !important;
 }
+.hero-video-bg-wrap { display: block !important; }
