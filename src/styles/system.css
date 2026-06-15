@@ -1,0 +1,61 @@
+/* ============================================================
+   SYSTEM — new shared component styles (loaded last).
+   Holds the ambient background + cross-cutting helpers for the
+   rebuilt sections. Section-specific CSS lives with each section.
+   ============================================================ */
+
+/* ── Smooth-scroll: let Lenis own scrolling (overrides legacy smooth) ── */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ── Ambient background (replaces orbs + grid + particles) ── */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient-glow {
+  position: absolute;
+  inset: -15%;
+  /* static fallback (used for reduced-motion); JS overrides via inline bg */
+  background: radial-gradient(640px circle at 50% 16%, var(--gold-glow), transparent 62%);
+}
+.ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(125% 95% at 50% -10%, transparent 52%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(100% 60% at 50% 110%, rgba(0, 0, 0, 0.4), transparent 60%);
+}
+
+/* Keep page content above the ambient layer */
+.site-shell { position: relative; z-index: 0; }
+main.container { position: relative; z-index: 1; }
+
+/* Prevent horizontal overflow WITHOUT creating a scroll container.
+   `overflow-x: hidden` forces overflow-y to auto, which breaks
+   position:sticky (used by the pinned gallery). `clip` does not. */
+body,
+.site-shell {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* ── Shared helpers for rebuilt sections ── */
+.u-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

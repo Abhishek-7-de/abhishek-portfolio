@@ -1,102 +1,115 @@
-// src/sections/WhyMe.jsx
+import Reveal from "../motion/Reveal";
+
+const Icon = {
+  systems: (
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <rect x="3" y="3" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="16" y="3" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" opacity="0.6" />
+      <rect x="3" y="16" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" opacity="0.6" />
+      <rect x="16" y="16" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  ),
+  strategy: (
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.6" />
+      <line x1="18" y1="18" x2="25" y2="25" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  ),
+  content: (
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <rect x="3" y="6" width="22" height="16" rx="3" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M12 11.5 L17 14 L12 16.5 Z" fill="currentColor" />
+      <line x1="3" y1="10.5" x2="25" y2="10.5" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+    </svg>
+  ),
+  launch: (
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <path d="M14 3 C19 7 20 13 18 19 L10 19 C8 13 9 7 14 3 Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="14" cy="11" r="2.2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M10 19 L7 24 M18 19 L21 24 M14 19 L14 25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+};
+
+const cards = [
+  {
+    icon: "systems",
+    tag: "01",
+    title: "Content Systems",
+    text: "Monthly calendars, rollout plans, and posting systems that keep brands consistent without burning out teams.",
+    note: "Foundation layer · runs behind everything",
+    feature: true,
+  },
+  {
+    icon: "strategy",
+    tag: "02",
+    title: "Research & Strategy",
+    text: "Brand research, campaign planning, strategy docs — the thinking before the doing.",
+    link: "See strategy work",
+  },
+  {
+    icon: "content",
+    tag: "03",
+    title: "Shoot & Content",
+    text: "On-ground execution — directing shoots, UGC, reels, and influencer briefs.",
+    link: "See content work",
+  },
+  {
+    icon: "launch",
+    tag: "04",
+    title: "Campaign Launches",
+    text: "End-to-end rollouts — from concept to live, across 35+ outlets.",
+    link: "See campaigns",
+  },
+];
 
 export default function WhyMe() {
-  const linked = [
-    {
-      title: "Research & Strategy",
-      tag: "02",
-      text: "Brand research, campaign planning, strategy docs — the thinking before the doing.",
-      sub: "→ See strategy work",
-      mobileTarget: "work-card-1",
-      href: "#selected-works",
-      icon: "🧠",
-    },
-    {
-      title: "Shoot & Content",
-      tag: "03",
-      text: "On-ground execution — directing shoots, UGC, reels, influencer briefs.",
-      sub: "→ See content work",
-      mobileTarget: "work-card-2",
-      href: "#selected-works",
-      icon: "🎬",
-    },
-    {
-      title: "Campaign Launches",
-      tag: "04",
-      text: "End-to-end rollouts — from concept to live, across 35+ outlets.",
-      sub: "→ See campaigns",
-      mobileTarget: "work-card-0",
-      href: "#selected-works",
-      icon: "🚀",
-    },
-  ];
-
-  const handleMobileClick = (target) => {
-    const el = document.getElementById(target);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    else document.getElementById("selected-works")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section id="why-me" className="section fade-up">
-      <p className="eyebrow">Why Me</p>
-      <h2 className="section-title compact-title why-title-mobile">
-        Sharp thinking,<br />real execution.
-      </h2>
+    <section id="why-me" className="sec whyme">
+      <Reveal className="sec-head">
+        <span className="sec-eyebrow">Why Me</span>
+        <h2 className="sec-title">
+          Sharp thinking,
+          <br />
+          real execution.
+        </h2>
+      </Reveal>
 
-      <div className="why-grid-new">
-
-        {/* Top stat card */}
-        <div className="why-card-muted why-card-calendar">
-          <div className="why-calendar-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect x="2" y="5" width="24" height="21" rx="4" stroke="#c9a84c" strokeWidth="1.5" fill="rgba(201,168,76,0.06)"/>
-              <line x1="2" y1="11" x2="26" y2="11" stroke="#c9a84c" strokeWidth="1.5" opacity="0.5"/>
-              <rect x="7" y="2" width="2.5" height="6" rx="1.25" fill="#c9a84c"/>
-              <rect x="18.5" y="2" width="2.5" height="6" rx="1.25" fill="#c9a84c"/>
-              <rect x="7" y="15" width="4" height="4" rx="1" fill="#c9a84c" opacity="0.7"/>
-              <rect x="12" y="15" width="4" height="4" rx="1" fill="#c9a84c" opacity="0.5"/>
-              <rect x="17" y="15" width="4" height="4" rx="1" fill="#c9a84c" opacity="0.3"/>
-              <rect x="7" y="21" width="4" height="3" rx="1" fill="#c9a84c" opacity="0.4"/>
-              <rect x="12" y="21" width="4" height="3" rx="1" fill="#c9a84c" opacity="0.3"/>
-            </svg>
-          </div>
-          <div className="why-card-body">
-            <h3>Content Systems</h3>
-            <p>Monthly calendars, rollout plans, and posting systems that keep brands consistent without burning out teams.</p>
-            <span className="why-no-link">Foundation layer · Runs behind everything</span>
-          </div>
-          <div className="why-card-badge">01</div>
-        </div>
-
-        <div className="why-divider">
-          <span>Tap any card to jump to the work</span>
-        </div>
-
-        <div className="why-linked-grid">
-          {linked.map((card) => (
-            <a
+      <div className="why-grid">
+        {cards.map((card, i) => {
+          const Tag = card.link ? "a" : "div";
+          return (
+            <Reveal
               key={card.title}
-              href={card.href}
-              className="why-card-linked"
-              onClick={(e) => {
-                if (window.innerWidth < 768) {
-                  e.preventDefault();
-                  handleMobileClick(card.mobileTarget);
-                }
-              }}
+              as={Tag}
+              delay={i * 0.08}
+              y={26}
+              className={`why-card ${card.feature ? "why-card-feature" : ""} ${card.link ? "why-card-link" : ""}`}
+              {...(card.link ? { href: "#selected-works" } : {})}
             >
-              <div className="why-card-icon-wrap">{card.icon}</div>
-              <span className="why-tag why-tag-gold">{card.tag}</span>
-              <div className="why-card-body">
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-                <span className="why-follow">{card.sub}</span>
+              <div className="why-card-top">
+                <span className="why-card-icon">{Icon[card.icon]}</span>
+                <span className="why-card-tag">{card.tag}</span>
               </div>
-              <span className="why-arrow">↗</span>
-            </a>
-          ))}
-        </div>
+              <div className="why-card-body">
+                <h3 className="why-card-title">{card.title}</h3>
+                <p className="why-card-text">{card.text}</p>
+              </div>
+              {card.link ? (
+                <span className="why-card-cta">
+                  {card.link}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              ) : (
+                <span className="why-card-note">{card.note}</span>
+              )}
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );

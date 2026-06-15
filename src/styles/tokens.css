@@ -1,0 +1,74 @@
+/* ============================================================
+   DESIGN TOKENS — refined system (loaded AFTER styles.css so
+   these win). Goal: one disciplined gold accent + neutrals,
+   fluid type scale, shared motion + spacing tokens.
+   ============================================================ */
+
+:root {
+  /* ── Single accent: refined gold ── */
+  --gold:       #cda95a;
+  --gold-2:     #ecd28f;
+  --gold-deep:  #a8842f;
+  --gold-dim:   rgba(205, 169, 90, 0.16);
+  --gold-glow:  rgba(205, 169, 90, 0.10);
+  --border-gold: rgba(205, 169, 90, 0.30);
+
+  /* ── Neutralize the legacy 5-accent soup so un-migrated sections
+        read cohesive during the transition (single source of truth). ── */
+  --warm: var(--gold);
+  --warm-dim: var(--gold-dim);
+  --warm-glow: var(--gold-glow);
+  --border-warm: var(--border-gold);
+
+  --ice: #c4c0cc;
+  --ice-dim: rgba(196, 192, 204, 0.12);
+  --ice-glow: rgba(196, 192, 204, 0.06);
+  --border-ice: rgba(196, 192, 204, 0.20);
+
+  --violet: var(--gold-2);
+  --violet-dim: var(--gold-dim);
+  --violet-glow: var(--gold-glow);
+  --border-violet: var(--border-gold);
+
+  --rose: var(--gold);
+  --rose-dim: var(--gold-dim);
+  --rose-glow: var(--gold-glow);
+
+  /* ── Text (slightly warmer, cleaner) ── */
+  --white:   #f4f1ea;
+  --white-70: rgba(244, 241, 234, 0.70);
+  --white-60: rgba(244, 241, 234, 0.55);
+  --white-40: rgba(244, 241, 234, 0.40);
+  --white-30: rgba(244, 241, 234, 0.28);
+
+  /* ── Elevation surfaces (new) ── */
+  --surface-1: rgba(245, 242, 235, 0.025);
+  --surface-2: rgba(245, 242, 235, 0.05);
+  --surface-3: rgba(245, 242, 235, 0.08);
+
+  /* ── Fluid type scale (new) ── */
+  --fs-eyebrow: clamp(0.7rem, 0.66rem + 0.2vw, 0.8rem);
+  --fs-body:    clamp(0.95rem, 0.9rem + 0.3vw, 1.0625rem);
+  --fs-lead:    clamp(1.1rem, 1rem + 0.7vw, 1.6rem);
+  --fs-h3:      clamp(1.4rem, 1.15rem + 1.4vw, 2.25rem);
+  --fs-h2:      clamp(2.5rem, 1.5rem + 4.6vw, 5.5rem);
+  --fs-display: clamp(3.5rem, 0.5rem + 13vw, 12rem);
+
+  /* ── Spacing (new) ── */
+  --section-y: clamp(5rem, 9vw, 9rem);
+  --gutter:    clamp(1.25rem, 4vw, 4rem);
+
+  /* ── Motion (new) ── */
+  --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-io:    cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.3s;
+  --dur:      0.6s;
+  --dur-slow: 0.9s;
+
+  /* ── Radii (new) ── */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 26px;
+  --r-pill: 999px;
+}

@@ -1,85 +1,71 @@
-// src/components/CustomCursor.jsx
-// Custom cursor — morphs on hover: default dot → "VIEW" on cards → arrow on links
-// Add <CustomCursor /> inside site-shell in App.jsx (desktop only)
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "motion/react";
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion";
 
-import { useEffect, useRef, useState } from "react";
+/**
+ * Dot + trailing ring cursor. The ring springs behind the dot and morphs to a
+ * "VIEW" state over media/work elements. Pointer detection is delegated (one
+ * mousemove listener) instead of binding every element. Desktop + fine-pointer
+ * + non-reduced-motion only; otherwise the native cursor is used.
+ */
+// Device capability is stable for the session — read it once at init so we
+// never setState inside the effect just to flip a flag.
+const isCapable = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  window.innerWidth >= 768;
 
 export default function CustomCursor() {
-  const cursorRef = useRef(null);
-  const dotRef = useRef(null);
+  const reduced = usePrefersReducedMotion();
+  const [capable] = useState(isCapable);
+  const enabled = capable && !reduced;
+  const [variant, setVariant] = useState("default");
   const [label, setLabel] = useState("");
-  const [variant, setVariant] = useState("default"); // default | view | link | drag
+
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const ringX = useSpring(x, { stiffness: 320, damping: 30, mass: 0.5 });
+  const ringY = useSpring(y, { stiffness: 320, damping: 30, mass: 0.5 });
 
   useEffect(() => {
-    if (window.innerWidth < 768) return; // desktop only
-
-    let rafId;
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
+    if (!enabled) return;
+    document.body.classList.add("has-cursor");
 
     const move = (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-
-      // Dot follows exactly
-      if (dotRef.current) {
-        dotRef.current.style.left = targetX + "px";
-        dotRef.current.style.top = targetY + "px";
+      x.set(e.clientX);
+      y.set(e.clientY);
+      const t = e.target;
+      if (t.closest(".work-row, .field-card, .reel, .hero-portrait")) {
+        setVariant("view");
+        setLabel("VIEW");
+      } else if (t.closest("a, button, .tool-chip, .brand-chip")) {
+        setVariant("link");
+        setLabel("");
+      } else {
+        setVariant("default");
+        setLabel("");
       }
     };
 
-    // Smooth lerp for large cursor
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-      if (cursorRef.current) {
-        cursorRef.current.style.left = currentX + "px";
-        cursorRef.current.style.top = currentY + "px";
-      }
-      rafId = requestAnimationFrame(animate);
-    };
-    animate();
-
-    document.addEventListener("mousemove", move);
-
-    // Hover detection
-    const addHover = (selector, v, lbl) => {
-      document.querySelectorAll(selector).forEach(el => {
-        el.addEventListener("mouseenter", () => { setVariant(v); setLabel(lbl); });
-        el.addEventListener("mouseleave", () => { setVariant("default"); setLabel(""); });
-      });
-    };
-
-    // Re-run hover binding after React renders
-    const bindHovers = () => {
-      addHover(".selected-row, .selected-card", "view", "VIEW");
-      addHover("a[href], .btn", "link", "");
-      addHover(".hero-cutout-image, .m-cutout", "view", "DRAG");
-      addHover(".brand-ticker-item, .logo-chip", "view", "TAP");
-    };
-
-    const timer = setTimeout(bindHovers, 600);
-
-    // Hide default cursor
-    document.body.style.cursor = "none";
-
+    window.addEventListener("mousemove", move, { passive: true });
     return () => {
-      cancelAnimationFrame(rafId);
-      document.removeEventListener("mousemove", move);
-      clearTimeout(timer);
-      document.body.style.cursor = "";
+      window.removeEventListener("mousemove", move);
+      document.body.classList.remove("has-cursor");
     };
-  }, []);
+  }, [enabled, x, y]);
+
+  if (!enabled) return null;
 
   return (
     <>
-      {/* Small trailing dot */}
-      <div ref={dotRef} className="cursor-dot" />
-
-      {/* Large morphing cursor */}
-      <div ref={cursorRef} className={`cursor-blob cursor-${variant}`}>
-        {label && <span className="cursor-label">{label}</span>}
-      </div>
+      <motion.div className="cur-dot" style={{ x, y }} aria-hidden="true" />
+      <motion.div
+        className={`cur-ring cur-${variant}`}
+        style={{ x: ringX, y: ringY }}
+        aria-hidden="true"
+      >
+        {label && <span className="cur-label">{label}</span>}
+      </motion.div>
     </>
   );
 }

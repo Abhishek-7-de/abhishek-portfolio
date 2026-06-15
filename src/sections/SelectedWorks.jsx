@@ -1,136 +1,101 @@
-// src/sections/SelectedWorks.jsx
-// Fixed: scrollable links drawer, mobile optimized, working counters
-
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { selectedWorks } from "../data/selectedWorks";
+import Reveal from "../motion/Reveal";
+import CountUp from "../motion/CountUp";
 
-function AnimatedNumber({ value, suffix = "+" }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting || started.current) return;
-        started.current = true;
-        let current = 0;
-        const steps = 45;
-        const inc = value / steps;
-        const timer = setInterval(() => {
-          current = Math.min(current + inc, value);
-          setCount(Math.floor(current));
-          if (current >= value) clearInterval(timer);
-        }, 28);
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [value]);
-
-  return (
-    <span ref={ref} className="selected-number">
-      {count}{suffix}
-    </span>
-  );
-}
+const units = ["campaigns", "content pieces", "decks & docs"];
 
 export default function SelectedWorks() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [open, setOpen] = useState(0);
 
   return (
-    <section id="selected-works" className="section section-works fade-up">
-
-      {/* Header */}
-      <div className="works-header">
-        <div className="works-header-left">
-          <p className="eyebrow">Selected Works</p>
-          <h2 className="section-title works-title">The Work.</h2>
+    <section id="selected-works" className="sec works">
+      <Reveal className="sec-head sec-head-row">
+        <div>
+          <span className="sec-eyebrow">Selected Works</span>
+          <h2 className="sec-title">The Work.</h2>
         </div>
-        <p className="works-header-desc">
-          Campaigns, content, and brand strategy built for real results — not just impressions.
+        <p className="sec-lead">
+          Campaigns, content, and brand strategy built for real results — not
+          just impressions.
         </p>
-      </div>
+      </Reveal>
 
-      {/* Work list */}
-      <div className="selected-list">
-        {selectedWorks.map((item, index) => {
-          const isOpen = openIndex === index;
-
+      <div className="works-list">
+        {selectedWorks.map((item, i) => {
+          const isOpen = open === i;
           return (
-            <div
+            <Reveal
               key={item.title}
-              id={`work-card-${index}`}
-              className={`selected-row ${isOpen ? "selected-row-open" : ""}`}
+              delay={i * 0.05}
+              y={20}
+              className={`work-row ${isOpen ? "work-row-open" : ""}`}
             >
-              {/* Row header — clickable */}
               <button
                 type="button"
-                className="selected-row-top"
-                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                className="work-row-head"
+                onClick={() => setOpen(isOpen ? -1 : i)}
                 aria-expanded={isOpen}
               >
-                <span className="selected-row-index">0{index + 1}</span>
-
-                <div className="selected-row-title-block">
-                  <h3 className="selected-row-title">{item.title}</h3>
-                  <p className="selected-row-desc">{item.description}</p>
-                </div>
-
-                <div className="selected-row-stat">
-                  <AnimatedNumber value={item.countTo} suffix="+" />
-                  <span className="selected-row-stat-label">{item.statLabel || "results"}</span>
-                </div>
-
-                <span className={`selected-row-arrow ${isOpen ? "selected-row-arrow-open" : ""}`}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    <polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <span className="work-row-index">0{i + 1}</span>
+                <span className="work-row-titles">
+                  <span className="work-row-title">{item.title}</span>
+                  <span className="work-row-desc">{item.description}</span>
                 </span>
+                <span className="work-row-stat">
+                  <CountUp to={item.countTo} suffix="+" className="work-row-stat-num" />
+                  <span className="work-row-stat-label">{units[i] || "results"}</span>
+                </span>
+                <span className={`work-row-plus ${isOpen ? "open" : ""}`} aria-hidden="true" />
               </button>
 
-              {/* Scrollable drawer — links are fully clickable */}
-              <div className={`selected-drawer-row ${isOpen ? "selected-drawer-open" : ""}`}>
-                <div className="selected-drawer-inner">
-                  {item.links && item.links.length > 0 ? (
-                    <div className="selected-links-scroll">
-                      {item.links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="selected-link-btn"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {link.label} ↗
-                        </a>
-                      ))}
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    className="work-drawer"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="work-links">
+                      {item.links && item.links.length > 0 ? (
+                        item.links.map((l) => (
+                          <a
+                            key={l.label}
+                            href={l.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="work-link"
+                          >
+                            {l.label}
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                              <path d="M7 17 L17 7 M9 7 H17 V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </a>
+                        ))
+                      ) : (
+                        <p className="work-empty">Links dropping soon.</p>
+                      )}
                     </div>
-                  ) : (
-                    <p className="selected-empty">Links dropping soon.</p>
-                  )}
-                </div>
-              </div>
-            </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Reveal>
           );
         })}
       </div>
 
-      {/* Footer CTA */}
-      <div className="works-footer">
-        <a href="/campaigns/chai-break" className="works-all-link">
+      <Reveal className="works-footer" delay={0.1}>
+        <a href="/campaigns/chai-break" className="works-all">
           See Full Campaign Work
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            <polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <polyline points="12 5 19 12 12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </a>
-      </div>
+      </Reveal>
     </section>
   );
 }

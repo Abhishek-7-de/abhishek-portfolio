@@ -1,18 +1,19 @@
 import { tools } from "../data/tools";
+import Reveal from "../motion/Reveal";
 
 export default function Tools() {
   return (
-    <section id="tools" className="section fade-up">
-      <p className="eyebrow">Tools</p>
-      <h2 className="section-title compact-title">
-        The stack behind the storytelling.
-      </h2>
+    <section id="tools" className="sec tools">
+      <Reveal className="sec-head">
+        <span className="sec-eyebrow">Tools</span>
+        <h2 className="sec-title">The stack behind the storytelling.</h2>
+      </Reveal>
 
-      <div className="chips">
-        {tools.map((tool) => (
-          <span key={tool} className="chip">
+      <div className="tools-grid">
+        {tools.map((tool, i) => (
+          <Reveal as="span" key={tool} delay={i * 0.04} y={16} className="tool-chip">
             {tool}
-          </span>
+          </Reveal>
         ))}
       </div>
     </section>
